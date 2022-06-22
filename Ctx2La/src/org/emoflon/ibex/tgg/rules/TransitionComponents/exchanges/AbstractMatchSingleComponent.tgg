@@ -1,0 +1,59 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractMatchSingleComponent #with Ctx2La
+
+#source { 
+	ctxArch : ctx.SystemAnalysis{
+	    -ownedSystemComponentPkg -> ctxComponentRootPkg
+	}
+	
+	ctxComponentRootPkg : ctx.SystemComponentPkg
+	
+	ctxComponent : ctx.SystemComponent
+}
+
+#target {
+	laArch : la.LogicalArchitecture{
+	    -ownedLogicalComponentPkg -> laComponentRootPkg
+	}
+	
+	laComponentRootPkg : la.LogicalComponentPkg
+	
+	laComponent : la.LogicalComponent
+}
+
+#correspondence {
+	arch : Ctx2LaArchitecture{
+	    // require model roots
+	    #src-> ctxArch
+	    #trg-> laArch
+	}
+	
+	rootPkgs : CtxComponentPkg2LaComponentPkg{
+	    // require ComponentContainerRoots
+	    #src-> ctxComponentRootPkg
+	    #trg-> laComponentRootPkg
+	}
+	
+	components : CtxComponent2LaComponent{
+	    // match the component triple
+	    #src-> ctxComponent
+	    #trg-> laComponent
+	}
+	contextTransitionedCtxComponent : ContextCtxComponent2LAComponentPkg{
+	    // require a properly transitioned ctxComponent
+	   #src-> ctxComponent
+	   #trg-> laComponentRootPkg
+	}
+	contextTransitionedLaComponent : ContextCtxComponentPkg2LAComponent{
+        // require a properly transitioned laComponent
+       #src-> ctxComponentRootPkg
+       #trg-> laComponent
+    }
+}
+
+#attributeConditions {
+//    Component names do not matter in capella. what matters is, that they are linked with a trace (corr node in TGG)
+//	eq_string(ctxComponent.name, laComponent.name)
+}

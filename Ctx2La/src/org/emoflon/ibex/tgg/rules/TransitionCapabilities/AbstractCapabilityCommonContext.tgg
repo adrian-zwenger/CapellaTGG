@@ -1,0 +1,36 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractCapabilityCommonContext #with Ctx2La
+
+#source { 
+	ctxArch : ctx.SystemAnalysis{
+        -ownedAbstractCapabilityPkg -> ctxCapabilityRoot
+    }
+	
+	ctxCapabilityRoot : ctx.CapabilityPkg
+}
+
+#target {
+	laArch : la.LogicalArchitecture{
+	    -ownedAbstractCapabilityPkg -> laCapabilityRoot
+	}
+	
+	laCapabilityRoot : la.CapabilityRealizationPkg
+}
+
+#correspondence {
+	arch : Ctx2LaArchitecture{
+        #src-> ctxArch
+        #trg-> laArch
+    }
+    
+    capabilityRoot : CtxCapabilityPkg2LaCapabilityRealizationPkg{
+        #src-> ctxCapabilityRoot
+        #trg-> laCapabilityRoot
+    }
+}
+
+#attributeConditions {
+	
+}

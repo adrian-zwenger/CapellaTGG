@@ -1,0 +1,34 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule SyncCapabilityPkgContainedInTransitionedCapabilityPkgFlat #extends AbstractSyncCapabilityPkg #with Ctx2La
+
+#source {
+	ctxCapabilityRoot : ctx.CapabilityPkg
+	
+	ctxTransitionedCapabilityPkg : ctx.CapabilityPkg
+}
+
+#target {
+	laCapabilityRoot : la.CapabilityRealizationPkg
+	
+	laContainer : la.CapabilityRealizationPkg{
+		-ownedCapabilityRealizationPkgs -> laTransitionedCapabilityPkg
+		++ -ownedCapabilityRealizationPkgs -> laNewCapabilityPkg
+	}
+	
+	laTransitionedCapabilityPkg : la.CapabilityRealizationPkg
+	
+	++ laNewCapabilityPkg : la.CapabilityRealizationPkg
+}
+
+#correspondence {
+	transitionedContainer : ContextCtxCapabilityPkg2LaCapabilityrealizationPkg{
+		#src-> ctxCapabilityRoot
+		#trg-> laContainer
+	}
+}
+
+#attributeConditions {
+
+}

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ctx2LaBenchmarking
+Bundle-SymbolicName: Ctx2LaBenchmarking;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: Ctx2LaBenchmarking
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Require-Bundle: org.junit,
+ org.polarsys.capella.core.data.gen;bundle-version="0.1.0",
+ org.emoflon.ibex.tgg.runtime
+Export-Package: generator
+

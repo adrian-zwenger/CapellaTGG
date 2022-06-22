@@ -1,0 +1,24 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule SyncFunctionPkgContainedInFunctionPkgHierarchical #extends AbstractSyncFunctionPkg #with Ctx2La
+
+#source { 
+	ctxPkg : ctx.SystemFunctionPkg
+}
+
+#target {
+	laPkg : la.LogicalFunctionPkg{
+		++ -ownedLogicalFunctionPkgs -> laNewFunctionPkg
+	}
+	
+	++ laNewFunctionPkg : la.LogicalFunctionPkg
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

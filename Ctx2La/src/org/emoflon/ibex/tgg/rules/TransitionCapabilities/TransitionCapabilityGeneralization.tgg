@@ -1,0 +1,46 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionCapabilityGeneralization #extends AbstractMatchTwoCapabilities #with Ctx2La
+
+#source {
+	ctxSrcCapability : ctx.Capability // the super Capability
+	ctxTrgCapability : ctx.Capability{ // the sub Capability
+	    ++ -superGeneralizations -> ctxGeneralization
+	}
+	
+	++ ctxGeneralization : interaction.AbstractCapabilityGeneralization{
+        ++ -super -> ctxSrcCapability
+    }
+	
+	
+}
+
+#target {
+	laSrcCapability : la.CapabilityRealization // super
+	laTrgCapability : la.CapabilityRealization { //sub
+	    ++ -superGeneralizations -> laGeneralization
+	}/**
+	 * the sub capability stores the generalisation link and the links trace to CTX
+	 * 
+	 * CapabilityRealization->ownedTraces
+	 *         org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+	 *                 #->sourceElement -> org.polarsys.capella.core.data.interaction.impl.AbstractCapabilityGeneralizationImpl (la)
+	 *                 #->targetElement -> org.polarsys.capella.core.data.interaction.impl.AbstractCapabilityGeneralizationImpl (ctx)
+	 */
+	
+	++ laGeneralization : interaction.AbstractCapabilityGeneralization{
+	    ++ -super -> laSrcCapability
+	}
+}
+
+#correspondence {
+	++ generalizations : CtxCapabilityGeneralization2LaCapabilityRealizationGeneralization{
+	    #src-> ctxGeneralization
+	    #trg-> laGeneralization
+	}
+}
+
+#attributeConditions {
+	
+}

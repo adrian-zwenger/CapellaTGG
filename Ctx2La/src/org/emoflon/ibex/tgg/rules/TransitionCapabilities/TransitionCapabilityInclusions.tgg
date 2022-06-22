@@ -1,0 +1,42 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionCapabilityInclusions #extends AbstractMatchTwoCapabilities #with Ctx2La
+
+#source { 
+	ctxSrcCapability : ctx.Capability{
+	// the capability which includes other capabilities
+	    ++ -includes -> ctxInclusion
+	}
+	
+	ctxTrgCapability : ctx.Capability {
+	    // the capability which is included
+	}
+	
+	++ ctxInclusion : interaction.AbstractCapabilityInclude{
+        ++ -included -> ctxTrgCapability
+    }
+}
+
+#target {
+	laSrcCapability : la.CapabilityRealization{
+	    ++ -includes -> laInclusion
+	}
+	
+	laTrgCapability : la.CapabilityRealization
+	
+	++ laInclusion : interaction.AbstractCapabilityInclude{
+        ++ -included -> laTrgCapability
+    }
+}
+
+#correspondence {
+	++ inclusions : CtxCapabilityInclusion2CapabilityRealizationInclusion{
+	    #src-> ctxInclusion
+	    #trg-> laInclusion
+	}
+}
+
+#attributeConditions {
+	
+}

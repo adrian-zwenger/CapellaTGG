@@ -1,0 +1,92 @@
+#using Oa2Ctx_TransistionActors.*
+#using AttrCondDefLibrary.*
+
+#rule Oa2Sa_transition_actors #with Oa2Ctx_TransistionActors
+
+/**
+ * This rule generates top-level an operational Entity (and its Part) and
+ * transitions it to SystemAnalysis
+ */
+
+#source {
+	src_oa_arch : oa.OperationalAnalysis{
+		-ownedEntityPkg -> src_entity_pkg
+	}
+	
+	src_entity_pkg : oa.EntityPkg{
+		++ -ownedEntities->src_oa_entity
+		++ -ownedParts -> src_oa_part
+	}
+	
+	++ src_oa_entity : oa.Entity // id = 185
+
+	++ src_oa_part : cs.Part{ // id = 165
+		++ -abstractType-> src_oa_entity
+	}
+}
+
+#target {
+	trg_sa_arch : ctx.SystemAnalysis{
+		-ownedSystemComponentPkg -> trg_componenet_pkg
+	}
+	
+	trg_componenet_pkg : ctx.SystemComponentPkg{
+		++ -ownedSystemComponents-> trg_sys_component
+		++ -ownedParts -> trg_sys_part
+		
+		/**
+		 *  -ownedTraces contains org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl elements
+		 *  these elements represent the traces between elements of capella stages, in other words they 
+		 *  fulfill the same role as the corr-elements of an TGG-triple
+		 *  
+		 * Each TransfoLink references two elements:
+		 * 		#src -> Part of SystemComponent in SystemAnalysis model
+		 * 		#trg -> Part which is being refined by SA and is part of OperationalAnalysis model
+		 */
+
+	}
+	
+	++ trg_sys_component : ctx.SystemComponent{
+		actor := true
+		//all components which are derived from OA are actors. It does not matter if they are human or not
+		
+		/**
+		 * -ownedComponentRealizations : org.polarsys.capella.core.data.cs.impl.ComponentRealizationImpl
+		 * Traces linking SystemComponents to the os.Entity's which they realize
+		 * #src-> ctx.SystemComponent
+		 * #trg-> oa.Entity
+		 */
+	}
+	
+	++ trg_sys_part : cs.Part{
+		++ -abstractType -> trg_sys_component
+	}
+}
+
+#correspondence {
+	oa2sa : Oa2Sa{
+		#src-> src_oa_arch
+		#trg-> trg_sa_arch
+	}
+	
+	++ entity2component : Entity2SystemComponent{
+		#src-> src_oa_entity
+		#trg-> trg_sys_component
+	}
+	
+	++ part2part : OaPart2SaPart{
+		#src-> src_oa_part
+		#trg-> trg_sys_part
+	}
+}
+
+#attributeConditions {
+	eq_string(src_entity_pkg.name, "Operational Entities")
+	eq_string(src_oa_entity.name, src_oa_part.name)
+	
+	
+	eq_string(trg_componenet_pkg.name, "Structure")
+	eq_string(trg_sys_component.name, trg_sys_part.name)
+	
+	eq_string(src_oa_entity.name, trg_sys_component.name)
+}

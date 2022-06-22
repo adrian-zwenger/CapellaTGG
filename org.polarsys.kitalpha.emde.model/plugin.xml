@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.0"?><!--
+--><plugin>
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser class="emde.impl.EmdeFactoryImpl" type="emde"/>
+  </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated eMDE -->
+      <parser
+            type="emde"
+            class="org.polarsys.kitalpha.emde.model.util.EmdeResourceFactoryImpl"/>
+   </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.kitalpha.emde.model.EmdePackage" genModel="model/eMDE.genmodel" uri="platform:/resource/org.polarsys.kitalpha.emde.model/model/eMDE.ecore"/>
+  </extension>
+</plugin>

@@ -1,0 +1,297 @@
+#source {
+    ctx
+    cs
+    capellacore
+    interaction
+    fa
+}
+
+#target { 
+    la
+    cs
+    capellacore
+    capellacommon
+    interaction
+    fa
+} 
+
+#correspondence {
+    Ctx2LaArchitecture{
+        // maps the model roots
+        #src-> ctx.SystemAnalysis
+        #trg-> la.LogicalArchitecture
+    }
+    /** the Ctx2LaArchitecture node needs to be represented as
+     * la.LogicalArchitecture->ownedSystemAnalysisRealizations
+     *      ->org.polarsys.capella.core.data.la.impl.SystemAnalysisRealizationImpl
+     *          #->sourceElement - la.LogicalArchitecture
+     *          #->targetElement - ctx.SystemAnalysis
+     */
+    
+    //########## COMPONENTS ##########//
+    
+    CtxComponentPkg2LaComponentPkg{
+        // maps the Component Packages
+        #src-> ctx.SystemComponentPkg
+        #trg-> la.LogicalComponentPkg
+    }
+    /**
+     * The la.LogicalComponentPkg may or may not store a trace to
+     * the realized SystemComponentPkg.
+     * However, if the PKG's are the root PKG's, then no link is stored.
+     * 
+     * la.LogicalComponentPkg.ownedTraces
+     *      -> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *          #-> sourceElement - la.LogicalComponentPkg
+     *          #-> targetElement - ctx.SystemComponentPkg
+     */
+    
+    CtxComponent2LaComponent{
+        // maps the components
+        #src-> ctx.SystemComponent
+        #trg-> la.LogicalComponent
+    }
+    /**
+     * La Component has trace to realized ctxComponent.
+     * la.LogicalComponent.ownedComponentRealizations
+     *      -> org.polarsys.capella.core.data.cs.impl.ComponentRealization
+     *          #-> sourceElement - la.LogicalComponent
+     *          #-> targetElement - ctx.SystemComponent
+     */
+    
+    CtxPart2LaPart{
+        // maps th Part representation of the components
+        #src-> cs.Part
+        #trg-> cs.Part
+    }
+    /**
+     * parts are alternate representations of a component and are stored in the same container as the component
+     * the realization Link is stored in the container as well.
+     * 
+     * Container is either la.LogicalComponentPkg or la.LogicalComponent
+     * 
+     * Container: la.LogicalComponentPkg
+     *      Component storage: ownedLogicalComponents
+     *      Part storage     : ownedParts
+     *      Part realizations: ownedTraces
+     * 
+     * Container: la.LogicalComponent
+     *      Component storage: ownedLogicalComponents
+     *      Part storage     : ownedFeatures
+     *      Part realizations: ownedTraces
+     * 
+     * Container.ownedTraces
+     *      ->org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *          #-> sourceElement - cs.Part (part of la.LogicalComponent)
+     *          #-> targetElement - cs.Part (part of ctx.SystemComponent)
+     */
+    
+    ContextCtxComponent2LAComponentPkg{
+        // maps a Ctx.Component to the root la.ComponentPkg thus marking the ctx component as transitively contained in the root component pkg
+        #src-> ctx.SystemComponent
+        #trg-> la.LogicalComponentPkg
+    }
+    ContextCtxComponentPkg2LAComponent{
+        // maps a LA.Component to the root CTX.ComponentPkg thus marking the ctx component as transitively contained in the root component pkg
+        #src-> ctx.SystemComponentPkg
+        #trg-> la.LogicalComponent
+    }
+    ContextCtxComponentPkg2LAComponentPkg{
+        // maps a Ctx.ComponentPkg to the root la.ComponentPkg thus marking the ctx componentPkg as transitively contained in the root component pkg
+        #src-> ctx.SystemComponentPkg
+        #trg-> la.LogicalComponentPkg
+    }
+    /**
+     * ContextCtxComponent2LAComponentPkg,
+     * ContextCtxComponentPkg2LAComponent,
+     * ContextCtxComponentPkg2LAComponentPkg
+     * are used as context for Component structures. On transition from CTX to LA the containment hierarchy is retained.
+     * However, the hierarchy-information does not need to be part of a valid model as long as the components are contained in root pkg.
+     * Therefore these context nodes are to be used in rules to signify that the Component(Pkg)s have been transitioned validly without the
+     * need to match their actual containers.
+     */
+     
+     CtxGeneralization2LaGeneralization{
+         #src-> capellacore.Generalization
+         #trg-> capellacore.Generalization
+     }
+     /**
+      * Components can have Super/Sub types. this inheritance structure is modelled with Generalization links.
+      * However traces for their realisation in later or previous Capella stages are not created.
+      */
+    
+    CtxComponentPort2LaComponentPort{
+        #src-> fa.ComponentPort
+        #trg-> fa.ComponentPort
+    }
+    /**
+     * the ComponentPort which is part of the LA-model stores the trace to the port in the ctx-model which it realizes
+     * fa.ComponentPort.ownedPortRealizations
+     *      #->org.polarsys.capella.core.data.information.impl.PortRealizationImpl
+     *              #->sourceElement -> fa.ComponentPort (la)
+     *              #->sourceElement -> fa.ComponentPort (ctx)
+     */
+    
+    CtxComponentExchange2LAComponentExchange{
+        #src-> fa.ComponentExchange // ctx
+        #trg-> fa.ComponentExchange // la
+    }
+    /**
+     * ComponentExchanges are stored in the root ComponentPkg as a containment reference (ownedComponentExchanges)
+     * 
+     * Each exchange stores its own trace to the realized ctx-Exchange
+     * 
+     * ComponentExchange.ownedComponentExchangeRealizations
+     *      #-> org.polarsys.capella.core.data.fa.impl.ComponentExchangeRealizationImpl
+     *              #->sourceElement-> fa.ComponentExchange // la
+     *              #->targetElement-> fa.ComponentExchange // ctx
+     */
+    
+    CtxPhysicalLink2LaPhysicalLink{
+        #src-> cs.PhysicalLink
+        #trg-> cs.PhysicalLink
+    }
+    /**
+     * PhysicalLinks are stored in the root ComponentPkg as a containment reference (ownedPhysicalLinks)
+     * 
+     * Each link stores its own trace to the realized ctx-link
+     * 
+     * PhysicalLink.ownedPhyicalLinkRealization
+     *      #-> org.polarsys.capella.core.data.cs.impl.PhysicalLinkRealizationImpl
+     *              #->sourceElement-> cs.PhysicalLink // la
+     *              #->targetElement-> cs.PhysicalLink // ctx
+     */
+    
+    CtxPhysicalPort2LaPhysicalPort{
+        #src-> cs.PhysicalPort
+        #trg-> cs.PhysicalPort
+    }
+    /**
+     * the physlinkport which is part of the LA-model stores the trace to the port in the ctx-model which it realizes
+     * fa.ComponentPort.ownedPhysicalPortRealizations
+     *      #->org.polarsys.capella.core.data.cs.impl.PhysicalPortRealizationImpl
+     *              #->sourceElement -> cs.PhysicalPort (la)
+     *              #->sourceElement -> cs.PhysicalPort (ctx)
+     */
+    
+    //########## CAPABILITIES ##########//
+
+    CtxCapabilityPkg2LaCapabilityRealizationPkg{
+        #src-> ctx.CapabilityPkg
+        #trg-> la.CapabilityRealizationPkg
+    }
+    /**
+     * this corr element represents a Capella ctx<->la CapabilityPkg trace
+     * The la.CapabilityRealizationPkg stores it as a TransfoLink
+     * 
+     * la.CapabilityRealizationPkg->ownedTraces
+     *      ->org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *            #->sourceElement -> la.CapabilityRealizationPkg
+     *            #->targetElement -> ctx.CapabilityPkg
+     */
+
+    CtxCapability2LaCapabilityRealization{
+        #src-> ctx.Capability
+        #trg-> la.CapabilityRealization
+    }
+    /**
+     * corr node represents capella ctx<->la trace stored in la.CapabilityRealization
+     *
+     * la.CapabilityRealization->ownedAbstractCapabilityRealizations
+     *      ->org.polarsys.capella.core.data.interaction.impl.AbstractCapabilityRealizationImpl
+     *              #->sourceElement -> la.CapabilityRealization
+     *              #->targetElement -> ctx.Capability
+     */
+    
+    ContextCtxCapability2LaCapabilityrealizationPkg{
+        #src-> ctx.Capability
+        #trg-> la.CapabilityRealizationPkg
+    }
+    ContextCtxCapabilityPkg2LaCapabilityrealization{
+        #src-> ctx.CapabilityPkg
+        #trg-> la.CapabilityRealization
+    }
+    ContextCtxCapabilityPkg2LaCapabilityrealizationPkg{
+        #src-> ctx.CapabilityPkg
+        #trg-> la.CapabilityRealizationPkg
+    }
+    
+    CtxCapabilityInvolvement2LaCapabilityRealizationInvolvement{
+        #src-> ctx.CapabilityInvolvement
+        #trg-> capellacommon.CapabilityRealizationInvolvement
+    }
+    /**
+     * The ctx<->la trace for CapabilityInvolvement are stored as an TransfoLink
+     * in the la.CapabilityRealization
+     * 
+     * la.CapabilityRealization->ownedTraces
+     *      ->org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *              #->sourceElement - capellacommon.CapabilityRealizationInvolvement (la)
+     *              #->targetElement - ctx.CapabilityInvolvement (la)
+     */
+
+    CtxCapabilityGeneralization2LaCapabilityRealizationGeneralization{
+        #src-> interaction.AbstractCapabilityGeneralization
+        #trg-> interaction.AbstractCapabilityGeneralization
+    }
+    /**
+     * CapabilityGneralizations symbolise an inheritance structure between two Capabilities.
+     * The sub-Capability stores the Generalisation Link which references the super.
+     * The links are traced with a transfolink stored in the sub-LA-CapabilityRealization
+     * 
+     * CapabilityRealization->ownedTraces
+     *         org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *                 #->sourceElement -> org.polarsys.capella.core.data.interaction.impl.AbstractCapabilityGeneralizationImpl (la)
+     *                 #->targetElement -> org.polarsys.capella.core.data.interaction.impl.AbstractCapabilityGeneralizationImpl (ctx)
+     */
+     
+     CtxCapabilityInclusion2CapabilityRealizationInclusion{
+         #src-> interaction.AbstractCapabilityInclude
+         #trg-> interaction.AbstractCapabilityInclude
+     }
+    /**
+     * Capabilities including other capabilities are represented with Include-Links
+     * These are transitioned and need to be traced between ctx and la
+     * The trace is stored in as a TransfoLink contained in the la.Capability which includes the others
+     * 
+     * la.CapabilityRealization.ownedTraces
+     *      -> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *              #->sourceElement -> interaction.AbstractCapabilityInclude (la)
+     *              #->targetElement -> interaction.AbstractCapabilityInclude (ctx)
+     */
+     
+     CtxCapabilityExtension2CapabilityRealizationExtension{
+         #src-> interaction.AbstractCapabilityExtend
+         #trg-> interaction.AbstractCapabilityExtend
+     }
+    /**
+     * Capabilities extending other capabilities are represented with Extend-Links
+     * These are transitioned and need to be traced between ctx and la
+     * The trace is stored in as a TransfoLink contained in the la.Capability which extends the others
+     * 
+     * la.CapabilityRealization.ownedTraces
+     *      -> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *              #->sourceElement -> interaction.AbstractCapabilityExtend (la)
+     *              #->targetElement -> interaction.AbstractCapabilityExtend (ctx)
+     */
+    
+    //########## MISSIONS ##########//
+    /**
+     * Missions only exist in System Analysis
+     * They are not represented in OA or in any other later Arcadia steps (like LA)
+     */
+}
+
+#attributeConditions {
+    #userDefined eq_ctxPortType(portOne:fa.ComponentPortKind, portTwo:fa.ComponentPortKind, defaultval:fa.ComponentPortKind){
+        // non-physical function ports can either be "STANDARD" or "FLOW"
+        #sync: [B B B], [F B B], [F F B], [B F B]
+        #gen: [F F B]
+    }
+    
+//    #userDefined computePortOrientation(srcPortType:fa.ComponentPortKind, trgPortType:fa.ComponentPortKind, result:fa.OrientationPortKind){
+//        // calculates which orientation a non-physical Port should have
+//        #sync: [B B B], [B B F], [B F B], [F B B]
+//        #gen: [B B B], [B B F], [B F B], [F B B], [B F F], [F F F], [F B F]
+//    }
+}

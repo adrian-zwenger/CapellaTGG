@@ -1,0 +1,34 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+/**
+ * Packages do not need to realize any component or Pkg in previous arcadia step.
+ * 
+ * This rule creates a pkg which is contained in a component
+ * 
+ * Rule requires that the component realizes a component in previous step.
+ * 
+ */
+#rule CreateLaComponentPkgContainedInComponent #extends AbstractCreateComponentPkg #with Ctx2La
+
+#source { 
+	ctxRootPkg : ctx.SystemComponentPkg
+}
+
+#target {
+	laContainer : la.LogicalComponent{
+		++ -ownedLogicalComponentPkgs -> laNewPkg
+	}
+	++ laNewPkg : la.LogicalComponentPkg
+}
+
+#correspondence {
+	contextTransitionedContainer : ContextCtxComponentPkg2LAComponent{
+		#src-> ctxRootPkg
+		#trg-> laContainer
+	}
+}
+
+#attributeConditions {
+	setRandomString(laNewPkg.name)
+}

@@ -1,0 +1,54 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractFunctionCommonContext #with Ctx2La
+
+#source { 
+	ctxArch : ctx.SystemAnalysis{
+	    -ownedFunctionPkg -> ctxRootFunctionPkg
+	}
+	
+	ctxRootFunctionPkg : ctx.SystemFunctionPkg{
+	    -ownedSystemFunctions -> ctxRootFunction
+	}
+	
+	ctxRootFunction : ctx.SystemFunction{
+	    
+	}
+}
+
+#target {
+	laArch : la.LogicalArchitecture{
+	    -ownedFunctionPkg -> laRootFunctionPkg
+	}
+	
+	laRootFunctionPkg : la.LogicalFunctionPkg{
+	    -ownedLogicalFunctions -> laRootFunction
+	}
+	
+	laRootFunction : la.LogicalFunction{
+	    
+	}
+
+}
+
+#correspondence {
+	arch : Ctx2LaArchitecture{
+	    #src-> ctxArch
+	    #trg-> laArch
+	}
+	
+	rootPkgs : CtxFunctionPkg2LaFunctionPkg{
+	    #src-> ctxRootFunctionPkg
+	    #trg-> laRootFunctionPkg
+	}
+	
+	rootFunctions : CtxFunction2LaFunction{
+	    #src-> ctxRootFunction
+	    #trg-> laRootFunction
+	}
+}
+
+#attributeConditions {
+	
+}

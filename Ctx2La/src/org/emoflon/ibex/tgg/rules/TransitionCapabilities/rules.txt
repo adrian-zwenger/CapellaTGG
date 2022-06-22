@@ -1,0 +1,13 @@
+DWF_CA_02 - Capabilities may not extend themselves
+DWF_CA_03 - This rule ensures that a capability cannot generalise itself.
+DWF_CA_04 - This rule ensures that a capability does not include itself.
+
+DCOV_02 - Capabilities need to be exploited by at least 1 mission
+DCOV_03 - Missions need to exploit a minimum of 1 Capability.
+
+DCOV_06 - Components need to be involved in at least 1 Capability.
+DCOV_07 - Capabilities need at least 1 involved Components.
+
+
+TJ_LA_02 - IN CAPPELLA IMPLEMENTED INCORRECTLY
+         - all Capabilities need to be transitioned to LA as CapabilityRealizations

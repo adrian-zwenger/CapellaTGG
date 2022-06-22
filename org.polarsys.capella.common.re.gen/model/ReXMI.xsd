@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:emde="platform:/resource/org.polarsys.kitalpha.emde.model/model/eMDE.ecore" xmlns:re="platform:/resource/org.polarsys.capella.common.re.gen/model/re.ecore" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="platform:/resource/org.polarsys.capella.common.re.gen/model/re.ecore">
+  <xsd:import namespace="http://www.eclipse.org/emf/2002/Ecore" schemaLocation="ecore.xsd"/>
+  <xsd:import namespace="http://www.omg.org/XMI" schemaLocation="platform:/plugin/org.eclipse.emf.ecore/model/XMI.xsd"/>
+  <xsd:import namespace="platform:/resource/org.polarsys.kitalpha.emde.model/model/eMDE.ecore" schemaLocation="emde.xsd"/>
+  <xsd:simpleType name="CatalogElementKind">
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="REC"/>
+      <xsd:enumeration value="RPL"/>
+      <xsd:enumeration value="REC_RPL"/>
+      <xsd:enumeration value="GROUPING"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType abstract="true" name="ReAbstractElement">
+    <xsd:complexContent>
+      <xsd:extension base="emde:ExtensibleElement">
+        <xsd:attribute name="id" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ReAbstractElement" type="re:ReAbstractElement"/>
+  <xsd:complexType abstract="true" name="ReNamedElement">
+    <xsd:complexContent>
+      <xsd:extension base="re:ReAbstractElement">
+        <xsd:attribute name="name" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ReNamedElement" type="re:ReNamedElement"/>
+  <xsd:complexType abstract="true" name="ReDescriptionElement">
+    <xsd:complexContent>
+      <xsd:extension base="re:ReNamedElement">
+        <xsd:attribute name="description" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ReDescriptionElement" type="re:ReDescriptionElement"/>
+  <xsd:complexType abstract="true" name="ReElementContainer">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element name="ownedElements" type="re:CatalogElement"/>
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+  </xsd:complexType>
+  <xsd:element name="ReElementContainer" type="re:ReElementContainer"/>
+  <xsd:complexType name="CatalogElementPkg">
+    <xsd:complexContent>
+      <xsd:extension base="re:ReNamedElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="ownedElements" type="re:CatalogElement"/>
+          <xsd:element name="ownedElementPkgs" type="re:CatalogElementPkg"/>
+        </xsd:choice>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CatalogElementPkg" type="re:CatalogElementPkg"/>
+  <xsd:complexType name="RecCatalog">
+    <xsd:complexContent>
+      <xsd:extension base="re:CatalogElementPkg">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="ownedCompliancyDefinitionPkg" type="re:CompliancyDefinitionPkg"/>
+        </xsd:choice>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RecCatalog" type="re:RecCatalog"/>
+  <xsd:complexType name="GroupingElementPkg">
+    <xsd:complexContent>
+      <xsd:extension base="re:CatalogElementPkg"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="GroupingElementPkg" type="re:GroupingElementPkg"/>
+  <xsd:complexType name="CatalogElementLink">
+    <xsd:complexContent>
+      <xsd:extension base="re:ReAbstractElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="unsynchronizedFeatures" nillable="true" type="xsd:string"/>
+          <xsd:element name="source" type="re:CatalogElement"/>
+          <xsd:element name="target" type="ecore:EObject"/>
+          <xsd:element name="origin" type="re:CatalogElementLink"/>
+        </xsd:choice>
+        <xsd:attribute name="suffixed" type="xsd:boolean"/>
+        <xsd:attribute name="source" type="xsd:string"/>
+        <xsd:attribute name="target" type="xsd:string"/>
+        <xsd:attribute name="origin" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CatalogElementLink" type="re:CatalogElementLink"/>
+  <xsd:complexType name="CatalogElement">
+    <xsd:complexContent>
+      <xsd:extension base="re:ReDescriptionElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="ownedElements" type="re:CatalogElement"/>
+          <xsd:element name="tags" nillable="true" type="xsd:string"/>
+          <xsd:element name="origin" type="re:CatalogElement"/>
+          <xsd:element name="currentCompliancy" type="re:CompliancyDefinition"/>
+          <xsd:element name="defaultReplicaCompliancy" type="re:CompliancyDefinition"/>
+          <xsd:element name="ownedLinks" type="re:CatalogElementLink"/>
+        </xsd:choice>
+        <xsd:attribute name="kind" type="re:CatalogElementKind"/>
+        <xsd:attribute name="author" type="xsd:string"/>
+        <xsd:attribute name="environment" type="xsd:string"/>
+        <xsd:attribute name="suffix" type="xsd:string"/>
+        <xsd:attribute name="purpose" type="xsd:string"/>
+        <xsd:attribute name="readOnly" type="xsd:boolean"/>
+        <xsd:attribute name="version" type="xsd:string"/>
+        <xsd:attribute name="origin" type="xsd:string"/>
+        <xsd:attribute name="currentCompliancy" type="xsd:string"/>
+        <xsd:attribute name="defaultReplicaCompliancy" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CatalogElement" type="re:CatalogElement"/>
+  <xsd:complexType name="CompliancyDefinitionPkg">
+    <xsd:complexContent>
+      <xsd:extension base="re:ReNamedElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="ownedDefinitions" type="re:CompliancyDefinition"/>
+        </xsd:choice>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CompliancyDefinitionPkg" type="re:CompliancyDefinitionPkg"/>
+  <xsd:complexType name="CompliancyDefinition">
+    <xsd:complexContent>
+      <xsd:extension base="re:ReDescriptionElement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CompliancyDefinition" type="re:CompliancyDefinition"/>
+</xsd:schema>

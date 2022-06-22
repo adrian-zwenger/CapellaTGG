@@ -1,0 +1,279 @@
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore"
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore"
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore"
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/Interaction.ecore"
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore"
+
+#schema Oa2Ctx
+    
+#source {
+    oa // OperationalAnalysis model
+    cs // needed for transitioning Actors
+    interaction // needed for capability generalization
+    fa // functional exchanges/interactions (activities)
+}
+
+#target { 
+    ctx // SystemAnalysis model
+    cs // needed for transitioning Actors
+    interaction // needed for capability generalization
+    fa // needed for communication means
+} 
+
+#correspondence {
+    Oa2Sa{
+        #src-> oa.OperationalAnalysis
+        #trg-> ctx.SystemAnalysis
+    }
+    // Maps the two Capella stages to each other
+    // in Capella this mapping is symbolized by the CTX referencing the OA
+    /**
+     * -ownedOperationalAnalysisRealizations holds
+     * org.polarsys.capella.core.data.ctx.impl.OperationalAnalysisRealizationImpl elements
+     * these elements trace the SystemAnalysis model to the OperationalAnalysis model which it refines
+     * #src -> references the SystemAnalysis
+     * #trg -> references the OperationalAnalysis
+     * 
+     * This should actually be modelled with a TGG-correspondence. However, corr-elements cannot be part
+     * of the source or target model and thus cannot be modelled with a TGG-rule.
+     */
+
+    // ################### Actor Transitioning ################### //
+    
+    EntityPkg2ComponentPkg{
+        #src-> oa.EntityPkg
+        #trg-> ctx.SystemComponentPkg
+    }
+    // maps oa2ctx entity packages which suddenly appeared in Capella project
+    // However, I was unable to reproduce creation of said trace
+    /**
+     * The ctx.SystemComponentPkg stores a trace to the realized EntityPkg
+     * 
+     * ctx.SystemComponentPkg.ownedTraces
+     *      -> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *          #-> sourceElement - ctx.SystemComponentPkg
+     *          #-> targetElement - oa.EntityPkg
+     */
+    
+    Entity2SystemComponent{
+        #src-> oa.Entity
+        #trg-> ctx.SystemComponent
+    }
+    // Maps an actor (Entity) to its realization as a component (SystemComponent)
+    // in Capella this mapping is realized as a reference-object/trace 
+    // which is stored in the SystemComponent
+    /**
+     * -ownedComponentRealizations : org.polarsys.capella.core.data.cs.impl.ComponentRealizationImpl
+     * Traces linking SystemComponents to the os.Entity's which they realize
+     * #src-> ctx.SystemComponent
+     * #trg-> oa.Entity
+     */
+
+    OaPart2SaPart{//each entity/component has a part representation
+        #src-> cs.Part
+        #trg-> cs.Part //refinement of oa.Part
+    }
+    // Maps an os.Part to its ctx.Part as a trace which is stored in the SystemComponentPkg
+    /**
+     * SystemAnalysis.ownedSystemComponentpkg-> SystemComponentPkg
+     *  -ownedTraces contains org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl elements
+     *  these elements represent the traces between elements of capella stages, in other words they 
+     *  fulfill the same role as the corr-elements of an TGG-triple
+     *  
+     * Each TransfoLink references two elements:
+     *      #src -> Part of SystemComponent in SystemAnalysis model
+     *      #trg -> Part which is being refined by SA and is part of OperationalAnalysis model
+     */
+     
+     OaComm2CtxCommMean{
+         #src-> oa.CommunicationMean
+         #trg-> fa.ComponentExchange
+     }
+     //Maps CommunicationMeans
+     /**
+     * ownedComponentExchangeRealizations ---> trace to OA.CommMean
+     * 
+     * fa.ComponentExchange-> ownedComponentExchangeRealizations
+     *     - ComponentExchangeRealization
+     *            # sourceElement-> org.polarsys.capella.core.data.fa.impl.ComponentExchangeImpl (ctx)
+     *            # targetElement-> CommunicationMean (oa)
+     
+     */
+     
+     ContextOaEntityPkg2SystemComponent{
+         #src-> oa.EntityPkg
+         #trg-> ctx.SystemComponent
+     }// context node needed to check if entity has been transitioned but is just contained somewhere else as
+     //the hierarchy in OA states
+     
+     ContextOaEntityPkg2SystemComponentPkg{
+         #src-> oa.EntityPkg
+         #trg-> ctx.SystemComponentPkg
+     }// context node needed to check if entity has been transitioned but is just contained somewhere else as
+     //the hierarchy in OA states
+
+     ContextOaEntity2SystemComponentPkg{
+         #src-> oa.Entity
+         #trg-> ctx.SystemComponentPkg
+     }//maps an oa.Entity to the root SystemComponentPkg. used as context to state that Entity is contained somewhere in OA
+ 
+     // ################### Capability Transitioning ################### //
+     /**
+      * OperationalCapabilities are either transitioned as Capability, Mission or both.
+      * Thus this implementation chooses to always transition them as a Capability and let the user choose the Mission themselves.
+      */
+     
+     OaCapability2Capability{
+     	#src-> oa.OperationalCapability
+     	#trg-> ctx.Capability
+     }
+     // Maps an OaCapability to its refinement in Ctx
+     /** Capella maps ctx.Capabilities to the oa.Capability with 
+     * org.polarsys.capella.core.data.interaction.impl.AbstractCapabilityRealizationImpl
+     * objects which are contained in the ctx.Capability.
+     * this object references the the ctx.Capabilities  as source and the oa.Capability as target
+     * 
+     * ctx.Capability.ownedAbstractCapabilityRealizations
+     *                 -> AbstractCapabilityRealizationImpl
+     *                     -sourceElement -> ctx.Capability
+     *                     -targetElement -> oa.OperationalCapability
+     */
+
+     OaCapability2CtxMission{
+         #src-> oa.OperationalCapability
+         #trg-> ctx.Mission
+     }
+     // Capabilities can (but do not need to) be transitioned as Missions. A backward sync is not possible, as there is no possible way
+     // to know if the Mission is descendant of an Capability or not. Mission and Capability do not share any common information except for name
+     // and RealizationLink/Correspondence node 
+     
+     OaCapabilityInvolvement2CapabilityInvolvement{
+         #src-> oa.EntityOperationalCapabilityInvolvement
+         #trg-> ctx.CapabilityInvolvement
+     }
+     /**
+     * The ctx.Capability stores the traces of its Involvements.
+     * This cannot be described with a TGG and can only be represented with a correspondence.
+     * 
+     * equivalent correspondence: OaCapabilityInvolvement2CapabilityInvolvement
+     * actual Capella Mapping:
+     * 
+     * ctx.Capability.ownedTraces
+     *      -> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *              -sourceElement -> ctx.CapabilityInvolvement
+     *              -targetElement -> oa.EntityOperationalCapabilityInvolvement
+     */
+     
+     OaCapabilityGeneralization2CapabilityGeneralization{
+         #src-> interaction.AbstractCapabilityGeneralization
+         #trg-> interaction.AbstractCapabilityGeneralization
+     }
+     /**
+     * The ctxSubCapability stores Traces of the CapabilityGeneralization which links
+     * the ctx.Generalization to the oa.Generalization which is being refined.
+     * 
+     * Represented by OaCapabilityGeneralization2CapabilityGeneralization correspondence node.
+     * 
+     * ctx.Capability.ownedTraces
+     *      -> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *              -sourceElement -> interaction.AbstractCapabilityGeneralization (ctx)
+     *              -targetElement -> interaction.AbstractCapabilityGeneralization (oa)
+     */
+     
+     OaCapabilityExtension2CapabilityExtension{
+         #src-> interaction.AbstractCapabilityExtend
+         #trg-> interaction.AbstractCapabilityExtend
+     }
+     /**
+     * The ctxCapability which extends the other Capability stores the traces Traces of
+     * the AbstractCapabilityExtend objects, thus linking the Inclusion refinement in
+     * ctx to its origin in oa.
+     * 
+     * Represented by OaCapabilityInclusion2CapabilityInclusion correspondence node.
+     * 
+     * ctx.Capability.ownedTraces
+     *      -> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *              -sourceElement -> interaction.AbstractCapabilityExtend (ctx)
+     *              -targetElement -> interaction.AbstractCapabilityExtend (oa)
+     */
+     
+     OaCapabilityInclusion2CapabilityInclusion{
+         #src-> interaction.AbstractCapabilityInclude
+         #trg-> interaction.AbstractCapabilityInclude
+     }
+     /**
+     * The ctxCapability which includes other Capabilities stores the traces Traces of
+     * the AbstractCapabilityInclude objects, thus linking the Inclusion refinement in
+     * ctx to its origin in oa.
+     * 
+     * Represented by OaCapabilityInclusion2CapabilityInclusion correspondence node.
+     * 
+     * ctx.Capability.ownedTraces
+     *      -> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *              -sourceElement -> interaction.AbstractCapabilityInclude (ctx)
+     *              -targetElement -> interaction.AbstractCapabilityInclude (oa)
+     */
+     
+     OaActivityInclusion2CtxFunctionInclusion{
+         #src-> interaction.AbstractFunctionAbstractCapabilityInvolvement
+         #trg-> interaction.AbstractFunctionAbstractCapabilityInvolvement
+     }
+     /**
+      * Activities which are involved in an Activity Scenario for a capability
+      * are traced to that capability with an AbstractFunctionAbstractCapabilityInvolvement.
+      * The traces of these object are stored in the ctx version of the Capability as a Transfolink
+      * 
+      * ctx.Capability.ownedTraces
+     *      -> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *              -sourceElement -> interaction.AbstractFunctionAbstractCapabilityInvolvement (ctx)
+     *              -targetElement -> interaction.AbstractFunctionAbstractCapabilityInvolvement (oa)
+     */
+     
+     // ################### Activity Transitioning ################### //
+     
+     OaActivity2SystemFunction{
+         #src-> oa.OperationalActivity
+         #trg-> ctx.SystemFunction
+     }
+     /**
+      * The SystemFunction stores a trace to the OperationalActivity which it refines
+      * ctx.SystemFunction.ownedFunctionRealizations
+      *     -> org.polarsys.capella.core.data.fa.impl.FunctionRealizationImpl
+      *             -sourceElement -> ctx.SystemFunction (ctx, the function itself)
+      *             -targetElement -> oa.OperationalActivity (oa)
+      */
+     
+     OaInteraction2FuncExchange{
+         #src-> fa.FunctionalExchange
+         #trg-> fa.FunctionalExchange
+     }
+     /**
+      * The ctxFunctionalExchange stores the trace to the Interaction which it refines
+      * 
+      * ctxFunctionalExchange.ownedFunctionalExchangeRealizations
+      *         -> org.polarsys.capella.core.data.fa.impl.FunctionalExchangeRealizationImpl
+      *                 - sourceElement -> ctxFunctionalExchange
+      *                 - targetElement -> oaFunctionalExchange
+      */
+      
+      OaActivityAllocation2FunctionalAllocation{
+          #src-> fa.ComponentFunctionalAllocation
+          #trg-> fa.ComponentFunctionalAllocation
+      }
+      /**
+       * The trace between the oa and ctx representations are stored in the container
+       * of the ctx representation.
+       * 
+       * ctxSystemComponent.ownedTraces
+       *        -> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+       *                -sourceElement -> fa.ComponentFunctionalAllocation (ctx)
+       *                -targetElement -> fa.ComponentFunctionalAllocation (oa)
+       */
+}
+
+#attributeConditions {
+    #userDefined setID(id:EString){
+        #sync:[B B]
+        #gen:[F]
+    }
+}

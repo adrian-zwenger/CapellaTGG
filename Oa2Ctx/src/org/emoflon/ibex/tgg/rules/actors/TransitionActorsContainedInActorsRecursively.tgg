@@ -1,0 +1,62 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionActorsContainedInActorsRecursively #extends AbstractTransitionActor #with Oa2Ctx
+
+
+#source {
+
+    /**
+     * handles entity containment as contained Entity's are stored as an EReference
+     */
+	oaContainerEntity : oa.Entity{
+		++ -ownedEntities->oaNewEntity
+		++ -ownedFeatures->oaNewPart
+	}
+}
+
+#target {
+	ctxContainerComponent : ctx.SystemComponent{
+	    ++ -ownedSystemComponents -> ctxNewComponent
+	    ++ -ownedFeatures -> ctxNewPart
+	    /**
+         *  -ownedTraces contains org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl elements
+         *  these elements represent the traces between elements of capella stages, in other words they 
+         *  fulfill the same role as the corr-elements of an TGG-triple
+         *  
+         * Each TransfoLink references two elements:
+         *      #src -> Part of SystemComponent in SystemAnalysis model
+         *      #trg -> Part which is being refined by SA and is part of OperationalAnalysis model
+         */
+	}
+}
+
+#correspondence {
+
+    containers : Entity2SystemComponent{
+        //require that the entity/component container for the new entity/component exist
+        #src-> oaContainerEntity
+        #trg-> ctxContainerComponent
+    }
+    
+    context_transitioned_component : ContextOaEntityPkg2SystemComponent{
+        // require that the container component has a correspondence to the root Entity Pkg
+        // thus requiring that the matched component has been consistently transitioned from OA to CTX
+        // no matter its exact position in the component hierarchy
+        #src-> oaRoot
+        #trg-> ctxContainerComponent
+    }
+    
+    context_transitioned_entity : ContextOaEntity2SystemComponentPkg{
+        // require that the container entity has a correspondence to the root Component Pkg
+        // thus requiring that the matched component has been consistently transitioned from CTX to OA
+        // no matter its exact position in the entity hierarchy
+        #src-> oaContainerEntity
+        #trg-> ctxRoot
+    }
+}
+
+#attributeConditions {
+	eq_string(oaContainerEntity.name, ctxContainerComponent.name)
+}
+

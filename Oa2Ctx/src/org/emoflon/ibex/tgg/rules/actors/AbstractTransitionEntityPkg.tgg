@@ -1,0 +1,60 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractTransitionEntityPkg #with Oa2Ctx
+
+#source {
+    oaArch : oa.OperationalAnalysis{
+        -ownedEntityPkg -> oaRootPkg
+    }
+    
+    oaRootPkg : oa.EntityPkg{}
+	
+	++ oaNewPkg : oa.EntityPkg
+}
+
+#target {
+	ctxArch : ctx.SystemAnalysis{
+        -ownedSystemComponentPkg -> ctxRootPkg
+    }
+    
+    ctxRootPkg : ctx.SystemComponentPkg{}
+    
+    ++ ctxNewPkg : ctx.SystemComponentPkg
+}
+
+#correspondence {
+	arch : Oa2Sa{
+	    // map model roots
+        #src-> oaArch
+        #trg-> ctxArch
+    }
+
+    roots : EntityPkg2ComponentPkg{
+        // map entity roots
+        #src-> oaRootPkg
+        #trg-> ctxRootPkg
+    }
+    
+    ++ newPkg : EntityPkg2ComponentPkg{
+        // map new packages
+        #src-> oaNewPkg
+        #trg-> ctxNewPkg
+    }
+    
+    ++ contextTransitionedEntityPkg : ContextOaEntityPkg2SystemComponentPkg{
+        // marker that new package has been transitioned  and is located in CTX model
+        #src-> oaNewPkg
+        #trg-> ctxRootPkg
+    }
+    
+    ++ contextTransitionedComponentPkg :ContextOaEntityPkg2SystemComponentPkg{
+        // marker that new pkg has been transitioned and is located in CTX model
+        #src-> oaRootPkg
+        #trg-> ctxNewPkg
+    }
+}
+
+#attributeConditions {
+	eq_string(oaNewPkg.name, ctxNewPkg.name)
+}

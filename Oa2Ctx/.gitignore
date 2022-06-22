@@ -1,0 +1,8 @@
+/bin/*
+/debug/
+instances/*
+/model/
+/results/
+results/*
+src-gen/*/
+src-gen/*

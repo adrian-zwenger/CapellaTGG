@@ -1,0 +1,33 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule SyncComponentContainedInComponentHierarchical #extends AbstractSyncComponent #with Ctx2La
+/*
+ * X---O---Y----|
+ * ^			|
+ * |---O_New---Y_New
+ * 
+ * Component X is realized by Y and Y_New
+ * Y_new is contained in Y
+ */
+#source { 
+	
+}
+
+#target {
+	laComponent : la.LogicalComponent{
+		++ -ownedLogicalComponents -> laNewComponent
+		++ -ownedFeatures -> laNewPart
+	}
+	
+	++ laNewComponent : la.LogicalComponent
+	++ laNewPart : cs.Part
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

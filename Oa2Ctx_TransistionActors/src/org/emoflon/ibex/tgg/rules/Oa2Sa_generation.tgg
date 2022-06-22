@@ -1,0 +1,59 @@
+#using Oa2Ctx_TransistionActors.*
+#using AttrCondDefLibrary.*
+
+#rule Oa2Sa_generation #with Oa2Ctx_TransistionActors
+
+#source { 
+	++ src_oa_arch : oa.OperationalAnalysis{
+		name := "Operational Analysis"
+		++ -ownedEntityPkg -> src_entity_pkg
+	}
+	
+	++ src_entity_pkg : oa.EntityPkg{
+		name := "Operational Entities"
+	}
+	
+}
+
+#target {
+	++ trg_sa_arch : ctx.SystemAnalysis{
+		name:= "System Analysis"
+		++ -ownedSystemComponentPkg -> trg_system_component_pkg
+		
+		/**
+		 * -ownedOperationalAnalysisRealizations holds
+		 * org.polarsys.capella.core.data.ctx.impl.OperationalAnalysisRealizationImpl elements
+		 * these elements trace the SystemAnalysis model to the OperationalAnalysis model which it refines
+		 * #src -> references the SystemAnalysis
+		 * #trg -> references the OperationalAnalysis
+		 * 
+		 * This should actually be modelled with a TGG-correspondence. However, corr-elements cannot be part
+		 * of the source or target model and thus cannot be modelled with a TGG-rule.
+		 */
+	}
+	++ trg_system_component_pkg : ctx.SystemComponentPkg{
+		name := "Structure"
+		++ -ownedSystemComponents -> trg_system_as_component
+		++ -ownedParts -> trg_system_as_part
+	}
+	++ trg_system_as_component : ctx.SystemComponent{
+		name := "System"
+		actor := false
+		human := false
+	}
+	++ trg_system_as_part : cs.Part{
+		name := "System"
+		++-abstractType->trg_system_as_component
+	}
+}
+
+#correspondence {
+	++ new_oa2sa : Oa2Sa{
+		#src-> src_oa_arch
+		#trg-> trg_sa_arch
+	}
+}
+
+#attributeConditions {
+	
+}

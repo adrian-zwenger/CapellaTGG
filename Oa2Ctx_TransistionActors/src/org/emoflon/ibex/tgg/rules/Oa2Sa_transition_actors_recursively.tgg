@@ -1,0 +1,73 @@
+#using Oa2Ctx_TransistionActors.*
+#using AttrCondDefLibrary.*
+
+#rule Oa2Sa_transition_actors_recursively #with Oa2Ctx_TransistionActors
+
+#source { 
+	src_top_level_entity : oa.Entity{
+		++ -ownedEntities->src_operational_entity
+		++ -ownedFeatures->src_operational_part
+	}
+	
+	++ src_operational_entity : oa.Entity
+
+	++ src_operational_part : cs.Part{
+		++-abstractType->src_operational_entity
+	}
+}
+
+#target {
+	trg_sa_arch : ctx.SystemAnalysis{
+		name == "System Analysis"
+		-ownedSystemComponentPkg->trg_system_component_pkg
+	}
+	
+	trg_system_component_pkg : ctx.SystemComponentPkg{
+		name == "Structure"
+		++ -ownedSystemComponents -> trg_system_component
+		++ -ownedParts -> trg_system_part
+		
+		/**
+		 *  -ownedTraces contains org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl elements
+		 *  these elements represent the traces between elements of capella stages, in other words they 
+		 *  fulfill the same role as the corr-elements of an TGG-triple
+		 *  
+		 * Each TransfoLink references two elements:
+		 * 		#src -> Part of SystemComponent in SystemAnalysis model
+		 * 		#trg -> Part which is being refined by SA and is part of OperationalAnalysis model
+		 */
+	}
+	
+	++ trg_system_component : ctx.SystemComponent{
+		actor := true
+		
+		/**
+		 * -ownedComponentRealizations : org.polarsys.capella.core.data.cs.impl.ComponentRealizationImpl
+		 * Traces linking SystemComponents to the os.Entity's which they realize
+		 * #src-> ctx.SystemComponent
+		 * #trg-> oa.Entity
+		 */
+	}
+	
+	++ trg_system_part : cs.Part{
+		++ -abstractType -> trg_system_component
+	}
+}
+
+#correspondence {
+	++ OaEntity2SaSysComponent : Entity2SystemComponent{
+		#src-> src_operational_entity
+		#trg-> trg_system_component
+	}
+	
+	++ part2part : OaPart2SaPart{
+		#src-> src_operational_part
+		#trg-> trg_system_part
+	}
+}
+
+#attributeConditions {
+	eq_string(src_operational_entity.name, src_operational_part.name)
+	eq_string(trg_system_component.name, trg_system_part.name)
+	eq_string(src_operational_entity.name, trg_system_component.name)
+}

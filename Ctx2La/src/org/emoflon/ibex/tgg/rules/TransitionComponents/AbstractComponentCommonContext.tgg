@@ -1,0 +1,38 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractComponentCommonContext #with Ctx2La
+
+#source { 
+	ctxArch : ctx.SystemAnalysis{
+	    -ownedSystemComponentPkg -> ctxRootPkg
+	}
+
+	ctxRootPkg : ctx.SystemComponentPkg
+}
+
+#target {
+	laArch : la.LogicalArchitecture{
+	    -ownedLogicalComponentPkg -> laRootPkg
+	}
+	
+	laRootPkg : la.LogicalComponentPkg
+}
+
+#correspondence {
+	arch : Ctx2LaArchitecture{
+	    // require model roots
+	    #src-> ctxArch
+	    #trg-> laArch
+	}
+	
+	rootPkg : CtxComponentPkg2LaComponentPkg{
+	    // require ComponentPkg roots
+	    #src-> ctxRootPkg
+	    #trg-> laRootPkg
+	}
+}
+
+#attributeConditions {
+	
+}

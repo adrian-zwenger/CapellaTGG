@@ -1,0 +1,47 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+/**
+ * create another realization for ctxPkg which was already transitioned.
+ * Both realizing laPkg are on same hierarchy level contained in same laComponent
+ */
+#rule SyncComponentPkgContainedInComponentFlat #extends AbstractSyncComponentPkg #with Ctx2La
+
+#source { 
+	ctxRootPkg : ctx.SystemComponentPkg
+	
+	ctxContainer : ctx.SystemComponent
+}
+
+#target {
+	laRootPkg : la.LogicalComponentPkg
+	
+	laContainer : la.LogicalComponent{
+		-ownedLogicalComponentPkgs -> laPkg
+		
+		++ -ownedLogicalComponentPkgs -> laNewPkg
+	}
+	
+	laPkg : la.LogicalComponentPkg
+	
+	++ laNewPkg : la.LogicalComponentPkg
+}
+
+#correspondence {
+	containers : CtxComponent2LaComponent{
+		#src-> ctxContainer
+		#trg-> laContainer
+	}
+	transitionedCtxContainer : ContextCtxComponent2LAComponentPkg{
+		#src-> ctxContainer
+		#trg-> laRootPkg
+	}
+	transitionedLaContainer : ContextCtxComponentPkg2LAComponent{
+		#src-> ctxRootPkg
+		#trg-> laContainer
+	}
+}
+
+#attributeConditions {
+	
+}

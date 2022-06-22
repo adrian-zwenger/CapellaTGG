@@ -1,0 +1,47 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractSyncFunctionPkg #extends AbstractFunctionCommonContext #with Ctx2La
+
+#source { 
+	ctxRootFunction : ctx.SystemFunction
+	
+	ctxPkg : ctx.SystemFunctionPkg
+}
+
+#target {
+	laRootFunction : la.LogicalFunction
+	
+	laPkg : la.LogicalFunctionPkg
+	
+	++ laNewFunctionPkg : la.LogicalFunctionPkg
+}
+
+#correspondence {
+	pkgs : CtxFunctionPkg2LaFunctionPkg{
+		#src-> ctxPkg
+		#trg-> laPkg
+	}
+	contextTransitionedCtxPkg : ContextCtxFunctionPkg2LaRootFunction{
+		#src-> ctxPkg
+		#trg-> laRootFunction
+	}
+	ctxTransitionedLaPkg : ContextCtxRootFunction2LaFunctionPkg{
+		#src-> ctxRootFunction
+		#trg-> laPkg
+	}
+
+	++ newCorrespondence : CtxFunctionPkg2LaFunctionPkg{
+		#src-> ctxPkg
+		#trg-> laNewFunctionPkg
+	}
+	++ transitionedLaNewPkg : ContextCtxRootFunction2LaFunctionPkg{
+		#src-> ctxRootFunction
+		#trg-> laNewFunctionPkg
+	}
+}
+
+#attributeConditions {
+	eq_string(ctxPkg.name, laPkg.name)
+	setRealizingElementName(ctxPkg.name, laNewFunctionPkg.name)
+}

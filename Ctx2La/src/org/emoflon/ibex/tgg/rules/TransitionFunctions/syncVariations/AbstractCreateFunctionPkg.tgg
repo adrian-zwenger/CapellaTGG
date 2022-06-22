@@ -1,0 +1,27 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractCreateFunctionPkg #extends AbstractFunctionCommonContext #with Ctx2La
+
+#source { 
+	ctxRootFunction : ctx.SystemFunction
+}
+
+#target {
+	++ laNewPkg : la.LogicalFunctionPkg
+}
+
+#correspondence {
+	++ transitionedLaNewPkg : ContextCtxRootFunction2LaFunctionPkg{
+		#src-> ctxRootFunction
+		#trg-> laNewPkg
+	}
+	++ pkgDoesNotRealizeCtxElement : ContextLaFunctionPkgWhichDoesNotRealizeACtxPkg{ // replace with NAC as soon as it is available in emoflon
+		#src-> ctxRootFunction
+		#trg-> laNewPkg
+	}
+}
+
+#attributeConditions {
+	setRandomString(laNewPkg.name)
+}

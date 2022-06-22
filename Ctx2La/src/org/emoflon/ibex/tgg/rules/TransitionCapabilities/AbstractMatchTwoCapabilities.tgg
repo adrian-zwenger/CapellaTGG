@@ -1,0 +1,53 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractMatchTwoCapabilities #extends AbstractCapabilityCommonContext #with Ctx2La
+
+#source {
+	ctxCapabilityRoot : ctx.CapabilityPkg
+	
+	ctxSrcCapability : ctx.Capability
+	ctxTrgCapability : ctx.Capability
+}
+
+#target {
+	laCapabilityRoot : la.CapabilityRealizationPkg
+	
+	laSrcCapability : la.CapabilityRealization
+	laTrgCapability : la.CapabilityRealization
+}
+
+#correspondence {
+    matchedSrcCapabilities : CtxCapability2LaCapabilityRealization{
+        #src-> ctxSrcCapability
+        #trg-> laSrcCapability
+    }
+    
+    contextTransitionedCtxSrcCapability : ContextCtxCapability2LaCapabilityrealizationPkg{
+        #src-> ctxSrcCapability
+        #trg-> laCapabilityRoot
+    }
+    contextTransitionedLaSrcCapability : ContextCtxCapabilityPkg2LaCapabilityrealization{
+        #src-> ctxCapabilityRoot
+        #trg-> laSrcCapability
+    }
+    
+    matchedTrgCapabilities : CtxCapability2LaCapabilityRealization{
+        #src-> ctxTrgCapability
+        #trg-> laTrgCapability
+    }
+    
+    contextTransitionedCtxTrgCapability : ContextCtxCapability2LaCapabilityrealizationPkg{
+        #src-> ctxTrgCapability
+        #trg-> laCapabilityRoot
+    }
+    contextTransitionedLaTrgCapability : ContextCtxCapabilityPkg2LaCapabilityrealization{
+        #src-> ctxCapabilityRoot
+        #trg-> laTrgCapability
+    }
+}
+
+#attributeConditions {
+	eq_string(ctxTrgCapability.name, laTrgCapability.name)
+	eq_string(ctxTrgCapability.name, laTrgCapability.name)
+}

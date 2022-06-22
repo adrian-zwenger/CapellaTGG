@@ -1,0 +1,48 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractSyncCapability #extends AbstractCapabilityCommonContext #with Ctx2La
+
+#source { 
+	ctxCapabilityRoot : ctx.CapabilityPkg
+	
+	ctxTransitionedCapability : ctx.Capability
+	
+}
+
+#target {
+	laCapabilityRoot : la.CapabilityRealizationPkg
+	
+	laTransitionedCapability : la.CapabilityRealization
+	
+	++ laNewCapability : la.CapabilityRealization
+}
+
+#correspondence {
+	capabilities : CtxCapability2LaCapabilityRealization{
+		#src-> ctxTransitionedCapability
+		#trg-> laTransitionedCapability
+	}
+	contextTransitionedCtxCapability : ContextCtxCapability2LaCapabilityrealizationPkg{
+		#src-> ctxTransitionedCapability
+		#trg-> laCapabilityRoot
+	}
+	contextTransitionedLaCapability : ContextCtxCapabilityPkg2LaCapabilityrealization{
+		#src-> ctxCapabilityRoot
+		#trg-> laTransitionedCapability
+	}
+	
+	++ newRealization : CtxCapability2LaCapabilityRealization{
+		#src-> ctxTransitionedCapability
+		#trg-> laNewCapability
+	}
+	++contextTransitionedNewLaCapability : ContextCtxCapabilityPkg2LaCapabilityrealization{
+		#src-> ctxCapabilityRoot
+		#trg-> laNewCapability
+	}
+	
+}
+
+#attributeConditions {
+	setRealizingElementName(ctxTransitionedCapability.name, laNewCapability.name)
+}

@@ -1,0 +1,44 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionComponentPkgContainedInComponents #extends AbstractTransitionComponentPkg #with Ctx2La
+
+#source {
+	ctxRootPkg : ctx.SystemComponentPkg
+	
+    ctxContainer : ctx.SystemComponent{
+        ++ -ownedSystemComponentPkgs -> ctxNewPkg
+    }
+}
+
+#target {
+	laRootPkg : la.LogicalComponentPkg
+	
+    laContainer : la.LogicalComponent{
+        ++ -ownedLogicalComponentPkgs -> laNewPkg
+    }
+}
+
+#correspondence {
+    containers : CtxComponent2LaComponent{
+        // require containers
+        #src-> ctxContainer
+        #trg-> laContainer
+    }
+    
+    contextTransitionedCtxPkg : ContextCtxComponent2LAComponentPkg{
+        // require proper transition
+        #src-> ctxContainer
+        #trg-> laRootPkg
+    }
+    
+    contextTransitionedLaPkg : ContextCtxComponentPkg2LAComponent{
+        // require proper transition
+        #src-> ctxRootPkg
+        #trg-> laContainer
+    }
+}
+
+#attributeConditions {
+    eq_string(ctxContainer.name, laContainer.name)
+}

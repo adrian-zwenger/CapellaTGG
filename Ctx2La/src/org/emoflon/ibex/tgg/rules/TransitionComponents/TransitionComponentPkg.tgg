@@ -1,0 +1,24 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionComponentPkg #extends AbstractTransitionComponentPkg #with Ctx2La
+
+#source { 
+	ctxRootPkg : ctx.SystemComponentPkg{
+	    ++ -ownedSystemComponentPkgs -> ctxNewPkg
+	}
+}
+
+#target {
+	laRootPkg : la.LogicalComponentPkg{
+	    ++ -ownedLogicalComponentPkgs -> laNewPkg
+	}
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

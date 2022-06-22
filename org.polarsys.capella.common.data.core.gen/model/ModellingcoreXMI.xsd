@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:emde="platform:/resource/org.polarsys.kitalpha.emde.model/model/eMDE.ecore" xmlns:org.polarsys.capella.common.data.core="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore">
+  <xsd:import namespace="platform:/resource/org.polarsys.kitalpha.emde.model/model/eMDE.ecore" schemaLocation="emde.xsd"/>
+  <xsd:simpleType name="ParameterEffectKind">
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="create"/>
+      <xsd:enumeration value="read"/>
+      <xsd:enumeration value="update"/>
+      <xsd:enumeration value="delete"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="RateKind">
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Unspecified"/>
+      <xsd:enumeration value="Continuous"/>
+      <xsd:enumeration value="Discrete"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType abstract="true" name="ModelElement">
+    <xsd:complexContent>
+      <xsd:extension base="emde:ExtensibleElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="constraints" type="org.polarsys.capella.common.data.core:AbstractConstraint"/>
+          <xsd:element name="ownedConstraints" type="org.polarsys.capella.common.data.core:AbstractConstraint"/>
+          <xsd:element name="ownedMigratedElements" type="org.polarsys.capella.common.data.core:ModelElement"/>
+        </xsd:choice>
+        <xsd:attribute name="id" type="xsd:string" use="required"/>
+        <xsd:attribute name="sid" type="xsd:string"/>
+        <xsd:attribute name="constraints" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ModelElement" type="org.polarsys.capella.common.data.core:ModelElement"/>
+  <xsd:complexType abstract="true" name="AbstractRelationship">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:ModelElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="realizedFlow" type="org.polarsys.capella.common.data.core:AbstractInformationFlow"/>
+        </xsd:choice>
+        <xsd:attribute name="realizedFlow" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractRelationship" type="org.polarsys.capella.common.data.core:AbstractRelationship"/>
+  <xsd:complexType abstract="true" name="AbstractNamedElement">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:ModelElement">
+        <xsd:attribute name="name" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractNamedElement" type="org.polarsys.capella.common.data.core:AbstractNamedElement"/>
+  <xsd:complexType abstract="true" name="InformationsExchanger">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:ModelElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="incomingInformationFlows" type="org.polarsys.capella.common.data.core:AbstractInformationFlow"/>
+        </xsd:choice>
+        <xsd:attribute name="incomingInformationFlows" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="InformationsExchanger" type="org.polarsys.capella.common.data.core:InformationsExchanger"/>
+  <xsd:complexType abstract="true" name="TraceableElement">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:ModelElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="incomingTraces" type="org.polarsys.capella.common.data.core:AbstractTrace"/>
+          <xsd:element name="outgoingTraces" type="org.polarsys.capella.common.data.core:AbstractTrace"/>
+        </xsd:choice>
+        <xsd:attribute name="incomingTraces" type="xsd:string"/>
+        <xsd:attribute name="outgoingTraces" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="TraceableElement" type="org.polarsys.capella.common.data.core:TraceableElement"/>
+  <xsd:complexType abstract="true" name="FinalizableElement">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:ModelElement">
+        <xsd:attribute name="final" type="xsd:boolean"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="FinalizableElement" type="org.polarsys.capella.common.data.core:FinalizableElement"/>
+  <xsd:complexType abstract="true" name="PublishableElement">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:ModelElement">
+        <xsd:attribute name="visibleInDoc" type="xsd:boolean"/>
+        <xsd:attribute name="visibleInLM" type="xsd:boolean"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="PublishableElement" type="org.polarsys.capella.common.data.core:PublishableElement"/>
+  <xsd:complexType abstract="true" name="AbstractType">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:AbstractNamedElement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractType" type="org.polarsys.capella.common.data.core:AbstractType"/>
+  <xsd:complexType abstract="true" name="AbstractTypedElement">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:AbstractNamedElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="abstractType" type="org.polarsys.capella.common.data.core:AbstractType"/>
+        </xsd:choice>
+        <xsd:attribute name="abstractType" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractTypedElement" type="org.polarsys.capella.common.data.core:AbstractTypedElement"/>
+  <xsd:complexType abstract="true" name="AbstractTrace">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:TraceableElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="targetElement" type="org.polarsys.capella.common.data.core:TraceableElement"/>
+          <xsd:element name="sourceElement" type="org.polarsys.capella.common.data.core:TraceableElement"/>
+        </xsd:choice>
+        <xsd:attribute name="targetElement" type="xsd:string"/>
+        <xsd:attribute name="sourceElement" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractTrace" type="org.polarsys.capella.common.data.core:AbstractTrace"/>
+  <xsd:complexType abstract="true" name="AbstractConstraint">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:ModelElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="constrainedElements" type="org.polarsys.capella.common.data.core:ModelElement"/>
+          <xsd:element name="ownedSpecification" type="org.polarsys.capella.common.data.core:ValueSpecification"/>
+        </xsd:choice>
+        <xsd:attribute name="constrainedElements" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractConstraint" type="org.polarsys.capella.common.data.core:AbstractConstraint"/>
+  <xsd:complexType abstract="true" name="ValueSpecification">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:AbstractTypedElement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ValueSpecification" type="org.polarsys.capella.common.data.core:ValueSpecification"/>
+  <xsd:complexType abstract="true" name="AbstractParameter">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:AbstractTypedElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="rate" type="org.polarsys.capella.common.data.core:ValueSpecification"/>
+          <xsd:element name="probability" type="org.polarsys.capella.common.data.core:ValueSpecification"/>
+          <xsd:element name="parameterSet" type="org.polarsys.capella.common.data.core:AbstractParameterSet"/>
+        </xsd:choice>
+        <xsd:attribute name="isException" type="xsd:boolean"/>
+        <xsd:attribute name="isStream" type="xsd:boolean"/>
+        <xsd:attribute name="isOptional" type="xsd:boolean"/>
+        <xsd:attribute name="kindOfRate" type="org.polarsys.capella.common.data.core:RateKind"/>
+        <xsd:attribute name="effect" type="org.polarsys.capella.common.data.core:ParameterEffectKind"/>
+        <xsd:attribute name="parameterSet" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractParameter" type="org.polarsys.capella.common.data.core:AbstractParameter"/>
+  <xsd:complexType abstract="true" name="AbstractParameterSet">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:AbstractNamedElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="ownedConditions" type="org.polarsys.capella.common.data.core:AbstractConstraint"/>
+          <xsd:element name="probability" type="org.polarsys.capella.common.data.core:ValueSpecification"/>
+          <xsd:element name="parameters" type="org.polarsys.capella.common.data.core:AbstractParameter"/>
+        </xsd:choice>
+        <xsd:attribute name="parameters" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractParameterSet" type="org.polarsys.capella.common.data.core:AbstractParameterSet"/>
+  <xsd:complexType abstract="true" name="AbstractInformationFlow">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:AbstractNamedElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="realizedFlow" type="org.polarsys.capella.common.data.core:AbstractInformationFlow"/>
+          <xsd:element name="realizations" type="org.polarsys.capella.common.data.core:AbstractRelationship"/>
+          <xsd:element name="convoyedInformations" type="org.polarsys.capella.common.data.core:AbstractExchangeItem"/>
+          <xsd:element name="source" type="org.polarsys.capella.common.data.core:InformationsExchanger"/>
+          <xsd:element name="target" type="org.polarsys.capella.common.data.core:InformationsExchanger"/>
+        </xsd:choice>
+        <xsd:attribute name="realizedFlow" type="xsd:string"/>
+        <xsd:attribute name="realizations" type="xsd:string"/>
+        <xsd:attribute name="convoyedInformations" type="xsd:string"/>
+        <xsd:attribute name="source" type="xsd:string"/>
+        <xsd:attribute name="target" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractInformationFlow" type="org.polarsys.capella.common.data.core:AbstractInformationFlow"/>
+  <xsd:complexType abstract="true" name="AbstractExchangeItem">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:AbstractType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractExchangeItem" type="org.polarsys.capella.common.data.core:AbstractExchangeItem"/>
+  <xsd:complexType abstract="true" name="IState">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:AbstractNamedElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="referencedStates" type="org.polarsys.capella.common.data.core:IState"/>
+          <xsd:element name="exploitedStates" type="org.polarsys.capella.common.data.core:IState"/>
+        </xsd:choice>
+        <xsd:attribute name="referencedStates" type="xsd:string"/>
+        <xsd:attribute name="exploitedStates" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="IState" type="org.polarsys.capella.common.data.core:IState"/>
+</xsd:schema>

@@ -1,0 +1,27 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractCreateCapabilityPkg #extends AbstractCapabilityCommonContext #with Ctx2La
+
+#source { 
+	ctxCapabilityRoot : ctx.CapabilityPkg
+}
+
+#target {	
+	++ laNewCapabilityPkg : la.CapabilityRealizationPkg
+}
+
+#correspondence {
+	++ contextTransitionedNewLaCapabilityPkg : ContextCtxCapabilityPkg2LaCapabilityrealizationPkg{
+		#src-> ctxCapabilityRoot
+		#trg-> laNewCapabilityPkg
+	}
+	++ pkgDoesNotRealizeCtxPkgs : ContextLaCapabilityPkgWhichDoesNotRealizeACtxPkg{
+		#src-> ctxCapabilityRoot
+		#trg-> laNewCapabilityPkg
+	}
+}
+
+#attributeConditions {
+	setRandomString(laNewCapabilityPkg.name)
+}

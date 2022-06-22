@@ -1,0 +1,209 @@
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/LogicalArchitecture.ecore"
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore"
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore"
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore"
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/CapellaCommon.ecore"
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/Interaction.ecore"
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore"
+
+#schema Ctx2La
+    
+#source {
+    ctx
+    cs
+    capellacore
+    interaction
+    fa
+}
+
+#target { 
+    la
+    cs
+    capellacore
+    capellacommon
+    interaction
+    fa
+} 
+
+#correspondence {
+    Ctx2LaArchitecture{
+        #src-> ctx.SystemAnalysis
+        #trg-> la.LogicalArchitecture
+    }
+
+    //########## COMPONENTS ##########//
+    
+    CtxComponentPkg2LaComponentPkg{
+        #src-> ctx.SystemComponentPkg
+        #trg-> la.LogicalComponentPkg
+    }
+
+    CtxComponent2LaComponent{
+        #src-> ctx.SystemComponent
+        #trg-> la.LogicalComponent
+    }
+
+    CtxPart2LaPart{
+        #src-> cs.Part
+        #trg-> cs.Part
+    }
+
+    ContextCtxComponent2LAComponentPkg{
+        #src-> ctx.SystemComponent
+        #trg-> la.LogicalComponentPkg
+    }
+    ContextCtxComponentPkg2LAComponent{
+        #src-> ctx.SystemComponentPkg
+        #trg-> la.LogicalComponent
+    }
+    ContextCtxComponentPkg2LAComponentPkg{
+        #src-> ctx.SystemComponentPkg
+        #trg-> la.LogicalComponentPkg
+    }
+
+     CtxGeneralization2LaGeneralization{
+         #src-> capellacore.Generalization
+         #trg-> capellacore.Generalization
+     }
+
+    CtxComponentPort2LaComponentPort{
+        #src-> fa.ComponentPort
+        #trg-> fa.ComponentPort
+    }
+
+    CtxComponentExchange2LAComponentExchange{
+        #src-> fa.ComponentExchange // ctx
+        #trg-> fa.ComponentExchange // la
+    }
+    
+    CtxPhysicalLink2LaPhysicalLink{
+        #src-> cs.PhysicalLink
+        #trg-> cs.PhysicalLink
+    }
+    
+    CtxPhysicalPort2LaPhysicalPort{
+        #src-> cs.PhysicalPort
+        #trg-> cs.PhysicalPort
+    }
+
+	ContextLaComponentPkgWhichDoesNotRealizeACtxPkg{
+		#src-> ctx.SystemComponentPkg // link to rootPkg to symbolize that it is part of model
+		#trg-> la.LogicalComponentPkg // the pkg which does not realize a ctxPkg
+	}
+    //########## CAPABILITIES ##########//
+
+    CtxCapabilityPkg2LaCapabilityRealizationPkg{
+        #src-> ctx.CapabilityPkg
+        #trg-> la.CapabilityRealizationPkg
+    }
+
+    CtxCapability2LaCapabilityRealization{
+        #src-> ctx.Capability
+        #trg-> la.CapabilityRealization
+    }
+    
+    ContextCtxCapability2LaCapabilityrealizationPkg{
+        #src-> ctx.Capability
+        #trg-> la.CapabilityRealizationPkg
+    }
+    ContextCtxCapabilityPkg2LaCapabilityrealization{
+        #src-> ctx.CapabilityPkg
+        #trg-> la.CapabilityRealization
+    }
+    ContextCtxCapabilityPkg2LaCapabilityrealizationPkg{
+        #src-> ctx.CapabilityPkg
+        #trg-> la.CapabilityRealizationPkg
+    }
+    
+    CtxCapabilityInvolvement2LaCapabilityRealizationInvolvement{
+        #src-> ctx.CapabilityInvolvement
+        #trg-> capellacommon.CapabilityRealizationInvolvement
+    }
+
+    CtxCapabilityGeneralization2LaCapabilityRealizationGeneralization{
+        #src-> interaction.AbstractCapabilityGeneralization
+        #trg-> interaction.AbstractCapabilityGeneralization
+    }
+
+     CtxCapabilityInclusion2CapabilityRealizationInclusion{
+         #src-> interaction.AbstractCapabilityInclude
+         #trg-> interaction.AbstractCapabilityInclude
+     }
+
+     CtxCapabilityExtension2CapabilityRealizationExtension{
+         #src-> interaction.AbstractCapabilityExtend
+         #trg-> interaction.AbstractCapabilityExtend
+     }
+ 
+ 	ContextLaCapabilityPkgWhichDoesNotRealizeACtxPkg{
+ 		#src-> ctx.CapabilityPkg // ctx root
+ 		#trg-> la.CapabilityRealizationPkg // la pkg
+ 	}
+ 
+    //########## FUNCTIONS ##########//
+
+    CtxFunctionPkg2LaFunctionPkg{
+        #src-> ctx.SystemFunctionPkg
+        #trg-> la.LogicalFunctionPkg
+    }
+
+    CtxFunction2LaFunction{
+        #src-> ctx.SystemFunction
+        #trg-> la.LogicalFunction
+    }
+   
+    ContextCtxFunction2LaFunction{
+    	// maps function to root function other model to signify proper transitions
+        #src-> ctx.SystemFunction
+        #trg-> la.LogicalFunction
+    }
+//    ContextCtxRootFunction2LaFunction{
+//        #src-> ctx.SystemFunction
+//        #trg-> la.LogicalFunction
+//    }
+
+    ContextCtxFunctionPkg2LaRootFunction{
+        #src-> ctx.SystemFunctionPkg
+        #trg-> la.LogicalFunction
+    }
+    ContextCtxRootFunction2LaFunctionPkg{
+        #src-> ctx.SystemFunction
+        #trg-> la.LogicalFunctionPkg
+    }
+    
+    CtxCompFunctionalAlloc2LaCompFunctionalAlloc{
+    	#src-> fa.ComponentFunctionalAllocation
+    	#trg-> fa.ComponentFunctionalAllocation
+    }
+
+	ContextLaFunctionPkgWhichDoesNotRealizeACtxPkg{
+		#src-> ctx.SystemFunction // root-LogicalFunction which transitively contains all functions and FunctionPkgs 
+		#trg-> la.LogicalFunctionPkg // the new functionPkg
+	}
+}
+
+#attributeConditions {
+//    #userDefined eq_ctxPortType(portOne:fa.ComponentPortKind, portTwo:fa.ComponentPortKind, defaultval:fa.ComponentPortKind){
+//        #sync: [B B B], [F B B], [F F B], [B F B]
+//        #gen: [F F B]
+//    }
+    
+//    #userDefined eq_OrientationPortKind(a: fa.ComponentExchange, b: fa.ComponentExchange) {
+//        #sync: [B B], [B F], [F B]
+//        #gen:  [B B], [B F], [F B], [F F]
+//    }
+    
+//    #userDefined eq_ComponentExchangeKind(a: fa.ComponentExchangeKind, b: fa.ComponentExchangeKind) {
+//        #sync: [B B], [B F], [F B]
+//        #gen:  [B B], [B F], [F B], [F F]
+//    }
+    
+    #userDefined setRealizingElementName(defaultName : EString, nameToBeSet : EString) {
+    	/**
+    	 * Example: defaultName = "MyComponent"
+    	 * --> nameToBeSet = "MyComponent Realization " + Integer
+    	 */
+    	#sync: [B B], [B F]
+    	#gen: [B B], [B F], [F F]
+    }
+}

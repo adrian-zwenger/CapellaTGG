@@ -1,0 +1,115 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionCommunicationMeans #with Oa2Ctx
+
+#source {
+    oaArch : oa.OperationalAnalysis{
+        -ownedEntityPkg -> oaRoot
+    }
+    
+    oaRoot : oa.EntityPkg{
+        ++ -ownedCommunicationMeans -> oaCommMean
+    }
+    
+    oaSrc : oa.Entity
+    
+    oaTrg : oa.Entity
+    
+    ++ oaCommMean : oa.CommunicationMean{
+        ++ -source -> oaSrc
+        ++ -target -> oaTrg
+    }
+}
+
+#target {
+    
+    trg_sa_arch : ctx.SystemAnalysis{
+        -ownedSystemComponentPkg -> ctxComponentPkg
+    }
+    
+    ctxComponentPkg : ctx.SystemComponentPkg{
+//        -ownedSystemComponents -> ctxSrc
+//        -ownedSystemComponents -> ctxTrg
+        ++ -ownedComponentExchanges -> ctxCommMean
+    }
+    
+    ctxSrc : ctx.SystemComponent{
+        ++ -ownedFeatures -> OutPort
+    }
+    
+    ctxTrg : ctx.SystemComponent{
+        ++ -ownedFeatures -> InPort
+    }
+    
+    ++ ctxCommMean : fa.ComponentExchange{
+        ++ -source -> OutPort
+        ++ -target -> InPort
+    }/**
+     * ownedComponentExchangeRealizations ---> trace to OA.CommMean
+     * 
+     * fa.ComponentExchange-> ownedComponentExchangeRealizations
+     *     - ComponentExchangeRealization
+     *            # sourceElement-> org.polarsys.capella.core.data.fa.impl.ComponentExchangeImpl (ctx)
+     *            # targetElement-> CommunicationMean (oa)
+     
+     */
+
+    ++ InPort : fa.ComponentPort{
+        orientation := enum::fa.OrientationPortKind::IN
+    }
+    
+    ++ OutPort : fa.ComponentPort{
+        orientation := enum::fa.OrientationPortKind::OUT
+    }
+}
+
+#correspondence {
+    arch : Oa2Sa{
+        #src-> oaArch
+        #trg-> trg_sa_arch
+    }
+    
+    roots : EntityPkg2ComponentPkg{
+        #src-> oaRoot
+        #trg-> ctxComponentPkg
+    }
+
+    SrcEntities : Entity2SystemComponent{
+        #src-> oaSrc
+        #trg-> ctxSrc
+    }
+    
+    TrgEntities : Entity2SystemComponent{
+        #src-> oaTrg
+        #trg-> ctxTrg
+    }
+    
+    contextTrgComponent : ContextOaEntityPkg2SystemComponent{
+        #src-> oaRoot
+        #trg-> ctxTrg
+    }
+    
+    contextSrcComponent : ContextOaEntityPkg2SystemComponent{
+        #src-> oaRoot
+        #trg-> ctxSrc
+    }
+    
+    ++ CommMean : OaComm2CtxCommMean{
+        #src-> oaCommMean
+        #trg-> ctxCommMean
+    }
+}
+
+#attributeConditions {
+    eq_string(oaSrc.name, ctxSrc.name)
+    eq_string(oaTrg.name, ctxTrg.name)
+    eq_string(oaCommMean.name, ctxCommMean.name)
+    
+    addPrefix("in ", ctxTrg.name, res_in)
+    setDefaultString(InPort.name, res_in)
+    
+    addPrefix("out ", ctxSrc.name, res_out)
+    setDefaultString(OutPort.name, res_out)
+
+}

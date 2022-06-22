@@ -1,0 +1,36 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule CreateNewCapabilityRealizationLinks #extends AbstractCapabilityCommonContext #with Ctx2La
+
+#source {
+	ctxCapabilityRoot : ctx.CapabilityPkg
+	
+	ctxCapability : ctx.Capability
+}
+
+#target {
+	laCapabilityRoot : la.CapabilityRealizationPkg
+	
+	laCapability : la.CapabilityRealization
+}
+
+#correspondence {
+	contextTransitionedCtxCapability : ContextCtxCapability2LaCapabilityrealizationPkg{
+		#src-> ctxCapability
+		#trg-> laCapabilityRoot
+	}
+	contextTransitionedLaCapability : ContextCtxCapabilityPkg2LaCapabilityrealization{
+		#src-> ctxCapabilityRoot
+		#trg-> laCapability
+	}
+	
+	++ newRealizationLink : CtxCapability2LaCapabilityRealization{
+		#src-> ctxCapability
+		#trg-> laCapability
+	}
+}
+
+#attributeConditions {
+	
+}

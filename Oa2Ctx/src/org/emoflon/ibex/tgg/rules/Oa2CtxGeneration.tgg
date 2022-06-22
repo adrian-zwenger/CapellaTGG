@@ -1,0 +1,139 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#rule Oa2CtxGeneration #with Oa2Ctx
+
+#source { 
+	++ src_oa_arch : oa.OperationalAnalysis{
+		//name := "Operational Analysis"
+		++ -ownedEntityPkg -> src_entity_pkg
+		++ -ownedAbstractCapabilityPkg -> src_capability_pkg
+		++ -ownedFunctionPkg -> src_activity_pkg
+	}
+	
+	// ################### Actor Transitioning ################### //
+
+	++ src_entity_pkg : oa.EntityPkg{
+		//name := "Operational Entities"
+	}
+	
+	// ################### Capability Transitioning ################### //
+	
+	++ src_capability_pkg : oa.OperationalCapabilityPkg{
+	    //name := "Operational Capabilities"
+	}
+	
+    // ################### Activity Transitioning ################### //
+    
+    ++ src_activity_pkg : oa.OperationalActivityPkg{
+        //name := "Operational Activities"
+        ++ -ownedOperationalActivities -> oa_root_activity
+    }
+    
+    ++oa_root_activity : oa.OperationalActivity{
+        //name := "Root Operational Activity"
+    }
+}
+
+#target {
+	++ trg_sa_arch : ctx.SystemAnalysis{
+		name:= "System Analysis"
+		++ -ownedSystemComponentPkg -> trg_system_component_pkg
+		/**
+		 * -ownedOperationalAnalysisRealizations holds
+		 * org.polarsys.capella.core.data.ctx.impl.OperationalAnalysisRealizationImpl elements
+		 * these elements trace the SystemAnalysis model to the OperationalAnalysis model which it refines
+		 * #src -> references the SystemAnalysis
+		 * #trg -> references the OperationalAnalysis
+		 * 
+		 * This should actually be modelled with a TGG-correspondence. However, corr-elements cannot be part
+		 * of the source or target model and thus cannot be modelled with a TGG-rule.
+		 */
+		 
+		 ++ -ownedAbstractCapabilityPkg -> trg_capability_pkg
+		 ++ -ownedFunctionPkg -> trg_function_pkg
+	}
+
+    // ################### Actor Transitioning ################### //
+
+	++ trg_system_component_pkg : ctx.SystemComponentPkg{
+		//name := "Structure"
+		++ -ownedSystemComponents -> trg_system_as_component
+		++ -ownedParts -> trg_system_as_part
+	}
+
+	++ trg_system_as_component : ctx.SystemComponent{
+		//name := "System"
+		actor := false
+		human := false
+	}
+
+	++ trg_system_as_part : cs.Part{
+		//name := "System"
+		++-abstractType->trg_system_as_component
+	}
+	
+	// ################### Capability Transitioning ################### //
+	
+	++ trg_capability_pkg : ctx.CapabilityPkg{
+	   // name := "Capabilities"
+	}
+	
+	// ################### Activity Transitioning ################### //
+	
+	++ trg_function_pkg : ctx.SystemFunctionPkg{
+	  //  name := "System Functions"
+	    ++ -ownedSystemFunctions -> trg_root_function
+	}
+
+    ++ trg_root_function : ctx.SystemFunction{
+        //name := "Root System Function"
+    }
+}
+
+#correspondence {
+	++ new_oa2sa : Oa2Sa{
+		#src-> src_oa_arch
+		#trg-> trg_sa_arch
+	}
+	
+	++ activity2function : OaActivity2SystemFunction{
+	    #src-> oa_root_activity
+	    #trg-> trg_root_function
+	}
+	
+	++ entitypkgs : EntityPkg2ComponentPkg{
+	    #src-> src_entity_pkg
+	    #trg-> trg_system_component_pkg
+	}// Do not know when link appears in original Capella model	
+}
+
+#attributeConditions {
+//    setID(src_oa_arch.id)
+//    setID(src_entity_pkg.id)
+//    setID(src_capability_pkg.id)
+//    
+//    setID(trg_sa_arch.id)
+//    setID(trg_capability_pkg.id)
+//    setID(trg_system_component_pkg.id)
+//    setID(trg_system_as_component.id)
+//    setID(trg_system_as_part.id)    
+
+	setDefaultString(src_oa_arch.name, "Operational Analysis")
+	setDefaultString(src_entity_pkg.name, "Operational Entities")
+	setDefaultString(src_capability_pkg.name, "Operational Capabilities")
+	setDefaultString(src_activity_pkg.name, "Operational Activities")
+	setDefaultString(oa_root_activity.name, "Root Operational Activity")
+	
+	setDefaultString(trg_sa_arch.name, "System Analysis")
+	setDefaultString(trg_system_component_pkg.name, "Structure")
+	setDefaultString(trg_system_as_component.name, "System")
+	setDefaultString(trg_system_as_part.name, "System")
+	setDefaultString(trg_capability_pkg.name, "Capabilities")
+	setDefaultString(trg_function_pkg.name, "System Functions")
+	setDefaultString(trg_root_function.name, "Root System Function")
+	
+	eq_string(trg_system_as_component.name, trg_system_as_part.name)
+	
+	
+}

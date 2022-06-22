@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:emde="http://www.polarsys.org/kitalpha/emde/1.0.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.polarsys.org/kitalpha/emde/1.0.0">
+  <xsd:import namespace="http://www.omg.org/XMI" schemaLocation="platform:/resource/org.eclipse.emf.ecore/model/XMI.xsd"/>
+  <xsd:complexType abstract="true" name="Element">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+  </xsd:complexType>
+  <xsd:element name="Element" type="emde:Element"/>
+  <xsd:complexType abstract="true" name="ExtensibleElement">
+    <xsd:complexContent>
+      <xsd:extension base="emde:Element">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="ownedExtensions" type="emde:ElementExtension"/>
+        </xsd:choice>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ExtensibleElement" type="emde:ExtensibleElement"/>
+  <xsd:complexType abstract="true" name="ElementExtension">
+    <xsd:complexContent>
+      <xsd:extension base="emde:ExtensibleElement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ElementExtension" type="emde:ElementExtension"/>
+</xsd:schema>

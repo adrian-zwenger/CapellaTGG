@@ -1,0 +1,24 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule CreateCapabilityPkgContainedInRootPkg #extends AbstractCreateCapabilityPkg #with Ctx2La
+
+#source { 
+	ctxCapabilityRoot : ctx.CapabilityPkg
+}
+
+#target {
+	laCapabilityRoot : la.CapabilityRealizationPkg{
+		++ -ownedCapabilityRealizationPkgs -> laNewCapabilityPkg
+	}
+	
+	++ laNewCapabilityPkg : la.CapabilityRealizationPkg
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

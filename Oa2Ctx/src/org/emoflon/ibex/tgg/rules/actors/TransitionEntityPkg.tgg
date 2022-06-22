@@ -1,0 +1,23 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionEntityPkg #extends AbstractTransitionEntityPkg #with Oa2Ctx
+
+#source {
+    oaRootPkg : oa.EntityPkg{
+        ++ -ownedEntityPkgs -> oaNewPkg
+    }	
+}
+
+#target {
+    ctxRootPkg : ctx.SystemComponentPkg{
+        ++ -ownedSystemComponentPkgs -> ctxNewPkg
+    }
+}
+
+#correspondence {
+}
+
+#attributeConditions {
+	
+}

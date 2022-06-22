@@ -1,0 +1,52 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractTransitionComponents #extends AbstractComponentCommonContext #with Ctx2La
+
+#source { 
+	++ ctxNewComponent : ctx.SystemComponent
+	
+	++ ctxNewPart : cs.Part{
+	    ++ -abstractType -> ctxNewComponent
+	}
+}
+
+#target {
+	++ laNewComponent : la.LogicalComponent
+	
+	++laNewPart : cs.Part{
+	    ++ -abstractType -> laNewComponent
+	} 
+}
+
+#correspondence {
+	++ newComponents : CtxComponent2LaComponent{
+	    // set component correspondence
+	    #src-> ctxNewComponent
+	    #trg-> laNewComponent
+	}
+	
+	++ newParts : CtxPart2LaPart{
+	    // set part correspondence
+	    #src-> ctxNewPart
+	    #trg-> laNewPart
+	}
+	
+	++ contextNewLaComponent : ContextCtxComponentPkg2LAComponent{
+	    // set context for newly created laComponent
+	    #src-> ctxRootPkg
+	    #trg-> laNewComponent
+	}
+	
+	++ contextNewCtxComponent : ContextCtxComponent2LAComponentPkg{
+	    // set context for newly created ctxComponent
+	    #src-> ctxNewComponent
+	    #trg-> laRootPkg
+	}
+}
+
+#attributeConditions {
+    eq_string(ctxNewComponent.name, laNewComponent.name)
+	eq_string(ctxNewPart.name, ctxNewComponent.name)
+	eq_string(laNewPart.name, laNewComponent.name)
+}

@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<IBeXPatternModel:IBeXModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:IBeXPatternModel="platform:/resource/org.emoflon.ibex.patternmodel/model/IBeXPatternModel.ecore" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="platform:/resource/org.emoflon.ibex.patternmodel/model/IBeXPatternModel.ecore java://org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternModelPackage http://www.eclipse.org/emf/2002/Ecore java://org.eclipse.emf.ecore.EcorePackage">
+  <patternSet xmi:type="IBeXPatternModel:IBeXPatternSet">
+    <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="Oa2Sa_generation__CONSISTENCY" localEdges="//@edgeSet/@edges.34 //@edgeSet/@edges.35 //@edgeSet/@edges.49 //@edgeSet/@edges.67 //@edgeSet/@edges.72 //@edgeSet/@edges.73 //@edgeSet/@edges.74 //@edgeSet/@edges.4 //@edgeSet/@edges.5 //@edgeSet/@edges.6 //@edgeSet/@edges.7 //@edgeSet/@edges.8 //@edgeSet/@edges.9 //@edgeSet/@edges.3" signatureNodes="//@nodeSet/@nodes.15 //@nodeSet/@nodes.20 //@nodeSet/@nodes.40 //@nodeSet/@nodes.48 //@nodeSet/@nodes.49 //@nodeSet/@nodes.51 //@nodeSet/@nodes.10 //@nodeSet/@nodes.5">
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.15">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED00057400144F7065726174696F6E616C20456E746974696573" stringValue="Operational Entities"/>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.20">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED00057400144F7065726174696F6E616C20416E616C79736973" stringValue="Operational Analysis"/>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.40">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED000574000F53797374656D20416E616C79736973" stringValue="System Analysis"/>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.48">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED000574000653797374656D" stringValue="System"/>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.48">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//Component/actor"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787000" stringValue="false"/>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.48">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//Component/human"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787000" stringValue="false"/>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.49">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED000574000653797374656D" stringValue="System"/>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.51">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED0005740009537472756374757265" stringValue="Structure"/>
+      </attributeConstraint>
+      <invocations xmi:type="IBeXPatternModel:IBeXPatternInvocation" invokedPattern="//@patternSet/@contextPatterns.2">
+        <mapping xmi:type="IBeXPatternModel:IBeXNodeToNodeMapping" key="//@nodeSet/@nodes.20" value="//@nodeSet/@nodes.22"/>
+        <mapping xmi:type="IBeXPatternModel:IBeXNodeToNodeMapping" key="//@nodeSet/@nodes.15" value="//@nodeSet/@nodes.17"/>
+      </invocations>
+      <invocations xmi:type="IBeXPatternModel:IBeXPatternInvocation" invokedPattern="//@patternSet/@contextPatterns.3">
+        <mapping xmi:type="IBeXPatternModel:IBeXNodeToNodeMapping" key="//@nodeSet/@nodes.40" value="//@nodeSet/@nodes.41"/>
+        <mapping xmi:type="IBeXPatternModel:IBeXNodeToNodeMapping" key="//@nodeSet/@nodes.51" value="//@nodeSet/@nodes.52"/>
+      </invocations>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="Oa2Sa_generation__FWD" localEdges="//@edgeSet/@edges.50" signatureNodes="//@nodeSet/@nodes.16 //@nodeSet/@nodes.21">
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.16">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED00057400144F7065726174696F6E616C20456E746974696573" stringValue="Operational Entities"/>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.21">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED00057400144F7065726174696F6E616C20416E616C79736973" stringValue="Operational Analysis"/>
+      </attributeConstraint>
+      <invocations xmi:type="IBeXPatternModel:IBeXPatternInvocation" invokedPattern="//@patternSet/@contextPatterns.2">
+        <mapping xmi:type="IBeXPatternModel:IBeXNodeToNodeMapping" key="//@nodeSet/@nodes.21" value="//@nodeSet/@nodes.22"/>
+        <mapping xmi:type="IBeXPatternModel:IBeXNodeToNodeMapping" key="//@nodeSet/@nodes.16" value="//@nodeSet/@nodes.17"/>
+      </invocations>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="Oa2Sa_generation_src_oa_arch_ownedEntityPkg_outgoing_SRC__FILTER_NAC_SRC" localEdges="//@edgeSet/@edges.51 //@edgeSet/@edges.48" signatureNodes="//@nodeSet/@nodes.22 //@nodeSet/@nodes.17 //@nodeSet/@nodes.0">
+      <injectivityConstraints xmi:type="IBeXPatternModel:IBeXInjectivityConstraint" values="//@nodeSet/@nodes.0 //@nodeSet/@nodes.17"/>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="Oa2Sa_generation_trg_sa_arch_ownedSystemComponentPkg_outgoing_TRG__FILTER_NAC_TRG" localEdges="//@edgeSet/@edges.68 //@edgeSet/@edges.64" signatureNodes="//@nodeSet/@nodes.41 //@nodeSet/@nodes.52 //@nodeSet/@nodes.1">
+      <injectivityConstraints xmi:type="IBeXPatternModel:IBeXInjectivityConstraint" values="//@nodeSet/@nodes.1 //@nodeSet/@nodes.52"/>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="Oa2Sa_transition_actors__CONSISTENCY" localEdges="//@edgeSet/@edges.32 //@edgeSet/@edges.33 //@edgeSet/@edges.36 //@edgeSet/@edges.38 //@edgeSet/@edges.40 //@edgeSet/@edges.42 //@edgeSet/@edges.44 //@edgeSet/@edges.46 //@edgeSet/@edges.52 //@edgeSet/@edges.54 //@edgeSet/@edges.62 //@edgeSet/@edges.63 //@edgeSet/@edges.65 //@edgeSet/@edges.71 //@edgeSet/@edges.13 //@edgeSet/@edges.14 //@edgeSet/@edges.17 //@edgeSet/@edges.18 //@edgeSet/@edges.15 //@edgeSet/@edges.16 //@edgeSet/@edges.19 //@edgeSet/@edges.20 //@edgeSet/@edges.11 //@edgeSet/@edges.10 //@edgeSet/@edges.12" signatureNodes="//@nodeSet/@nodes.18 //@nodeSet/@nodes.23 //@nodeSet/@nodes.25 //@nodeSet/@nodes.28 //@nodeSet/@nodes.38 //@nodeSet/@nodes.42 //@nodeSet/@nodes.46 //@nodeSet/@nodes.47 //@nodeSet/@nodes.9 //@nodeSet/@nodes.11 //@nodeSet/@nodes.13 //@nodeSet/@nodes.6">
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.46">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//Component/actor"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787001" stringValue="true"/>
+      </attributeConstraint>
+      <injectivityConstraints xmi:type="IBeXPatternModel:IBeXInjectivityConstraint" values="//@nodeSet/@nodes.28 //@nodeSet/@nodes.47"/>
+      <invocations xmi:type="IBeXPatternModel:IBeXPatternInvocation" invokedPattern="//@patternSet/@contextPatterns.10">
+        <mapping xmi:type="IBeXPatternModel:IBeXNodeToNodeMapping" key="//@nodeSet/@nodes.25" value="//@nodeSet/@nodes.27"/>
+      </invocations>
+      <csps xmi:type="IBeXPatternModel:IBeXCSP" name="eq_string" package="org.emoflon.ibex.tgg.operational.csp.constraints">
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.18">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+        <values xmi:type="IBeXPatternModel:IBeXConstant" value="ACED0005740016224F7065726174696F6E616C20456E74697469657322" stringValue="&quot;Operational Entities&quot;"/>
+      </csps>
+      <csps xmi:type="IBeXPatternModel:IBeXCSP" name="eq_string" package="org.emoflon.ibex.tgg.operational.csp.constraints">
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.25">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.28">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+      </csps>
+      <csps xmi:type="IBeXPatternModel:IBeXCSP" name="eq_string" package="org.emoflon.ibex.tgg.operational.csp.constraints">
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.38">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+        <values xmi:type="IBeXPatternModel:IBeXConstant" value="ACED000574000B2253747275637475726522" stringValue="&quot;Structure&quot;"/>
+      </csps>
+      <csps xmi:type="IBeXPatternModel:IBeXCSP" name="eq_string" package="org.emoflon.ibex.tgg.operational.csp.constraints">
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.46">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.47">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+      </csps>
+      <csps xmi:type="IBeXPatternModel:IBeXCSP" name="eq_string" package="org.emoflon.ibex.tgg.operational.csp.constraints">
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.25">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.46">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+      </csps>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="Oa2Sa_transition_actors__FWD" localEdges="//@edgeSet/@edges.37 //@edgeSet/@edges.39 //@edgeSet/@edges.53 //@edgeSet/@edges.66 //@edgeSet/@edges.45 //@edgeSet/@edges.47 //@edgeSet/@edges.55" signatureNodes="//@nodeSet/@nodes.12 //@nodeSet/@nodes.19 //@nodeSet/@nodes.24 //@nodeSet/@nodes.39 //@nodeSet/@nodes.43 //@nodeSet/@nodes.26 //@nodeSet/@nodes.29">
+      <invocations xmi:type="IBeXPatternModel:IBeXPatternInvocation" invokedPattern="//@patternSet/@contextPatterns.10">
+        <mapping xmi:type="IBeXPatternModel:IBeXNodeToNodeMapping" key="//@nodeSet/@nodes.26" value="//@nodeSet/@nodes.27"/>
+      </invocations>
+      <csps xmi:type="IBeXPatternModel:IBeXCSP" name="eq_string" package="org.emoflon.ibex.tgg.operational.csp.constraints">
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.19">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+        <values xmi:type="IBeXPatternModel:IBeXConstant" value="ACED0005740016224F7065726174696F6E616C20456E74697469657322" stringValue="&quot;Operational Entities&quot;"/>
+      </csps>
+      <csps xmi:type="IBeXPatternModel:IBeXCSP" name="eq_string" package="org.emoflon.ibex.tgg.operational.csp.constraints">
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.26">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.29">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+      </csps>
+      <csps xmi:type="IBeXPatternModel:IBeXCSP" name="eq_string" package="org.emoflon.ibex.tgg.operational.csp.constraints">
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.39">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+        <values xmi:type="IBeXPatternModel:IBeXConstant" value="ACED000574000B2253747275637475726522" stringValue="&quot;Structure&quot;"/>
+      </csps>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="Oa2Sa_transition_actors_recursively__CONSISTENCY" localEdges="//@edgeSet/@edges.30 //@edgeSet/@edges.31 //@edgeSet/@edges.41 //@edgeSet/@edges.43 //@edgeSet/@edges.56 //@edgeSet/@edges.58 //@edgeSet/@edges.60 //@edgeSet/@edges.69 //@edgeSet/@edges.75 //@edgeSet/@edges.76 //@edgeSet/@edges.77 //@edgeSet/@edges.25 //@edgeSet/@edges.26 //@edgeSet/@edges.28 //@edgeSet/@edges.23 //@edgeSet/@edges.24 //@edgeSet/@edges.27 //@edgeSet/@edges.29 //@edgeSet/@edges.21 //@edgeSet/@edges.22" signatureNodes="//@nodeSet/@nodes.30 //@nodeSet/@nodes.33 //@nodeSet/@nodes.36 //@nodeSet/@nodes.44 //@nodeSet/@nodes.50 //@nodeSet/@nodes.53 //@nodeSet/@nodes.55 //@nodeSet/@nodes.8 //@nodeSet/@nodes.14 //@nodeSet/@nodes.7">
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.44">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED000574000F53797374656D20416E616C79736973" stringValue="System Analysis"/>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.50">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//Component/actor"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED0005737200116A6176612E6C616E672E426F6F6C65616ECD207280D59CFAEE0200015A000576616C7565787001" stringValue="true"/>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.53">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED0005740009537472756374757265" stringValue="Structure"/>
+      </attributeConstraint>
+      <injectivityConstraints xmi:type="IBeXPatternModel:IBeXInjectivityConstraint" values="//@nodeSet/@nodes.33 //@nodeSet/@nodes.55"/>
+      <invocations xmi:type="IBeXPatternModel:IBeXPatternInvocation" invokedPattern="//@patternSet/@contextPatterns.8">
+        <mapping xmi:type="IBeXPatternModel:IBeXNodeToNodeMapping" key="//@nodeSet/@nodes.30" value="//@nodeSet/@nodes.32"/>
+      </invocations>
+      <invocations xmi:type="IBeXPatternModel:IBeXPatternInvocation" invokedPattern="//@patternSet/@contextPatterns.9">
+        <mapping xmi:type="IBeXPatternModel:IBeXNodeToNodeMapping" key="//@nodeSet/@nodes.33" value="//@nodeSet/@nodes.35"/>
+      </invocations>
+      <csps xmi:type="IBeXPatternModel:IBeXCSP" name="eq_string" package="org.emoflon.ibex.tgg.operational.csp.constraints">
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.30">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.33">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+      </csps>
+      <csps xmi:type="IBeXPatternModel:IBeXCSP" name="eq_string" package="org.emoflon.ibex.tgg.operational.csp.constraints">
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.50">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.55">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+      </csps>
+      <csps xmi:type="IBeXPatternModel:IBeXCSP" name="eq_string" package="org.emoflon.ibex.tgg.operational.csp.constraints">
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.30">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.50">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+      </csps>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="Oa2Sa_transition_actors_recursively__FWD" localEdges="//@edgeSet/@edges.70 //@edgeSet/@edges.57 //@edgeSet/@edges.59 //@edgeSet/@edges.61" signatureNodes="//@nodeSet/@nodes.37 //@nodeSet/@nodes.45 //@nodeSet/@nodes.54 //@nodeSet/@nodes.31 //@nodeSet/@nodes.34">
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.45">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED000574000F53797374656D20416E616C79736973" stringValue="System Analysis"/>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+        <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.54">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </lhs>
+        <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED0005740009537472756374757265" stringValue="Structure"/>
+      </attributeConstraint>
+      <invocations xmi:type="IBeXPatternModel:IBeXPatternInvocation" invokedPattern="//@patternSet/@contextPatterns.8">
+        <mapping xmi:type="IBeXPatternModel:IBeXNodeToNodeMapping" key="//@nodeSet/@nodes.31" value="//@nodeSet/@nodes.32"/>
+      </invocations>
+      <invocations xmi:type="IBeXPatternModel:IBeXPatternInvocation" invokedPattern="//@patternSet/@contextPatterns.9">
+        <mapping xmi:type="IBeXPatternModel:IBeXNodeToNodeMapping" key="//@nodeSet/@nodes.34" value="//@nodeSet/@nodes.35"/>
+      </invocations>
+      <csps xmi:type="IBeXPatternModel:IBeXCSP" name="eq_string" package="org.emoflon.ibex.tgg.operational.csp.constraints">
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.31">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+        <values xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@nodeSet/@nodes.34">
+          <attribute xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        </values>
+      </csps>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="Oa2Sa_transition_actors_recursively_src_operational_entity_ownedEntities_incoming_SRC__FILTER_NAC_SRC" localEdges="//@edgeSet/@edges.1" signatureNodes="//@nodeSet/@nodes.32 //@nodeSet/@nodes.2"/>
+    <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="Oa2Sa_transition_actors_recursively_src_operational_part_ownedParts_incoming_SRC__FILTER_NAC_SRC" localEdges="//@edgeSet/@edges.2" signatureNodes="//@nodeSet/@nodes.35 //@nodeSet/@nodes.3"/>
+    <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="Oa2Sa_transition_actors_src_oa_entity_ownedEntities_incoming_SRC__FILTER_NAC_SRC" localEdges="//@edgeSet/@edges.0" signatureNodes="//@nodeSet/@nodes.27 //@nodeSet/@nodes.4">
+      <injectivityConstraints xmi:type="IBeXPatternModel:IBeXInjectivityConstraint" values="//@nodeSet/@nodes.4 //@nodeSet/@nodes.27"/>
+    </contextPatterns>
+  </patternSet>
+  <nodeSet xmi:type="IBeXPatternModel:IBeXNodeSet">
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="FILTER_NAC_NODE" incomingEdges="//@edgeSet/@edges.48">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//EntityPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="FILTER_NAC_NODE" incomingEdges="//@edgeSet/@edges.64">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="FILTER_NAC_NODE" outgoingEdges="//@edgeSet/@edges.1">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//EntityPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="FILTER_NAC_NODE" outgoingEdges="//@edgeSet/@edges.2">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//ComponentPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="FILTER_NAC_NODE" outgoingEdges="//@edgeSet/@edges.0">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//Entity"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="Oa2Sa_generation_eMoflon_ProtocolNode" outgoingEdges="//@edgeSet/@edges.4 //@edgeSet/@edges.5 //@edgeSet/@edges.6 //@edgeSet/@edges.7 //@edgeSet/@edges.8 //@edgeSet/@edges.9 //@edgeSet/@edges.3">
+      <type xmi:type="ecore:EClass" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="Oa2Sa_transition_actors_eMoflon_ProtocolNode" outgoingEdges="//@edgeSet/@edges.13 //@edgeSet/@edges.14 //@edgeSet/@edges.17 //@edgeSet/@edges.18 //@edgeSet/@edges.15 //@edgeSet/@edges.16 //@edgeSet/@edges.19 //@edgeSet/@edges.20 //@edgeSet/@edges.11 //@edgeSet/@edges.10 //@edgeSet/@edges.12">
+      <type xmi:type="ecore:EClass" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="Oa2Sa_transition_actors_recursively_eMoflon_ProtocolNode" outgoingEdges="//@edgeSet/@edges.25 //@edgeSet/@edges.26 //@edgeSet/@edges.28 //@edgeSet/@edges.23 //@edgeSet/@edges.24 //@edgeSet/@edges.27 //@edgeSet/@edges.29 //@edgeSet/@edges.21 //@edgeSet/@edges.22">
+      <type xmi:type="ecore:EClass" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="OaEntity2SaSysComponent" incomingEdges="//@edgeSet/@edges.21" outgoingEdges="//@edgeSet/@edges.30 //@edgeSet/@edges.31">
+      <type xmi:type="ecore:EClass" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Entity2SystemComponent"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="entity2component" incomingEdges="//@edgeSet/@edges.10" outgoingEdges="//@edgeSet/@edges.32 //@edgeSet/@edges.33">
+      <type xmi:type="ecore:EClass" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Entity2SystemComponent"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="new_oa2sa" incomingEdges="//@edgeSet/@edges.3" outgoingEdges="//@edgeSet/@edges.34 //@edgeSet/@edges.35">
+      <type xmi:type="ecore:EClass" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="oa2sa" incomingEdges="//@edgeSet/@edges.11" outgoingEdges="//@edgeSet/@edges.36 //@edgeSet/@edges.38">
+      <type xmi:type="ecore:EClass" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="oa2sa" outgoingEdges="//@edgeSet/@edges.37 //@edgeSet/@edges.39">
+      <type xmi:type="ecore:EClass" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="part2part" incomingEdges="//@edgeSet/@edges.12" outgoingEdges="//@edgeSet/@edges.40 //@edgeSet/@edges.42">
+      <type xmi:type="ecore:EClass" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//OaPart2SaPart"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="part2part" incomingEdges="//@edgeSet/@edges.22" outgoingEdges="//@edgeSet/@edges.41 //@edgeSet/@edges.43">
+      <type xmi:type="ecore:EClass" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//OaPart2SaPart"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_entity_pkg" incomingEdges="//@edgeSet/@edges.49 //@edgeSet/@edges.4">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//EntityPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_entity_pkg" incomingEdges="//@edgeSet/@edges.50">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//EntityPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_entity_pkg" incomingEdges="//@edgeSet/@edges.51">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//EntityPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_entity_pkg" incomingEdges="//@edgeSet/@edges.52 //@edgeSet/@edges.13" outgoingEdges="//@edgeSet/@edges.44 //@edgeSet/@edges.46">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//EntityPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_entity_pkg" incomingEdges="//@edgeSet/@edges.53" outgoingEdges="//@edgeSet/@edges.45 //@edgeSet/@edges.47">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//EntityPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_oa_arch" incomingEdges="//@edgeSet/@edges.34 //@edgeSet/@edges.5" outgoingEdges="//@edgeSet/@edges.49">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//OperationalAnalysis"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_oa_arch" outgoingEdges="//@edgeSet/@edges.50">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//OperationalAnalysis"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_oa_arch" outgoingEdges="//@edgeSet/@edges.51 //@edgeSet/@edges.48">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//OperationalAnalysis"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_oa_arch" incomingEdges="//@edgeSet/@edges.36 //@edgeSet/@edges.14" outgoingEdges="//@edgeSet/@edges.52">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//OperationalAnalysis"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_oa_arch" incomingEdges="//@edgeSet/@edges.37" outgoingEdges="//@edgeSet/@edges.53">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//OperationalAnalysis"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_oa_entity" incomingEdges="//@edgeSet/@edges.32 //@edgeSet/@edges.44 //@edgeSet/@edges.54 //@edgeSet/@edges.15">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//Entity"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_oa_entity" incomingEdges="//@edgeSet/@edges.45 //@edgeSet/@edges.55">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//Entity"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_oa_entity" incomingEdges="//@edgeSet/@edges.0">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//Entity"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_oa_part" incomingEdges="//@edgeSet/@edges.40 //@edgeSet/@edges.46 //@edgeSet/@edges.16" outgoingEdges="//@edgeSet/@edges.54">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//Part"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_oa_part" incomingEdges="//@edgeSet/@edges.47" outgoingEdges="//@edgeSet/@edges.55">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//Part"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_operational_entity" incomingEdges="//@edgeSet/@edges.30 //@edgeSet/@edges.56 //@edgeSet/@edges.58 //@edgeSet/@edges.23">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//Entity"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_operational_entity" incomingEdges="//@edgeSet/@edges.57 //@edgeSet/@edges.59">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//Entity"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_operational_entity" incomingEdges="//@edgeSet/@edges.1">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//Entity"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_operational_part" incomingEdges="//@edgeSet/@edges.41 //@edgeSet/@edges.60 //@edgeSet/@edges.24" outgoingEdges="//@edgeSet/@edges.56">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//Part"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_operational_part" incomingEdges="//@edgeSet/@edges.61" outgoingEdges="//@edgeSet/@edges.57">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//Part"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_operational_part" incomingEdges="//@edgeSet/@edges.2">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//Part"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_top_level_entity" incomingEdges="//@edgeSet/@edges.25" outgoingEdges="//@edgeSet/@edges.58 //@edgeSet/@edges.60">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//Entity"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="src_top_level_entity" outgoingEdges="//@edgeSet/@edges.59 //@edgeSet/@edges.61">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//Entity"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_componenet_pkg" incomingEdges="//@edgeSet/@edges.65 //@edgeSet/@edges.17" outgoingEdges="//@edgeSet/@edges.62 //@edgeSet/@edges.63">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_componenet_pkg" incomingEdges="//@edgeSet/@edges.66">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_sa_arch" incomingEdges="//@edgeSet/@edges.35 //@edgeSet/@edges.6" outgoingEdges="//@edgeSet/@edges.67">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_sa_arch" outgoingEdges="//@edgeSet/@edges.68 //@edgeSet/@edges.64">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_sa_arch" incomingEdges="//@edgeSet/@edges.38 //@edgeSet/@edges.18" outgoingEdges="//@edgeSet/@edges.65">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_sa_arch" incomingEdges="//@edgeSet/@edges.39" outgoingEdges="//@edgeSet/@edges.66">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_sa_arch" incomingEdges="//@edgeSet/@edges.26" outgoingEdges="//@edgeSet/@edges.69">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_sa_arch" outgoingEdges="//@edgeSet/@edges.70">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_sys_component" incomingEdges="//@edgeSet/@edges.33 //@edgeSet/@edges.62 //@edgeSet/@edges.71 //@edgeSet/@edges.19">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponent"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_sys_part" incomingEdges="//@edgeSet/@edges.42 //@edgeSet/@edges.63 //@edgeSet/@edges.20" outgoingEdges="//@edgeSet/@edges.71">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//Part"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_system_as_component" incomingEdges="//@edgeSet/@edges.72 //@edgeSet/@edges.73 //@edgeSet/@edges.7">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponent"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_system_as_part" incomingEdges="//@edgeSet/@edges.74 //@edgeSet/@edges.8" outgoingEdges="//@edgeSet/@edges.72">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//Part"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_system_component" incomingEdges="//@edgeSet/@edges.31 //@edgeSet/@edges.75 //@edgeSet/@edges.77 //@edgeSet/@edges.27">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponent"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_system_component_pkg" incomingEdges="//@edgeSet/@edges.67 //@edgeSet/@edges.9" outgoingEdges="//@edgeSet/@edges.73 //@edgeSet/@edges.74">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_system_component_pkg" incomingEdges="//@edgeSet/@edges.68">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_system_component_pkg" incomingEdges="//@edgeSet/@edges.69 //@edgeSet/@edges.28" outgoingEdges="//@edgeSet/@edges.75 //@edgeSet/@edges.76">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_system_component_pkg" incomingEdges="//@edgeSet/@edges.70">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg"/>
+    </nodes>
+    <nodes xmi:type="IBeXPatternModel:IBeXNode" name="trg_system_part" incomingEdges="//@edgeSet/@edges.43 //@edgeSet/@edges.76 //@edgeSet/@edges.29" outgoingEdges="//@edgeSet/@edges.77">
+      <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//Part"/>
+    </nodes>
+  </nodeSet>
+  <edgeSet xmi:type="IBeXPatternModel:IBeXEdgeSet">
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="FILTER_NAC_NODE->src_oa_entity" sourceNode="//@nodeSet/@nodes.4" targetNode="//@nodeSet/@nodes.27">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//Entity/ownedEntities"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="FILTER_NAC_NODE->src_operational_entity" sourceNode="//@nodeSet/@nodes.2" targetNode="//@nodeSet/@nodes.32">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//EntityPkg/ownedEntities"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="FILTER_NAC_NODE->src_operational_part" sourceNode="//@nodeSet/@nodes.3" targetNode="//@nodeSet/@nodes.35">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//ComponentPkg/ownedParts"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_generation_eMoflon_ProtocolNode->new_oa2sa" sourceNode="//@nodeSet/@nodes.5" targetNode="//@nodeSet/@nodes.10">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker/CREATE__CORR__new_oa2sa"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_generation_eMoflon_ProtocolNode->src_entity_pkg" sourceNode="//@nodeSet/@nodes.5" targetNode="//@nodeSet/@nodes.15">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker/CREATE__SRC__src_entity_pkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_generation_eMoflon_ProtocolNode->src_oa_arch" sourceNode="//@nodeSet/@nodes.5" targetNode="//@nodeSet/@nodes.20">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker/CREATE__SRC__src_oa_arch"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_generation_eMoflon_ProtocolNode->trg_sa_arch" sourceNode="//@nodeSet/@nodes.5" targetNode="//@nodeSet/@nodes.40">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker/CREATE__TRG__trg_sa_arch"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_generation_eMoflon_ProtocolNode->trg_system_as_component" sourceNode="//@nodeSet/@nodes.5" targetNode="//@nodeSet/@nodes.48">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker/CREATE__TRG__trg_system_as_component"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_generation_eMoflon_ProtocolNode->trg_system_as_part" sourceNode="//@nodeSet/@nodes.5" targetNode="//@nodeSet/@nodes.49">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker/CREATE__TRG__trg_system_as_part"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_generation_eMoflon_ProtocolNode->trg_system_component_pkg" sourceNode="//@nodeSet/@nodes.5" targetNode="//@nodeSet/@nodes.51">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker/CREATE__TRG__trg_system_component_pkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_eMoflon_ProtocolNode->entity2component" sourceNode="//@nodeSet/@nodes.6" targetNode="//@nodeSet/@nodes.9">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CREATE__CORR__entity2component"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_eMoflon_ProtocolNode->oa2sa" sourceNode="//@nodeSet/@nodes.6" targetNode="//@nodeSet/@nodes.11">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CONTEXT__CORR__oa2sa"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_eMoflon_ProtocolNode->part2part" sourceNode="//@nodeSet/@nodes.6" targetNode="//@nodeSet/@nodes.13">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CREATE__CORR__part2part"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_eMoflon_ProtocolNode->src_entity_pkg" sourceNode="//@nodeSet/@nodes.6" targetNode="//@nodeSet/@nodes.18">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CONTEXT__SRC__src_entity_pkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_eMoflon_ProtocolNode->src_oa_arch" sourceNode="//@nodeSet/@nodes.6" targetNode="//@nodeSet/@nodes.23">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CONTEXT__SRC__src_oa_arch"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_eMoflon_ProtocolNode->src_oa_entity" sourceNode="//@nodeSet/@nodes.6" targetNode="//@nodeSet/@nodes.25">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CREATE__SRC__src_oa_entity"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_eMoflon_ProtocolNode->src_oa_part" sourceNode="//@nodeSet/@nodes.6" targetNode="//@nodeSet/@nodes.28">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CREATE__SRC__src_oa_part"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_eMoflon_ProtocolNode->trg_componenet_pkg" sourceNode="//@nodeSet/@nodes.6" targetNode="//@nodeSet/@nodes.38">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CONTEXT__TRG__trg_componenet_pkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_eMoflon_ProtocolNode->trg_sa_arch" sourceNode="//@nodeSet/@nodes.6" targetNode="//@nodeSet/@nodes.42">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CONTEXT__TRG__trg_sa_arch"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_eMoflon_ProtocolNode->trg_sys_component" sourceNode="//@nodeSet/@nodes.6" targetNode="//@nodeSet/@nodes.46">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CREATE__TRG__trg_sys_component"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_eMoflon_ProtocolNode->trg_sys_part" sourceNode="//@nodeSet/@nodes.6" targetNode="//@nodeSet/@nodes.47">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CREATE__TRG__trg_sys_part"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_recursively_eMoflon_ProtocolNode->OaEntity2SaSysComponent" sourceNode="//@nodeSet/@nodes.7" targetNode="//@nodeSet/@nodes.8">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CREATE__CORR__OaEntity2SaSysComponent"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_recursively_eMoflon_ProtocolNode->part2part" sourceNode="//@nodeSet/@nodes.7" targetNode="//@nodeSet/@nodes.14">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CREATE__CORR__part2part"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_recursively_eMoflon_ProtocolNode->src_operational_entity" sourceNode="//@nodeSet/@nodes.7" targetNode="//@nodeSet/@nodes.30">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CREATE__SRC__src_operational_entity"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_recursively_eMoflon_ProtocolNode->src_operational_part" sourceNode="//@nodeSet/@nodes.7" targetNode="//@nodeSet/@nodes.33">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CREATE__SRC__src_operational_part"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_recursively_eMoflon_ProtocolNode->src_top_level_entity" sourceNode="//@nodeSet/@nodes.7" targetNode="//@nodeSet/@nodes.36">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CONTEXT__SRC__src_top_level_entity"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_recursively_eMoflon_ProtocolNode->trg_sa_arch" sourceNode="//@nodeSet/@nodes.7" targetNode="//@nodeSet/@nodes.44">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CONTEXT__TRG__trg_sa_arch"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_recursively_eMoflon_ProtocolNode->trg_system_component" sourceNode="//@nodeSet/@nodes.7" targetNode="//@nodeSet/@nodes.50">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CREATE__TRG__trg_system_component"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_recursively_eMoflon_ProtocolNode->trg_system_component_pkg" sourceNode="//@nodeSet/@nodes.7" targetNode="//@nodeSet/@nodes.53">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CONTEXT__TRG__trg_system_component_pkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="Oa2Sa_transition_actors_recursively_eMoflon_ProtocolNode->trg_system_part" sourceNode="//@nodeSet/@nodes.7" targetNode="//@nodeSet/@nodes.55">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CREATE__TRG__trg_system_part"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="OaEntity2SaSysComponent->src_operational_entity" sourceNode="//@nodeSet/@nodes.8" targetNode="//@nodeSet/@nodes.30">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Entity2SystemComponent/source"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="OaEntity2SaSysComponent->trg_system_component" sourceNode="//@nodeSet/@nodes.8" targetNode="//@nodeSet/@nodes.50">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Entity2SystemComponent/target"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="entity2component->src_oa_entity" sourceNode="//@nodeSet/@nodes.9" targetNode="//@nodeSet/@nodes.25">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Entity2SystemComponent/source"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="entity2component->trg_sys_component" sourceNode="//@nodeSet/@nodes.9" targetNode="//@nodeSet/@nodes.46">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Entity2SystemComponent/target"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="new_oa2sa->src_oa_arch" sourceNode="//@nodeSet/@nodes.10" targetNode="//@nodeSet/@nodes.20">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa/source"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="new_oa2sa->trg_sa_arch" sourceNode="//@nodeSet/@nodes.10" targetNode="//@nodeSet/@nodes.40">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa/target"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="oa2sa->src_oa_arch" sourceNode="//@nodeSet/@nodes.11" targetNode="//@nodeSet/@nodes.23">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa/source"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="oa2sa->src_oa_arch" sourceNode="//@nodeSet/@nodes.12" targetNode="//@nodeSet/@nodes.24">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa/source"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="oa2sa->trg_sa_arch" sourceNode="//@nodeSet/@nodes.11" targetNode="//@nodeSet/@nodes.42">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa/target"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="oa2sa->trg_sa_arch" sourceNode="//@nodeSet/@nodes.12" targetNode="//@nodeSet/@nodes.43">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa/target"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="part2part->src_oa_part" sourceNode="//@nodeSet/@nodes.13" targetNode="//@nodeSet/@nodes.28">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//OaPart2SaPart/source"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="part2part->src_operational_part" sourceNode="//@nodeSet/@nodes.14" targetNode="//@nodeSet/@nodes.33">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//OaPart2SaPart/source"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="part2part->trg_sys_part" sourceNode="//@nodeSet/@nodes.13" targetNode="//@nodeSet/@nodes.47">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//OaPart2SaPart/target"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="part2part->trg_system_part" sourceNode="//@nodeSet/@nodes.14" targetNode="//@nodeSet/@nodes.55">
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//OaPart2SaPart/target"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_entity_pkg->src_oa_entity" sourceNode="//@nodeSet/@nodes.18" targetNode="//@nodeSet/@nodes.25">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//EntityPkg/ownedEntities"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_entity_pkg->src_oa_entity" sourceNode="//@nodeSet/@nodes.19" targetNode="//@nodeSet/@nodes.26">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//EntityPkg/ownedEntities"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_entity_pkg->src_oa_part" sourceNode="//@nodeSet/@nodes.18" targetNode="//@nodeSet/@nodes.28">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//ComponentPkg/ownedParts"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_entity_pkg->src_oa_part" sourceNode="//@nodeSet/@nodes.19" targetNode="//@nodeSet/@nodes.29">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//ComponentPkg/ownedParts"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_oa_arch->FILTER_NAC_NODE" sourceNode="//@nodeSet/@nodes.22" targetNode="//@nodeSet/@nodes.0">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//OperationalAnalysis/ownedEntityPkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_oa_arch->src_entity_pkg" sourceNode="//@nodeSet/@nodes.20" targetNode="//@nodeSet/@nodes.15">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//OperationalAnalysis/ownedEntityPkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_oa_arch->src_entity_pkg" sourceNode="//@nodeSet/@nodes.21" targetNode="//@nodeSet/@nodes.16">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//OperationalAnalysis/ownedEntityPkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_oa_arch->src_entity_pkg" sourceNode="//@nodeSet/@nodes.22" targetNode="//@nodeSet/@nodes.17">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//OperationalAnalysis/ownedEntityPkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_oa_arch->src_entity_pkg" sourceNode="//@nodeSet/@nodes.23" targetNode="//@nodeSet/@nodes.18">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//OperationalAnalysis/ownedEntityPkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_oa_arch->src_entity_pkg" sourceNode="//@nodeSet/@nodes.24" targetNode="//@nodeSet/@nodes.19">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//OperationalAnalysis/ownedEntityPkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_oa_part->src_oa_entity" sourceNode="//@nodeSet/@nodes.28" targetNode="//@nodeSet/@nodes.25">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractTypedElement/abstractType"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_oa_part->src_oa_entity" sourceNode="//@nodeSet/@nodes.29" targetNode="//@nodeSet/@nodes.26">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractTypedElement/abstractType"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_operational_part->src_operational_entity" sourceNode="//@nodeSet/@nodes.33" targetNode="//@nodeSet/@nodes.30">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractTypedElement/abstractType"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_operational_part->src_operational_entity" sourceNode="//@nodeSet/@nodes.34" targetNode="//@nodeSet/@nodes.31">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractTypedElement/abstractType"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_top_level_entity->src_operational_entity" sourceNode="//@nodeSet/@nodes.36" targetNode="//@nodeSet/@nodes.30">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//Entity/ownedEntities"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_top_level_entity->src_operational_entity" sourceNode="//@nodeSet/@nodes.37" targetNode="//@nodeSet/@nodes.31">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//Entity/ownedEntities"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_top_level_entity->src_operational_part" sourceNode="//@nodeSet/@nodes.36" targetNode="//@nodeSet/@nodes.33">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore#//Classifier/ownedFeatures"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="src_top_level_entity->src_operational_part" sourceNode="//@nodeSet/@nodes.37" targetNode="//@nodeSet/@nodes.34">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore#//Classifier/ownedFeatures"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_componenet_pkg->trg_sys_component" sourceNode="//@nodeSet/@nodes.38" targetNode="//@nodeSet/@nodes.46">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg/ownedSystemComponents"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_componenet_pkg->trg_sys_part" sourceNode="//@nodeSet/@nodes.38" targetNode="//@nodeSet/@nodes.47">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//ComponentPkg/ownedParts"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_sa_arch->FILTER_NAC_NODE" sourceNode="//@nodeSet/@nodes.41" targetNode="//@nodeSet/@nodes.1">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis/ownedSystemComponentPkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_sa_arch->trg_componenet_pkg" sourceNode="//@nodeSet/@nodes.42" targetNode="//@nodeSet/@nodes.38">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis/ownedSystemComponentPkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_sa_arch->trg_componenet_pkg" sourceNode="//@nodeSet/@nodes.43" targetNode="//@nodeSet/@nodes.39">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis/ownedSystemComponentPkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_sa_arch->trg_system_component_pkg" sourceNode="//@nodeSet/@nodes.40" targetNode="//@nodeSet/@nodes.51">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis/ownedSystemComponentPkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_sa_arch->trg_system_component_pkg" sourceNode="//@nodeSet/@nodes.41" targetNode="//@nodeSet/@nodes.52">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis/ownedSystemComponentPkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_sa_arch->trg_system_component_pkg" sourceNode="//@nodeSet/@nodes.44" targetNode="//@nodeSet/@nodes.53">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis/ownedSystemComponentPkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_sa_arch->trg_system_component_pkg" sourceNode="//@nodeSet/@nodes.45" targetNode="//@nodeSet/@nodes.54">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis/ownedSystemComponentPkg"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_sys_part->trg_sys_component" sourceNode="//@nodeSet/@nodes.47" targetNode="//@nodeSet/@nodes.46">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractTypedElement/abstractType"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_system_as_part->trg_system_as_component" sourceNode="//@nodeSet/@nodes.49" targetNode="//@nodeSet/@nodes.48">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractTypedElement/abstractType"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_system_component_pkg->trg_system_as_component" sourceNode="//@nodeSet/@nodes.51" targetNode="//@nodeSet/@nodes.48">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg/ownedSystemComponents"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_system_component_pkg->trg_system_as_part" sourceNode="//@nodeSet/@nodes.51" targetNode="//@nodeSet/@nodes.49">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//ComponentPkg/ownedParts"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_system_component_pkg->trg_system_component" sourceNode="//@nodeSet/@nodes.53" targetNode="//@nodeSet/@nodes.50">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg/ownedSystemComponents"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_system_component_pkg->trg_system_part" sourceNode="//@nodeSet/@nodes.53" targetNode="//@nodeSet/@nodes.55">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore#//ComponentPkg/ownedParts"/>
+    </edges>
+    <edges xmi:type="IBeXPatternModel:IBeXEdge" name="trg_system_part->trg_system_component" sourceNode="//@nodeSet/@nodes.55" targetNode="//@nodeSet/@nodes.50">
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractTypedElement/abstractType"/>
+    </edges>
+  </edgeSet>
+</IBeXPatternModel:IBeXModel>

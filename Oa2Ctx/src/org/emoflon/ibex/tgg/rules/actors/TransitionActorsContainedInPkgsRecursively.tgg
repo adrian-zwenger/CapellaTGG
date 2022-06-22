@@ -1,0 +1,56 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionActorsContainedInPkgsRecursively #extends AbstractTransitionActor #with Oa2Ctx
+
+
+#source {
+
+    /**
+     * handles entity containment as contained Entity's are stored as an EReference
+     */
+	oaContainerPkg : oa.EntityPkg{
+		++ -ownedEntities->oaNewEntity
+		++ -ownedParts->oaNewPart
+	}
+}
+
+#target {
+	ctxContainerPkg : ctx.SystemComponentPkg{
+	    ++ -ownedSystemComponents -> ctxNewComponent
+	    ++ -ownedParts -> ctxNewPart
+	    /**
+         *  -ownedTraces contains org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl elements
+         *  these elements represent the traces between elements of capella stages, in other words they 
+         *  fulfill the same role as the corr-elements of an TGG-triple
+         *  
+         * Each TransfoLink references two elements:
+         *      #src -> Part of SystemComponent in SystemAnalysis model
+         *      #trg -> Part which is being refined by SA and is part of OperationalAnalysis model
+         */
+	}
+}
+
+#correspondence {
+    containers : EntityPkg2ComponentPkg{
+        // require package correspondence
+        #src-> oaContainerPkg
+        #trg-> ctxContainerPkg
+    }
+    
+    contextTransitionedOaContainer : ContextOaEntityPkg2SystemComponentPkg{
+        // require that oa pkg was properly transitioned
+        #src-> oaContainerPkg
+        #trg-> ctxRoot
+    }
+    
+    contextTransitionedCtxContainer : ContextOaEntityPkg2SystemComponentPkg{
+        // require that ctx pkg was properly transitioned
+        #src-> oaRoot
+        #trg-> ctxContainerPkg
+    }
+}
+
+#attributeConditions {
+}
+

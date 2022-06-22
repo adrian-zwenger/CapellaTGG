@@ -1,0 +1,35 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractTransitionComponentPkg #extends AbstractComponentCommonContext #with Ctx2La
+
+#source { 
+    ++ ctxNewPkg : ctx.SystemComponentPkg
+}
+
+#target {
+    ++ laNewPkg : la.LogicalComponentPkg
+}
+
+#correspondence {
+    ++ newPkgs : CtxComponentPkg2LaComponentPkg{
+        #src-> ctxNewPkg
+        #trg-> laNewPkg
+    }
+ 
+    ++ contextNewLaPkg : ContextCtxComponentPkg2LAComponentPkg{
+        // set context for newly created laPkg
+        #src-> ctxRootPkg
+        #trg-> laNewPkg
+    }
+    
+    ++ contextNewCtxPkg : ContextCtxComponentPkg2LAComponentPkg{
+        // set context for newly created ctxPkg
+        #src-> ctxNewPkg
+        #trg-> laRootPkg
+    }
+}
+
+#attributeConditions {
+    eq_string(ctxNewPkg.name, laNewPkg.name)    
+}

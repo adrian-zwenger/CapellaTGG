@@ -1,0 +1,42 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule SyncComponentPkgContainedInComponentPkgFlat  #extends AbstractSyncComponentPkg #with Ctx2La
+#source { 
+	ctxRootPkg : ctx.SystemComponentPkg
+	
+	ctxContainer : ctx.SystemComponentPkg
+}
+
+#target {
+	laRootPkg : la.LogicalComponentPkg
+	
+	laContainer : la.LogicalComponentPkg{
+		-ownedLogicalComponentPkgs -> laPkg
+		
+		++ -ownedLogicalComponentPkgs -> laNewPkg
+	}
+	
+	laPkg : la.LogicalComponentPkg
+	
+	++ laNewPkg : la.LogicalComponentPkg
+}
+
+#correspondence {
+	containers : CtxComponentPkg2LaComponentPkg{
+		#src-> ctxContainer
+		#trg-> laContainer
+	}
+	transitionedCtxContainer : ContextCtxComponentPkg2LAComponentPkg{
+		#src-> ctxContainer
+		#trg-> laRootPkg
+	}
+	transitionedLaContainer : ContextCtxComponentPkg2LAComponentPkg{
+		#src-> ctxRootPkg
+		#trg-> laContainer
+	}
+}
+
+#attributeConditions {
+	
+}

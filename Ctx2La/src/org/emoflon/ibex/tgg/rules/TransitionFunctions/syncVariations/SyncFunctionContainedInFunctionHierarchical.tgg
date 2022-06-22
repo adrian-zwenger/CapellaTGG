@@ -1,0 +1,24 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule SyncFunctionContainedInFunctionHierarchical #extends AbstractSyncFunctionsCommonContext #with Ctx2La
+
+#source { 
+	
+}
+
+#target {
+	laTransitionedFunction : la.LogicalFunction{
+		++ -ownedFunctions -> laNewFunction
+	}
+	
+	++ laNewFunction : la.LogicalFunction
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

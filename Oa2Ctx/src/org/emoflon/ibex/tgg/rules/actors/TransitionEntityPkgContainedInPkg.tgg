@@ -1,0 +1,40 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionEntityPkgContainedInPkg #extends AbstractTransitionEntityPkg #with Oa2Ctx
+
+#source {
+    oaContainerPkg : oa.EntityPkg{
+        ++ -ownedEntityPkgs -> oaNewPkg
+    }
+}
+
+#target {
+    ctxContainerPkg : ctx.SystemComponentPkg{
+        ++ -ownedSystemComponentPkgs -> ctxNewPkg
+    }
+}
+
+#correspondence {
+    contextTransitionedContainerEntityPkg : ContextOaEntityPkg2SystemComponentPkg{
+        // marker that container pkg has been transitioned  and is located in CTX model
+        #src-> oaContainerPkg
+        #trg-> ctxRootPkg
+    }
+    
+    contextTransitionedContainerComponentPkg :ContextOaEntityPkg2SystemComponentPkg{
+        // marker that container pkg has been transitioned and is located in CTX model
+        #src-> oaRootPkg
+        #trg-> ctxContainerPkg
+    }
+
+	containerPkgs : EntityPkg2ComponentPkg{
+	    // require container pkg mappings
+	    #src-> oaContainerPkg
+	    #trg-> ctxContainerPkg
+	}
+}
+
+#attributeConditions {
+    eq_string(oaContainerPkg.name, ctxContainerPkg.name)
+}

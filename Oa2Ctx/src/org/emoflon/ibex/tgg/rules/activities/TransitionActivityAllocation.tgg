@@ -1,0 +1,66 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionActivityAllocation #with Oa2Ctx
+
+/**
+ * The application of this rule needs to be heavily monitored as an
+ * entity may only be involved with an Activity only exactly ONCE!
+ * and not more than once!
+ */
+
+#source { 
+	oaEntity : oa.Entity{
+	    ++ -ownedFunctionalAllocation -> oaActAllocation
+	}
+
+    oaActivity : oa.OperationalActivity
+    
+    ++ oaActAllocation : fa.ComponentFunctionalAllocation{
+        ++ -sourceElement -> oaEntity
+        ++ -targetElement -> oaActivity
+    }
+}
+
+#target {
+	ctxComponent : ctx.SystemComponent{
+	    ++ -ownedFunctionalAllocation -> ctxFunctionAllocation
+      /**
+       * The trace between the oa and ctx representations are stored in the container
+       * of the ctx representation.
+       * 
+       * ctxSystemComponent.ownedTraces
+       *        -> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+       *                -sourceElement -> fa.ComponentFunctionalAllocation (ctx)
+       *                -targetElement -> fa.ComponentFunctionalAllocation (oa)
+       */
+	}
+	
+	ctxFunction : ctx.SystemFunction
+	
+	++ ctxFunctionAllocation : fa.ComponentFunctionalAllocation{
+	    ++ -sourceElement -> ctxComponent
+	    ++ -targetElement -> ctxFunction
+	}
+}
+
+#correspondence {
+	entity2component : Entity2SystemComponent{
+	    #src-> oaEntity
+	    #trg-> ctxComponent
+	}
+	
+	act2func : OaActivity2SystemFunction{
+	    #src-> oaActivity
+	    #trg-> ctxFunction
+	}
+	
+	++ alloc : OaActivityAllocation2FunctionalAllocation{
+	    #src-> oaActAllocation
+	    #trg-> ctxFunctionAllocation
+	}
+}
+
+#attributeConditions {
+	
+}

@@ -1,0 +1,40 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionActors #extends AbstractTransitionActor #with Oa2Ctx
+
+/**
+ * This rule generates top-level an operational Entity (and its Part) and
+ * transitions it to SystemAnalysis
+ */
+
+#source {
+	oaRoot : oa.EntityPkg{
+		++ -ownedEntities-> oaNewEntity
+		++ -ownedParts -> oaNewPart
+	}
+}
+
+#target {
+	ctxRoot : ctx.SystemComponentPkg{
+		++ -ownedSystemComponents-> ctxNewComponent
+		++ -ownedParts -> ctxNewPart
+		/**
+		 *  -ownedTraces contains org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl elements
+		 *  these elements represent the traces between elements of capella stages, in other words they 
+		 *  fulfill the same role as the corr-elements of an TGG-triple
+		 *  
+		 * Each TransfoLink references two elements:
+		 * 		#src -> Part of SystemComponent in SystemAnalysis model
+		 * 		#trg -> Part which is being refined by SA and is part of OperationalAnalysis model
+		 */
+	}
+}
+
+#correspondence {
+
+}
+
+#attributeConditions {
+
+}

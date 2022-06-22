@@ -1,0 +1,108 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+/**
+ * Warning! There is no way to specify, that an Entity may not be involved with the same Capability
+ * multiple times, which Capella does not allow.
+ * The application of this rule must thus be monitored manually.
+ */
+/**
+ * Entities are involved with a capability if a Scenario diagram is created for said Capability
+ * and the said entity is part of that diagram.
+ */
+#rule TransitionEntity2CapabilityInvolvements #with Oa2Ctx
+
+#source {
+    oaArch : oa.OperationalAnalysis{
+        -ownedEntityPkg -> oaEntityRoot
+    }
+
+    oaEntityRoot : oa.EntityPkg
+
+    oaEntity : oa.Entity
+
+	oaCapability : oa.OperationalCapability{
+	    ++ -ownedEntityOperationalCapabilityInvolvements -> oaInvolvement
+	}
+	
+	++ oaInvolvement : oa.EntityOperationalCapabilityInvolvement{
+	    ++ -involved -> oaEntity
+	}
+}
+
+#target {
+    ctxArch : ctx.SystemAnalysis{
+        -ownedSystemComponentPkg -> ctxComponentRoot
+    }
+    
+    ctxComponentRoot : ctx.SystemComponentPkg
+
+    ctxComponent : ctx.SystemComponent
+    
+	ctxCapability : ctx.Capability{
+	    ++ -ownedCapabilityInvolvements -> ctxInvolvement
+	}
+    /**
+     * a capability stores the traces of its Involvements. This cannot be described with a TGG and can only be represented with a correspondence.
+     * 
+     * equivalent correspondence: OaCapabilityInvolvement2CapabilityInvolvement
+     * actual Capella Mapping:
+     * 
+     * ctx.Capability.ownedTraces
+     *      -> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *              -sourceElement -> ctx.CapabilityInvolvement
+     *              -targetElement -> oa.EntityOperationalCapabilityInvolvement
+     */
+
+	++ ctxInvolvement : ctx.CapabilityInvolvement{
+	    ++ -involved -> ctxComponent
+	}
+
+}
+
+#correspondence {
+    arch : Oa2Sa{
+        // require model roots
+        #src-> oaArch
+        #trg-> ctxArch
+    }
+    
+    entityRoots : EntityPkg2ComponentPkg{
+        // require entity/component root pkg's
+        #src-> oaEntityRoot
+        #trg-> ctxComponentRoot
+    }
+    
+    contextTransitionedEntity : ContextOaEntity2SystemComponentPkg{
+        // require that the entity has been transitioned from OA to CTX
+        #src-> oaEntity
+        #trg-> ctxComponentRoot
+    }
+    
+    contextTransitionedComponent : ContextOaEntityPkg2SystemComponent{
+        // require that component has been transitioned from CTX to OA
+        #src-> oaEntityRoot
+        #trg-> ctxComponent
+    }
+    
+    entity2component : Entity2SystemComponent{
+        #src-> oaEntity
+        #trg-> ctxComponent
+    }
+
+	cap2cap : OaCapability2Capability{
+	    #src-> oaCapability
+	    #trg-> ctxCapability
+	}
+	
+	++ inv2inv : OaCapabilityInvolvement2CapabilityInvolvement{
+	    #src-> oaInvolvement
+	    #trg-> ctxInvolvement
+	}
+}
+
+#attributeConditions {
+	eq_string(oaEntity.name, ctxComponent.name)
+	
+	eq_string(oaCapability.name, ctxCapability.name)
+}

@@ -1,0 +1,40 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionActivitiesRecursively #with Oa2Ctx
+
+#source {
+    oaRoot : oa.OperationalActivity{
+        ++ -ownedFunctions -> oaActivity
+    }
+
+    ++ oaActivity : oa.OperationalActivity{
+        kind := enum::fa.FunctionKind::FUNCTION
+    }
+}
+
+#target {
+    ctxRoot : ctx.SystemFunction{
+        ++ -ownedFunctions -> ctxFunction
+    }
+
+    ++ ctxFunction : ctx.SystemFunction{
+        kind := enum::fa.FunctionKind::FUNCTION
+    }
+}
+
+#correspondence {
+    functionRoots : OaActivity2SystemFunction{
+        #src-> oaRoot
+        #trg-> ctxRoot
+    }
+
+    ++ activity2function : OaActivity2SystemFunction{
+        #src-> oaActivity
+        #trg-> ctxFunction
+    }
+}
+
+#attributeConditions {
+    eq_string(oaActivity.name, ctxFunction.name)
+}

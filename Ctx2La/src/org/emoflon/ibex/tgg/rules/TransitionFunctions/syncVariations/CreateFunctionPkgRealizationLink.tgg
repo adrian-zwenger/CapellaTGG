@@ -1,0 +1,36 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule CreateFunctionPkgRealizationLink #extends AbstractFunctionCommonContext #with Ctx2La
+
+#source {	
+	ctxRootFunction : ctx.SystemFunction
+	
+	ctxFunctionPkg : ctx.SystemFunctionPkg
+}
+
+#target {
+	laRootFunction : la.LogicalFunction
+	
+	laFunctionPkg : la.LogicalFunctionPkg
+}
+
+#correspondence {
+	contextTransitionedCtxFunctionPkg : ContextCtxFunctionPkg2LaRootFunction{
+		#src-> ctxFunctionPkg
+		#trg-> laRootFunction
+	}
+	contextTransitionLaFunctionPkg : ContextCtxRootFunction2LaFunctionPkg{
+		#src-> ctxRootFunction
+		#trg-> laFunctionPkg
+	}
+
+	++ newRealizationLink : CtxFunctionPkg2LaFunctionPkg{
+		#src-> ctxFunctionPkg
+		#trg-> laFunctionPkg
+	}
+}
+
+#attributeConditions {
+	
+}

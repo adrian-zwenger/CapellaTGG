@@ -1,0 +1,74 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionPhysExchangeWithSingleComponent #extends AbstractMatchSingleComponent #with Ctx2La
+
+#source {
+    ctxComponentRootPkg : ctx.SystemComponentPkg{
+        ++ -ownedPhysicalLinks -> ctxExchange
+    }
+    
+    ctxComponent : ctx.SystemComponent{
+        ++ -ownedFeatures -> ctxSrcPhysPort
+        ++ -ownedFeatures -> ctxTrgPhysPort
+    }
+
+    ++ ctxSrcPhysPort : cs.PhysicalPort
+
+    ++ ctxTrgPhysPort : cs.PhysicalPort
+
+    ++ ctxExchange : cs.PhysicalLink{
+        ++ -linkEnds -> ctxSrcPhysPort
+        ++ -linkEnds -> ctxTrgPhysPort
+    }
+}
+
+#target {
+    laComponentRootPkg : la.LogicalComponentPkg{
+        ++ -ownedPhysicalLinks -> laExchange
+    }
+
+    laComponent : la.LogicalComponent{
+        ++ -ownedFeatures -> laSrcPhysPort
+        ++ -ownedFeatures -> laTrgPhysPort
+    }
+    
+    ++ laSrcPhysPort : cs.PhysicalPort
+
+    ++ laTrgPhysPort : cs.PhysicalPort
+
+    ++ laExchange : cs.PhysicalLink{
+        ++ -linkEnds -> laSrcPhysPort
+        ++ -linkEnds -> laTrgPhysPort
+    }
+}
+
+#correspondence {
+    ++ srcPorts : CtxPhysicalPort2LaPhysicalPort{
+        #src-> ctxSrcPhysPort
+        #trg-> laSrcPhysPort
+    }
+    
+    ++ trgPrts : CtxPhysicalPort2LaPhysicalPort{
+        #src-> ctxTrgPhysPort
+        #trg-> laTrgPhysPort
+    }
+    
+    ++ physLinks : CtxPhysicalLink2LaPhysicalLink{
+        #src-> ctxExchange
+        #trg-> laExchange
+    }
+}
+
+#attributeConditions {
+    eq_string(ctxExchange.name, laExchange.name)
+    addSuffix(ctxExchange.name, " Port", ctxPorts)
+	 // by default capella uses the exchanges name as the port name.
+	 // this makes it difficult to discern Ports from exchanges in Capella as everything is listed by name
+	 // thus i decided to add the suffix port to be able to discern them
+    setDefaultString(ctxSrcPhysPort.name, ctxPorts)
+    setDefaultString(ctxTrgPhysPort.name, ctxPorts)
+    addSuffix(laExchange.name, " Port", laPorts)
+    setDefaultString(laSrcPhysPort.name, laPorts)
+    setDefaultString(laTrgPhysPort.name, laPorts)
+}

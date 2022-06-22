@@ -1,0 +1,36 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule SyncComponentContainedInCreatedPkgContainedInComponent #extends SyncComponentContainedInCreatedComponentPkg #with Ctx2La
+
+/**
+ * Case of a SyncComponentContainedInCreatedComponentPkg match where the LogicalComponentPkg is contained in a LogicalComponent.
+ * Then SystemComponent realized by the LogicalComponent can be used as the component to realize for the newly created LogicalComponent as well.
+ * 
+ * This subtype was created as this type of constellation may be deemed as consistent by default.
+ */
+#source {
+
+}
+
+#target {
+	laComponent : la.LogicalComponent{
+		-ownedLogicalComponentPkgs -> laContainerPkg
+	}
+	
+	laContainerPkg : la.LogicalComponentPkg{
+		++ -ownedLogicalComponents -> laNewComponent
+		++ -ownedParts -> laNewPart
+	}
+
+	++ laNewComponent : la.LogicalComponent
+	++ laNewPart : cs.Part
+}
+
+#correspondence {
+
+}
+
+#attributeConditions {
+
+}

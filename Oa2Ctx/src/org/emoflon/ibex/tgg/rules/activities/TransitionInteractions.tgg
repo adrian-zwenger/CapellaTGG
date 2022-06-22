@@ -1,0 +1,109 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionInteractions #with Oa2Ctx
+
+#source { 
+/**
+ * The root activity stores the Interactions for all contained Activities if model is
+ * created with diagrams
+ */
+    oaArch : oa.OperationalAnalysis{
+        -ownedFunctionPkg -> oaActPkg
+    }
+    
+    oaActPkg : oa.OperationalActivityPkg{
+        -ownedOperationalActivities -> oaRoot
+    }
+    
+    oaRoot : oa.OperationalActivity{
+        ++ -ownedFunctionalExchanges -> oaInteraction
+    }
+    
+    oaSrc : oa.OperationalActivity
+    // rule needs to be monitored. only leaf Activities may have outgoing interactions
+    
+    oaTrg : oa.OperationalActivity
+    // rule needs to be monitored. only leaf Activities may have incoming interactions
+
+    ++oaInteraction : fa.FunctionalExchange{
+        ++ -source -> oaSrc
+        ++ -target -> oaTrg
+    }
+}
+
+#target {
+    ctxArch : ctx.SystemAnalysis{
+        -ownedFunctionPkg -> ctxFuncPkg
+    }
+    
+	ctxFuncPkg : ctx.SystemFunctionPkg{
+	    -ownedSystemFunctions -> ctxRoot
+	}
+	
+	ctxRoot : ctx.SystemFunction{
+	    ++ -ownedFunctionalExchanges -> ctxFunctionalExchange
+	}
+	
+	ctxSrc : ctx.SystemFunction{
+	    ++ -outputs -> ctxOutput
+	}
+	
+	ctxTrg : ctx.SystemFunction{
+	    ++ -inputs -> ctxInput
+	}
+	
+	++ ctxOutput : fa.FunctionOutputPort
+	
+	++ ctxInput : fa.FunctionInputPort
+	
+	++ctxFunctionalExchange : fa.FunctionalExchange{
+	    ++ -source -> ctxOutput
+	    ++ -target -> ctxInput
+	    /**
+         * The ctxFunctionalExchange stores the trace to the Interaction which it refines
+         * 
+         * ctxFunctionalExchange.ownedFunctionalExchangeRealizations
+         *         -> org.polarsys.capella.core.data.fa.impl.FunctionalExchangeRealizationImpl
+         *                 - sourceElement -> ctxFunctionalExchange
+         *                 - targetElement -> oaFunctionalExchange
+         */
+	}
+}
+
+#correspondence {
+	oa2ctx : Oa2Sa{
+	    #src-> oaArch
+	    #trg-> ctxArch
+	}
+	
+	roots : OaActivity2SystemFunction{
+	    #src-> oaRoot
+	    #trg-> ctxRoot
+	}
+	
+	source : OaActivity2SystemFunction{
+	    #src-> oaSrc
+	    #trg-> ctxSrc
+	}
+	
+	target : OaActivity2SystemFunction{
+	    #src-> oaTrg
+	    #trg-> ctxTrg
+	}
+	
+	++ exchange : OaInteraction2FuncExchange{
+	    #src-> oaInteraction
+	    #trg-> ctxFunctionalExchange
+	}
+}
+
+#attributeConditions {
+	eq_string(oaInteraction.name, ctxFunctionalExchange.name)
+	
+	addPrefix("in ", ctxFunctionalExchange.name, res_in)
+	setDefaultString(ctxInput.name, res_in)
+	
+	addPrefix("out ", ctxFunctionalExchange.name, res_out)
+	setDefaultString(ctxOutput.name, res_out)
+}

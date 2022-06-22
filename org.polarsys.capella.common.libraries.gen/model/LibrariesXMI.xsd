@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:emde="platform:/resource/org.polarsys.kitalpha.emde.model/model/eMDE.ecore" xmlns:libraries="http://www.polarsys.org/capella/common/libraries/5.0.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.polarsys.org/capella/common/libraries/5.0.0">
+  <xsd:import namespace="platform:/resource/org.polarsys.kitalpha.emde.model/model/eMDE.ecore" schemaLocation="emde.xsd"/>
+  <xsd:simpleType name="AccessPolicy">
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="readOnly"/>
+      <xsd:enumeration value="readAndWrite"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="ModelInformation">
+    <xsd:complexContent>
+      <xsd:extension base="libraries:LibraryAbstractElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="ownedReferences" type="libraries:LibraryReference"/>
+          <xsd:element name="version" type="libraries:ModelVersion"/>
+        </xsd:choice>
+        <xsd:attribute name="version" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ModelInformation" type="libraries:ModelInformation"/>
+  <xsd:complexType name="LibraryReference">
+    <xsd:complexContent>
+      <xsd:extension base="libraries:LibraryAbstractElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="library" type="libraries:ModelInformation"/>
+          <xsd:element name="version" type="libraries:ModelVersion"/>
+        </xsd:choice>
+        <xsd:attribute name="accessPolicy" type="libraries:AccessPolicy" use="required"/>
+        <xsd:attribute name="library" type="xsd:string"/>
+        <xsd:attribute name="version" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="LibraryReference" type="libraries:LibraryReference"/>
+  <xsd:complexType name="ModelVersion">
+    <xsd:complexContent>
+      <xsd:extension base="libraries:LibraryAbstractElement">
+        <xsd:attribute name="majorVersionNumber" type="xsd:int" use="required"/>
+        <xsd:attribute name="minorVersionNumber" type="xsd:int" use="required"/>
+        <xsd:attribute name="lastModifiedFileStamp" type="xsd:long"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ModelVersion" type="libraries:ModelVersion"/>
+  <xsd:complexType abstract="true" name="LibraryAbstractElement">
+    <xsd:complexContent>
+      <xsd:extension base="emde:ExtensibleElement">
+        <xsd:attribute name="id" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="LibraryAbstractElement" type="libraries:LibraryAbstractElement"/>
+</xsd:schema>

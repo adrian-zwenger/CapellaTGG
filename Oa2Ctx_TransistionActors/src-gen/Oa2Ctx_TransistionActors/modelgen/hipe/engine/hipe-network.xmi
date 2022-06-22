@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hipe.network:HiPENetwork xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:HiPEPattern="platform:/resource/hipe.pattern/model/HiPEPattern" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:hipe.network="platform:/resource/hipe.network/model/hiPENetwork" xsi:schemaLocation="platform:/resource/hipe.pattern/model/HiPEPattern java://hipe.pattern.HiPEPatternPackage http://www.eclipse.org/emf/2002/Ecore java://org.eclipse.emf.ecore.EcorePackage platform:/resource/hipe.network/model/hiPENetwork java://hipe.network.NetworkPackage">
+  <networknode xmi:type="hipe.network:DispatchNode" name="DispatchNode" objectNodes="//@networknode.2 //@networknode.3 //@networknode.4 //@networknode.5 //@networknode.6 //@networknode.9" notificationNode="//@networknode.1">
+    <metamodels xmi:type="ecore:EPackage" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#/"/>
+    <metamodels xmi:type="ecore:EPackage" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#/"/>
+    <metamodels xmi:type="ecore:EPackage" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#/"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:NotificationNode" name="NotificationNode" dispatchNode="//@networknode.0"/>
+  <networknode xmi:type="hipe.network:ObjectNode" name="Oa2Sa_object" patternName="Oa2Sa_transition_actors__GEN_2" dispatchnode="//@networknode.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.7" patternName="Oa2Sa_transition_actors__GEN_2" matchingNode="//@networknode.2"/>
+    </ports>
+    <type xmi:type="ecore:EClass" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ObjectNode" name="EntityPkg_object" patternName="Oa2Sa_transition_actors__GEN_3" dispatchnode="//@networknode.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.7" patternName="Oa2Sa_transition_actors__GEN_3" matchingNode="//@networknode.3"/>
+    </ports>
+    <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//EntityPkg"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ObjectNode" name="OperationalAnalysis_object" patternName="Oa2Sa_transition_actors__GEN_4" dispatchnode="//@networknode.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.7" patternName="Oa2Sa_transition_actors__GEN_4" matchingNode="//@networknode.4"/>
+    </ports>
+    <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//OperationalAnalysis"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ObjectNode" name="SystemComponentPkg_object" patternName="Oa2Sa_transition_actors__GEN_5" dispatchnode="//@networknode.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.7" patternName="Oa2Sa_transition_actors__GEN_5" matchingNode="//@networknode.5"/>
+      <port xmi:type="hipe.network:ConstraintPort" portSlot="RIGHT" portTarget="//@networknode.10" patternName="Oa2Sa_transition_actors__GEN_5" matchingNode="//@networknode.5" initializationCode="" constraintName="check_constraint_3" predicateCode="String.valueOf(trg_system_component_pkg.getName()).equals(&quot;Structure&quot;)">
+        <indices>0</indices>
+        <types xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg"/>
+        <nodeNames>trg_system_component_pkg</nodeNames>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        <pattern xmi:type="HiPEPattern:HiPEPartialPattern" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@patterns.12"/>
+      </port>
+    </ports>
+    <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ObjectNode" name="SystemAnalysis_object" patternName="Oa2Sa_transition_actors__GEN_6" dispatchnode="//@networknode.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.7" patternName="Oa2Sa_transition_actors__GEN_6" matchingNode="//@networknode.6"/>
+      <port xmi:type="hipe.network:ConstraintPort" portTarget="//@networknode.10" patternName="Oa2Sa_transition_actors__GEN_6" matchingNode="//@networknode.6" initializationCode="" constraintName="check_constraint_2" predicateCode="String.valueOf(trg_sa_arch.getName()).equals(&quot;System Analysis&quot;)">
+        <indices>0</indices>
+        <types xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis"/>
+        <nodeNames>trg_sa_arch</nodeNames>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        <pattern xmi:type="HiPEPattern:HiPEPartialPattern" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@patterns.11"/>
+      </port>
+    </ports>
+    <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:LocalSearchNode" name="Oa2Sa_transition_actors__GEN_1_localSearch" inputPort="//@networknode.2/@ports/@port.0 //@networknode.3/@ports/@port.0 //@networknode.4/@ports/@port.0 //@networknode.5/@ports/@port.0 //@networknode.6/@ports/@port.0" patternName="Oa2Sa_transition_actors__GEN_1">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:ConstraintPort" portSlot="CENTER" portTarget="//@networknode.8" patternName="Oa2Sa_transition_actors__GEN_1" matchingNode="//@networknode.7" initializationCode="org.emoflon.ibex.tgg.operational.csp.constraints.Eq csp_0 = new org.emoflon.ibex.tgg.operational.csp.constraints.Eq();&#xA;csp_0.getVariables().add(new org.emoflon.ibex.tgg.operational.csp.RuntimeTGGAttributeConstraintVariable(true, src_entity_pkg.getName(), &quot;java.lang.String&quot;));&#xA;csp_0.getVariables().add(new org.emoflon.ibex.tgg.operational.csp.RuntimeTGGAttributeConstraintVariable(true, &quot;Operational Entities&quot;, &quot;java.lang.String&quot;));&#xA;csp_0.solve();&#xA;&#xA;org.emoflon.ibex.tgg.operational.csp.constraints.Eq csp_1 = new org.emoflon.ibex.tgg.operational.csp.constraints.Eq();&#xA;csp_1.getVariables().add(new org.emoflon.ibex.tgg.operational.csp.RuntimeTGGAttributeConstraintVariable(true, trg_componenet_pkg.getName(), &quot;java.lang.String&quot;));&#xA;csp_1.getVariables().add(new org.emoflon.ibex.tgg.operational.csp.RuntimeTGGAttributeConstraintVariable(true, &quot;Structure&quot;, &quot;java.lang.String&quot;));&#xA;csp_1.solve();&#xA;" constraintName="check_constraint_1" predicateCode="csp_0.isSatisfied() &amp;&amp; csp_1.isSatisfied()">
+        <indices>3</indices>
+        <indices>1</indices>
+        <types xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg"/>
+        <types xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//EntityPkg"/>
+        <nodeNames>trg_componenet_pkg</nodeNames>
+        <nodeNames>src_entity_pkg</nodeNames>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractNamedElement/name"/>
+        <pattern xmi:type="HiPEPattern:HiPELargePattern" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@patterns.2"/>
+      </port>
+    </ports>
+    <pattern xmi:type="HiPEPattern:HiPELargePattern" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@patterns.2"/>
+    <orchestrations xmi:type="hipe.network:SearchOrchestration" plan="//@networknode.7/@orchestrationComponents.2 //@networknode.7/@orchestrationComponents.5 //@networknode.7/@orchestrationComponents.3 //@networknode.7/@orchestrationComponents.4 //@networknode.7/@orchestrationComponents.1 //@networknode.7/@orchestrationComponents.0" name="edge_explorer_0_orchestration">
+      <entryElement xmi:type="HiPEPattern:HiPEEdge" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@edges.0"/>
+    </orchestrations>
+    <orchestrations xmi:type="hipe.network:SearchOrchestration" plan="//@networknode.7/@orchestrationComponents.2 //@networknode.7/@orchestrationComponents.5 //@networknode.7/@orchestrationComponents.3 //@networknode.7/@orchestrationComponents.4 //@networknode.7/@orchestrationComponents.1 //@networknode.7/@orchestrationComponents.0" name="edge_explorer_1_orchestration">
+      <entryElement xmi:type="HiPEPattern:HiPENode" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@nodes.0"/>
+    </orchestrations>
+    <orchestrations xmi:type="hipe.network:SearchOrchestration" plan="//@networknode.7/@orchestrationComponents.2 //@networknode.7/@orchestrationComponents.5 //@networknode.7/@orchestrationComponents.3 //@networknode.7/@orchestrationComponents.4 //@networknode.7/@orchestrationComponents.1 //@networknode.7/@orchestrationComponents.0" name="edge_explorer_2_orchestration">
+      <entryElement xmi:type="HiPEPattern:HiPENode" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@nodes.2"/>
+    </orchestrations>
+    <orchestrations xmi:type="hipe.network:SearchOrchestration" plan="//@networknode.7/@orchestrationComponents.3 //@networknode.7/@orchestrationComponents.2 //@networknode.7/@orchestrationComponents.4 //@networknode.7/@orchestrationComponents.5 //@networknode.7/@orchestrationComponents.1 //@networknode.7/@orchestrationComponents.0" name="edge_explorer_3_0_orchestration">
+      <entryElement xmi:type="HiPEPattern:HiPEEdge" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@edges.1"/>
+    </orchestrations>
+    <orchestrations xmi:type="hipe.network:SearchOrchestration" plan="//@networknode.7/@orchestrationComponents.3 //@networknode.7/@orchestrationComponents.2 //@networknode.7/@orchestrationComponents.4 //@networknode.7/@orchestrationComponents.5 //@networknode.7/@orchestrationComponents.1 //@networknode.7/@orchestrationComponents.0" name="edge_explorer_3_1_orchestration">
+      <entryElement xmi:type="HiPEPattern:HiPENode" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@nodes.4"/>
+    </orchestrations>
+    <orchestrations xmi:type="hipe.network:SearchOrchestration" plan="//@networknode.7/@orchestrationComponents.4 //@networknode.7/@orchestrationComponents.1 //@networknode.7/@orchestrationComponents.3 //@networknode.7/@orchestrationComponents.2 //@networknode.7/@orchestrationComponents.5 //@networknode.7/@orchestrationComponents.0" name="edge_explorer_4_0_orchestration">
+      <entryElement xmi:type="HiPEPattern:HiPEEdge" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@edges.3"/>
+    </orchestrations>
+    <orchestrations xmi:type="hipe.network:SearchOrchestration" plan="//@networknode.7/@orchestrationComponents.4 //@networknode.7/@orchestrationComponents.1 //@networknode.7/@orchestrationComponents.3 //@networknode.7/@orchestrationComponents.2 //@networknode.7/@orchestrationComponents.5 //@networknode.7/@orchestrationComponents.0" name="edge_explorer_4_1_orchestration">
+      <entryElement xmi:type="HiPEPattern:HiPENode" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@nodes.3"/>
+    </orchestrations>
+    <orchestrations xmi:type="hipe.network:SearchOrchestration" plan="//@networknode.7/@orchestrationComponents.5 //@networknode.7/@orchestrationComponents.2 //@networknode.7/@orchestrationComponents.3 //@networknode.7/@orchestrationComponents.4 //@networknode.7/@orchestrationComponents.1 //@networknode.7/@orchestrationComponents.0" name="edge_explorer_5_0_orchestration">
+      <entryElement xmi:type="HiPEPattern:HiPEEdge" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@edges.2"/>
+    </orchestrations>
+    <orchestrations xmi:type="hipe.network:SearchOrchestration" plan="//@networknode.7/@orchestrationComponents.5 //@networknode.7/@orchestrationComponents.2 //@networknode.7/@orchestrationComponents.3 //@networknode.7/@orchestrationComponents.4 //@networknode.7/@orchestrationComponents.1 //@networknode.7/@orchestrationComponents.0" name="edge_explorer_5_1_orchestration">
+      <entryElement xmi:type="HiPEPattern:HiPENode" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@nodes.1"/>
+    </orchestrations>
+    <orchestrationComponents xmi:type="hipe.network:ConstraintCheckComponent" name="constraint_checker" initializationCode="org.emoflon.ibex.tgg.operational.csp.constraints.Eq csp_0 = new org.emoflon.ibex.tgg.operational.csp.constraints.Eq();&#xA;csp_0.getVariables().add(new org.emoflon.ibex.tgg.operational.csp.RuntimeTGGAttributeConstraintVariable(true, src_entity_pkg.getName(), &quot;java.lang.String&quot;));&#xA;csp_0.getVariables().add(new org.emoflon.ibex.tgg.operational.csp.RuntimeTGGAttributeConstraintVariable(true, &quot;Operational Entities&quot;, &quot;java.lang.String&quot;));&#xA;csp_0.solve();&#xA;" predicateCode="csp_0.isSatisfied()">
+      <indices>1</indices>
+      <types xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//EntityPkg"/>
+      <nodeNames>src_entity_pkg</nodeNames>
+    </orchestrationComponents>
+    <orchestrationComponents xmi:type="hipe.network:ConstraintCheckComponent" name="constraint_checker_0" initializationCode="org.emoflon.ibex.tgg.operational.csp.constraints.Eq csp_1 = new org.emoflon.ibex.tgg.operational.csp.constraints.Eq();&#xA;csp_1.getVariables().add(new org.emoflon.ibex.tgg.operational.csp.RuntimeTGGAttributeConstraintVariable(true, trg_componenet_pkg.getName(), &quot;java.lang.String&quot;));&#xA;csp_1.getVariables().add(new org.emoflon.ibex.tgg.operational.csp.RuntimeTGGAttributeConstraintVariable(true, &quot;Structure&quot;, &quot;java.lang.String&quot;));&#xA;csp_1.solve();&#xA;" predicateCode="csp_1.isSatisfied()">
+      <indices>3</indices>
+      <types xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg"/>
+      <nodeNames>trg_componenet_pkg</nodeNames>
+    </orchestrationComponents>
+    <orchestrationComponents xmi:type="hipe.network:EdgeExplorationComponent" name="edge_explorer">
+      <indices>0</indices>
+      <indices>2</indices>
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa/source"/>
+      <edge xmi:type="HiPEPattern:HiPEEdge" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@edges.0"/>
+    </orchestrationComponents>
+    <orchestrationComponents xmi:type="hipe.network:EdgeExplorationComponent" name="edge_explorer_3">
+      <indices>0</indices>
+      <indices>4</indices>
+      <type xmi:type="ecore:EReference" href="platform:/resource/Oa2Ctx_TransistionActors/model/Oa2Ctx_TransistionActors.ecore#//Oa2Sa/target"/>
+      <edge xmi:type="HiPEPattern:HiPEEdge" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@edges.1"/>
+    </orchestrationComponents>
+    <orchestrationComponents xmi:type="hipe.network:EdgeExplorationComponent" name="edge_explorer_4">
+      <indices>4</indices>
+      <indices>3</indices>
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis/ownedSystemComponentPkg"/>
+      <edge xmi:type="HiPEPattern:HiPEEdge" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@edges.3"/>
+    </orchestrationComponents>
+    <orchestrationComponents xmi:type="hipe.network:EdgeExplorationComponent" name="edge_explorer_5">
+      <indices>2</indices>
+      <indices>1</indices>
+      <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//OperationalAnalysis/ownedEntityPkg"/>
+      <edge xmi:type="HiPEPattern:HiPEEdge" href="file:/C:/Users/capella/Downloads/thesis/Oa2Ctx_TransistionActors/src-gen/Oa2Ctx_TransistionActors/modelgen/hipe/engine//hipe-patterns.xmi#//@edges.2"/>
+    </orchestrationComponents>
+  </networknode>
+  <networknode xmi:type="hipe.network:ProductionNode" name="Oa2Sa_transition_actors__GEN_production" inputPort="//@networknode.7/@ports/@port.0" patternName="Oa2Sa_transition_actors__GEN">
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="oa2sa" value="0"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="src_entity_pkg" value="1"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="src_oa_arch" value="2"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="trg_componenet_pkg" value="3"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="trg_sa_arch" value="4"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ObjectNode" name="Entity_object" patternName="Oa2Sa_transition_actors_recursively__GEN_8" dispatchnode="//@networknode.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.11" patternName="Oa2Sa_transition_actors_recursively__GEN_8" matchingNode="//@networknode.9"/>
+    </ports>
+    <type xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore#//Entity"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ReferenceNode" name="SystemAnalysis_ownedSystemComponentPkg_0_reference" inputPort="//@networknode.6/@ports/@port.1 //@networknode.5/@ports/@port.1" patternName="Oa2Sa_transition_actors_recursively__GEN_9">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.11" patternName="Oa2Sa_transition_actors_recursively__GEN_9" matchingNode="//@networknode.10"/>
+    </ports>
+    <type xmi:type="ecore:EReference" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis/ownedSystemComponentPkg"/>
+    <srcType xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemAnalysis"/>
+    <trgType xmi:type="ecore:EClass" href="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore#//SystemComponentPkg"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:JunctionNode" name="Oa2Sa_transition_actors_recursively__GEN_7_junction" inputPort="//@networknode.9/@ports/@port.0 //@networknode.10/@ports/@port.0" patternName="Oa2Sa_transition_actors_recursively__GEN_7" overlaps="//@networknode.11/@allOverlaps.0" mappings="//@networknode.11/@allMappings.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.12" patternName="Oa2Sa_transition_actors_recursively__GEN_7" matchingNode="//@networknode.11"/>
+    </ports>
+    <allOverlaps xmi:type="hipe.network:Overlaps"/>
+    <allMappings xmi:type="hipe.network:Mappings">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+    </allMappings>
+  </networknode>
+  <networknode xmi:type="hipe.network:ProductionNode" name="Oa2Sa_transition_actors_recursively__GEN_production" inputPort="//@networknode.11/@ports/@port.0" patternName="Oa2Sa_transition_actors_recursively__GEN">
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="src_top_level_entity" value="0"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="trg_sa_arch" value="1"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="trg_system_component_pkg" value="2"/>
+  </networknode>
+</hipe.network:HiPENetwork>

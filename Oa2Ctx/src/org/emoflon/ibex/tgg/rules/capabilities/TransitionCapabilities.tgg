@@ -1,0 +1,58 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionCapabilities #with Oa2Ctx
+
+#source { 
+	oaArch : oa.OperationalAnalysis{
+//		name == "Operational Analysis"
+		-ownedAbstractCapabilityPkg -> oaPkg
+	}
+	
+	oaPkg : oa.OperationalCapabilityPkg{
+//		name == "Operational Capabilities"
+		++ -ownedOperationalCapabilities -> oaCapability
+	}
+	
+	++ oaCapability : oa.OperationalCapability
+}
+
+#target {
+	ctxArch : ctx.SystemAnalysis{
+//		name == "System Analysis"
+		-ownedAbstractCapabilityPkg -> ctxPkg
+	}
+	
+	ctxPkg : ctx.CapabilityPkg{
+//		name == "Capabilities"
+		++ -ownedCapabilities -> ctxCapability
+	}
+	
+	++ ctxCapability : ctx.Capability
+	/** Capella maps ctx.Capabilities to the oa.Capability with 
+	 * org.polarsys.capella.core.data.interaction.impl.AbstractCapabilityRealizationImpl
+	 * objects which are contained in the ctx.Capability.
+	 * this object references the the ctx.Capabilities  as source and the oa.Capability as target
+	 * 
+	 * ctx.Capability.ownedAbstractCapabilityRealizations
+	 *                 -> AbstractCapabilityRealizationImpl
+	 *                     -sourceElement -> ctx.Capability
+	 *                     -targetElement -> oa.OperationalCapability
+	 */
+}
+
+#correspondence {
+	oa2ctx : Oa2Sa{
+		#src-> oaArch
+		#trg-> ctxArch
+	}
+	
+	++ cap2cap : OaCapability2Capability{
+		#src-> oaCapability
+		#trg-> ctxCapability
+	}
+}
+
+#attributeConditions {
+	eq_string(oaCapability.name, ctxCapability.name)
+}

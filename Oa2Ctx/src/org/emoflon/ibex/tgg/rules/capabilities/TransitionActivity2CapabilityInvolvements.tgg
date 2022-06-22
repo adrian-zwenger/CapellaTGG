@@ -1,0 +1,51 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionActivity2CapabilityInvolvements #with Oa2Ctx
+#source {
+    
+    oaActivity : oa.OperationalActivity
+    
+    oaCapability : oa.OperationalCapability{
+        ++ -ownedAbstractFunctionAbstractCapabilityInvolvements -> oaAlloc
+    }
+    
+    ++ oaAlloc : interaction.AbstractFunctionAbstractCapabilityInvolvement{
+        ++ -involved -> oaActivity
+    }
+}
+
+#target {
+    
+    ctxFunction : ctx.SystemFunction
+    
+    ctxCapability : ctx.Capability{
+        ++ -ownedAbstractFunctionAbstractCapabilityInvolvements -> ctxAlloc
+    }
+
+    ++ ctxAlloc : interaction.AbstractFunctionAbstractCapabilityInvolvement{
+        ++ -involved -> ctxFunction
+    }
+}
+
+#correspondence {
+
+    cap2cap : OaCapability2Capability{
+        #src-> oaCapability
+        #trg-> ctxCapability
+    }
+    
+    act2func : OaActivity2SystemFunction{
+        #src-> oaActivity
+        #trg-> ctxFunction
+    }
+    
+    ++ involved : OaActivityInclusion2CtxFunctionInclusion{
+        #src-> oaAlloc
+        #trg-> ctxAlloc
+    }
+}
+
+#attributeConditions {    
+    eq_string(oaCapability.name, ctxCapability.name)
+}

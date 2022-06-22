@@ -1,0 +1,27 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule SyncCapabilityPkgContainedInCreatedCapabilityPkg #extends AbstractSyncCapabilityPkg #with Ctx2La
+
+#source { 
+	ctxCapabilityRoot : ctx.CapabilityPkg
+}
+
+#target {
+	laContainer : la.CapabilityRealizationPkg{
+		++ -ownedCapabilityRealizationPkgs -> laNewCapabilityPkg
+	}
+	
+	++ laNewCapabilityPkg : la.CapabilityRealizationPkg
+}
+
+#correspondence {
+	packageWithoutRealizationLink : ContextLaCapabilityPkgWhichDoesNotRealizeACtxPkg{
+		#src-> ctxCapabilityRoot
+		#trg-> laContainer
+	}
+}
+
+#attributeConditions {
+	
+}

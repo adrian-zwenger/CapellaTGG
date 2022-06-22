@@ -1,0 +1,44 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule CreateComponentPkgRealizationLink #extends AbstractComponentCommonContext #with Ctx2La
+/**
+ * This rule needs working NACS!!!!
+ * 
+ * Components may realize multiple components of previous layer.
+ * A trace us created to symbolize the realization of multiple components.
+ * 
+ * Thus this rule creates a new correspondence node. However, a component may not have multiple corr nodes to the same component.
+ * Check needed or use of NAC
+ */
+#source {
+	ctxRootPkg : ctx.SystemComponentPkg
+
+	ctxComponentPkg : ctx.SystemComponentPkg
+}
+
+#target {
+	laRootPkg : la.LogicalComponentPkg
+
+	laComponentPkg : la.LogicalComponentPkg
+}
+
+#correspondence {
+	contextTransitionedCtxComponent : ContextCtxComponentPkg2LAComponentPkg{
+		#src-> ctxComponentPkg
+		#trg-> laRootPkg
+	}
+	contextTransitionedLaComponent : ContextCtxComponentPkg2LAComponentPkg{
+		#src-> ctxRootPkg
+		#trg-> laComponentPkg
+	}
+	
+	++ newRealizationLink : CtxComponentPkg2LaComponentPkg{
+		#src-> ctxComponentPkg
+		#trg-> laComponentPkg
+	}
+}
+
+#attributeConditions {
+	
+}

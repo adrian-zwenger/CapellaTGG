@@ -1,0 +1,26 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule SyncCapabilityContainedInRootCapabilityPkgFlat #extends AbstractSyncCapability #with Ctx2La
+
+#source {
+}
+
+#target {
+	laCapabilityRoot : la.CapabilityRealizationPkg{
+		-ownedCapabilityRealizations -> laTransitionedCapability
+		++ -ownedCapabilityRealizations -> laNewCapability
+	}
+	
+	laTransitionedCapability : la.CapabilityRealization
+	
+	++ laNewCapability : la.CapabilityRealization
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

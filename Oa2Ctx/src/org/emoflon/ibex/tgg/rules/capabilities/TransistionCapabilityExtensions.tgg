@@ -1,0 +1,62 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#rule TransistionCapabilityExtensions #with Oa2Ctx
+
+#source { 
+	oaBaseCapability : oa.OperationalCapability
+	
+	oaExtendedCapability : oa.OperationalCapability{
+	   ++ -extends -> oaExtension
+	}
+	
+	++ oaExtension : interaction.AbstractCapabilityExtend{
+	    ++ -extended -> oaBaseCapability
+	}
+}
+
+#target {
+	ctxBaseCapability : ctx.Capability
+    
+    ctxExtendedCapability : ctx.Capability{
+       ++ -extends -> ctxExtension
+    }
+    /**
+     * The ctxCapability which extends the other Capability stores the traces Traces of
+     * the AbstractCapabilityExtend objects, thus linking the Inclusion refinement in
+     * ctx to its origin in oa.
+     * 
+     * Represented by OaCapabilityInclusion2CapabilityInclusion correspondence node.
+     * 
+     * ctx.Capability.ownedTraces
+     *      -> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *              -sourceElement -> interaction.AbstractCapabilityExtend (ctx)
+     *              -targetElement -> interaction.AbstractCapabilityExtend (oa)
+     */
+    
+    ++ ctxExtension : interaction.AbstractCapabilityExtend{
+        ++ -extended -> ctxBaseCapability
+    }
+}
+
+#correspondence {
+	base : OaCapability2Capability{
+	    #src-> oaBaseCapability
+	    #trg-> ctxBaseCapability
+	}
+	
+	extended : OaCapability2Capability{
+	    #src-> oaExtendedCapability
+	    #trg-> ctxExtendedCapability
+	}
+	
+	++ extension : OaCapabilityExtension2CapabilityExtension{
+	    #src-> oaExtension
+	    #trg-> ctxExtension
+	}
+}
+
+#attributeConditions {
+	eq_string(oaBaseCapability.name, ctxBaseCapability.name)
+    eq_string(oaExtendedCapability.name, ctxExtendedCapability.name)
+}

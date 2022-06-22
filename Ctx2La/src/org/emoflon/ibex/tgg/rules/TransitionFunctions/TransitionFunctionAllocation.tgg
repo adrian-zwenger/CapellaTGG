@@ -1,0 +1,140 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+/*
+ * TGG restrictions apply to this rule and executions need to be monitored
+ * 
+ * 1) Functions may only be allocated to 1 Component and not multiple
+ * 2) only leaf functions may be allocated (Functions which do not contain Functions)
+ * 
+ * NACS needed to check that a Functions does not contain Functions
+ * 
+ * Checking, that only allocated once would be easily solvable,
+ * if Capella model code would work just as it does in Capella.
+ * Then Allocator would be a reference which could be checked with NACS.
+ * 
+ */
+#rule TransitionFunctionAllocation #with Ctx2La
+
+#source { 
+	ctxArch : ctx.SystemAnalysis{
+		-ownedSystemComponentPkg -> ctxRootComponentPkg
+		-ownedFunctionPkg -> ctxRootFunctionPkg
+	}
+	
+	ctxRootComponentPkg : ctx.SystemComponentPkg
+	
+	ctxComponent : ctx.SystemComponent{
+		++ -ownedFunctionalAllocation -> ctxFuncAlloc
+	}
+	
+	ctxRootFunctionPkg : ctx.SystemFunctionPkg{
+		-ownedSystemFunctions -> ctxRootFunction
+	}
+	
+	ctxRootFunction : ctx.SystemFunction
+
+	ctxLeafFunction : ctx.SystemFunction
+	
+	++ ctxFuncAlloc : fa.ComponentFunctionalAllocation{
+		++ -sourceElement -> ctxComponent
+		++ -targetElement -> ctxLeafFunction
+	}
+}
+
+#target {
+	laArch : la.LogicalArchitecture{
+		-ownedLogicalComponentPkg -> laRootComponentPkg
+		-ownedFunctionPkg -> laRootFunctionPkg
+	}
+	
+	laRootComponentPkg : la.LogicalComponentPkg
+	
+	laComponent : la.LogicalComponent{
+		++ -ownedFunctionalAllocation -> laFuncAlloc
+	}
+	
+	laRootFunctionPkg : la.LogicalFunctionPkg{
+		-ownedLogicalFunctions -> laRootFunction
+	}
+	
+	laRootFunction : la.LogicalFunction
+	
+	laLeafFunction : la.LogicalFunction
+	
+	++ laFuncAlloc : fa.ComponentFunctionalAllocation{
+		++ -sourceElement -> laComponent
+		++ -targetElement -> laLeafFunction
+	}
+}
+
+#correspondence {
+	modelroots : Ctx2LaArchitecture{
+		// require model roots as context
+		#src-> ctxArch
+		#trg-> laArch
+	}
+	
+	rootComponentPkgs : CtxComponentPkg2LaComponentPkg{
+		// require containers for components
+		#src-> ctxRootComponentPkg
+		#trg-> laRootComponentPkg
+	}
+	
+	components : CtxComponent2LaComponent{
+		// require components to allocate the functions to
+		#src-> ctxComponent
+		#trg-> laComponent
+	}
+	contextTransitionedCtxComponent : ContextCtxComponent2LAComponentPkg{
+		#src-> ctxComponent
+		#trg-> laRootComponentPkg
+	}
+	contextTransitionedLaComponent : ContextCtxComponentPkg2LAComponent{
+		#src-> ctxRootComponentPkg
+		#trg-> laComponent
+	}
+	
+	rootFunctionPkgs : CtxFunctionPkg2LaFunctionPkg{
+		// require function model containers
+		#src-> ctxRootFunctionPkg
+		#trg-> laRootFunctionPkg
+	}
+	
+	rootFunctions : CtxFunction2LaFunction{
+		// require function roots
+	    #src-> ctxRootFunction
+	    #trg-> laRootFunction
+	}
+	
+	leafFunctions : CtxFunction2LaFunction{
+		// match the functions to be allocated
+		#src-> ctxLeafFunction
+		#trg-> laLeafFunction
+	}
+	contextTransitionedCtxLeafFunction : ContextCtxFunction2LaFunction{
+		#src-> ctxLeafFunction
+		#trg-> laRootFunction
+	}
+	contextTransitionedLaLeafFunction : ContextCtxFunction2LaFunction{
+		#src-> ctxRootFunction
+		#trg-> laLeafFunction
+	}
+	
+	/**
+	 * The ctx<->la trace is stored in the la.Component which stores  the Allocation object
+	 * 
+	 * la.LogicalComponent->ownedTraces
+	 * 			-> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+	 * 					#-> sourceElement-> fa.ComponentFunctionalAllocation (la-model)
+	 * 					#-> targetElement-> fa.ComponentFunctionalAllocation (ctx-model)
+	 */
+	++ allocs : CtxCompFunctionalAlloc2LaCompFunctionalAlloc{
+		#src-> ctxFuncAlloc
+		#trg-> laFuncAlloc
+	}
+}
+
+#attributeConditions {
+	
+}

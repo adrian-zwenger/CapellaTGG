@@ -1,0 +1,26 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule CreateLaComponentPkgContainedInCreatedComponentPkg #extends AbstractCreateComponentPkg #with Ctx2La
+
+#source { 
+	ctxRootPkg : ctx.SystemComponentPkg
+}
+
+#target {
+	laContainer : la.LogicalComponentPkg{
+		++ -ownedLogicalComponentPkgs -> laNewPkg
+	}
+	++ laNewPkg : la.LogicalComponentPkg
+}
+
+#correspondence {
+	contextTransitionedContainer : ContextLaComponentPkgWhichDoesNotRealizeACtxPkg{
+		#src-> ctxRootPkg
+		#trg-> laContainer
+	}
+}
+
+#attributeConditions {
+	setRandomString(laNewPkg.name)
+}

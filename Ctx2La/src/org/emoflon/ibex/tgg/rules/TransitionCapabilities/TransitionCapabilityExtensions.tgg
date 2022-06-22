@@ -1,0 +1,41 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionCapabilityExtensions #extends AbstractMatchTwoCapabilities #with Ctx2La
+
+#source { 
+	ctxSrcCapability : ctx.Capability{
+	    // the capability which extends another
+	    ++ -extends -> ctxExtension
+	}
+	ctxTrgCapability : ctx.Capability{
+	    // the capability being extended
+	}
+	
+	++ ctxExtension : interaction.AbstractCapabilityExtend{
+	    ++ -extended -> ctxTrgCapability
+	}
+}
+
+#target {
+	laSrcCapability : la.CapabilityRealization{
+	    ++ -extends -> laExtension
+	    // stores the ctx-la trace for the Extension in ownedTraces as TransfoLink
+	}
+	laTrgCapability : la.CapabilityRealization
+	
+	++ laExtension : interaction.AbstractCapabilityExtend{
+	    ++ -extended -> laTrgCapability
+	}
+}
+
+#correspondence {
+	++ extensions : CtxCapabilityExtension2CapabilityRealizationExtension{
+	    #src-> ctxExtension
+	    #trg-> laExtension
+	}
+}
+
+#attributeConditions {
+	
+}

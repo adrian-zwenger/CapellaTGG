@@ -1,0 +1,1 @@
+Rules needed to support Capella basic features of OCB (Operational Capability Blank) diagrams.

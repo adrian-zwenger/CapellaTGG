@@ -1,0 +1,89 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionComponentGeneralization #extends AbstractComponentCommonContext #with Ctx2La
+/**
+ * transitions generalisation relationships
+ * 
+ * 
+ * TGG restriction!!!!!!!!
+ * a component may be a sub type of multiple components, but i may not be a sub type of one component multiple times.
+ * 
+ * Rule only allowed to be executed if generalisation link to other component does not exist yet (NAC needed).
+ * NACS in TGG not possible yet.      
+ */
+#source {
+    ctxRootPkg : ctx.SystemComponentPkg
+    
+    ctxSuper : ctx.SystemComponent
+    
+    ctxSub : ctx.SystemComponent{
+        ++ -ownedGeneralizations -> ctxGeneralizationLink
+    }
+    
+    ++ ctxGeneralizationLink : capellacore.Generalization{
+        ++ -sub -> ctxSub
+        ++ -super -> ctxSuper
+    }
+
+}
+
+#target {    
+    laRootPkg : la.LogicalComponentPkg
+    
+    laSuper : la.LogicalComponent
+    
+    laSub : la.LogicalComponent{
+        ++ -ownedGeneralizations -> laGeneralizationLink
+    }
+    
+    ++ laGeneralizationLink : capellacore.Generalization{
+        ++ -sub -> laSub
+        ++ -super -> laSuper
+    }
+}
+
+#correspondence {
+	supers : CtxComponent2LaComponent{
+	    // require super types
+	    #src-> ctxSuper
+	    #trg-> laSuper
+	}
+	
+	subs : CtxComponent2LaComponent{
+	    //require sub types
+	    #src-> ctxSub
+	    #trg-> laSub
+	}
+	
+	contextTransitionedCtxSuper : ContextCtxComponent2LAComponentPkg{
+	    // require proper containment of ctxSuper 
+	    #src-> ctxSuper
+	    #trg-> laRootPkg
+	}
+	contextTransitionedCtxSub : ContextCtxComponent2LAComponentPkg{
+        // require proper containment of ctxSub 
+        #src-> ctxSub
+        #trg-> laRootPkg
+    }
+    contextTransitionedLaSuper : ContextCtxComponentPkg2LAComponent{
+        // require proper containment of ctxSuper 
+        #src-> ctxRootPkg
+        #trg-> laSuper
+    }
+    contextTransitionedLaSub : ContextCtxComponentPkg2LAComponent{
+        // require proper containment of ctxSub 
+        #src-> ctxRootPkg
+        #trg-> laSub
+    }
+    
+    ++ generalization : CtxGeneralization2LaGeneralization{
+        #src-> ctxGeneralizationLink
+        #trg-> laGeneralizationLink
+    }
+}
+
+#attributeConditions {
+    eq_string(ctxSub.name, laSub.name)
+    eq_string(ctxSuper.name, laSuper.name)
+}

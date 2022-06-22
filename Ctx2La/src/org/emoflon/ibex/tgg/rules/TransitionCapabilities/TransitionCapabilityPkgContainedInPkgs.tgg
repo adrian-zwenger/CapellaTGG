@@ -1,0 +1,41 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionCapabilityPkgContainedInPkgs #extends AbstractTransitionCapabilityPkg #with Ctx2La
+
+#source {
+	ctxCapabilityRoot : ctx.CapabilityPkg
+
+	ctxContainer : ctx.CapabilityPkg{
+	    ++ -ownedCapabilityPkgs -> ctxNewPkg
+	}
+}
+
+#target {
+	laCapabilityRoot : la.CapabilityRealizationPkg
+
+	laContainer : la.CapabilityRealizationPkg{
+	    ++ -ownedCapabilityRealizationPkgs -> laNewPkg
+	}
+}
+
+#correspondence {
+	containers : CtxCapabilityPkg2LaCapabilityRealizationPkg{
+	    #src-> ctxContainer
+	    #trg-> laContainer
+	}
+	
+	contextTransitionedCtxContainer : ContextCtxCapabilityPkg2LaCapabilityrealizationPkg{
+	    #src-> ctxContainer
+	    #trg-> laCapabilityRoot
+	}
+	
+	contextTransitionedLaContainer : ContextCtxCapabilityPkg2LaCapabilityrealizationPkg{
+	    #src-> ctxCapabilityRoot
+	    #trg-> laContainer
+	}
+}
+
+#attributeConditions {
+	eq_string(ctxContainer.name, laContainer.name)
+}

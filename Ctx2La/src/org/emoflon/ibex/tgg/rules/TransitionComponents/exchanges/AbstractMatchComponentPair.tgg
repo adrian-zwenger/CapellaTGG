@@ -1,0 +1,81 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractMatchComponentPair #with Ctx2La
+
+#source { 
+    ctxArch : ctx.SystemAnalysis{
+        -ownedSystemComponentPkg -> ctxComponentRootPkg
+    }
+    
+    ctxComponentRootPkg : ctx.SystemComponentPkg
+    
+    ctxSrcComponent : ctx.SystemComponent
+    
+    ctxTrgComponent : ctx.SystemComponent
+}
+
+#target {
+    laArch : la.LogicalArchitecture{
+        -ownedLogicalComponentPkg -> laComponentRootPkg
+    }
+    
+    laComponentRootPkg : la.LogicalComponentPkg
+    
+    laSrcComponent : la.LogicalComponent
+    
+    laTrgComponent : la.LogicalComponent
+}
+
+#correspondence {
+    arch : Ctx2LaArchitecture{
+        // require model roots
+        #src-> ctxArch
+        #trg-> laArch
+    }
+    
+    rootPkgs : CtxComponentPkg2LaComponentPkg{
+        // require ComponentContainerRoots
+        #src-> ctxComponentRootPkg
+        #trg-> laComponentRootPkg
+    }
+    
+    srcComponents : CtxComponent2LaComponent{
+        // match the component triple
+        #src-> ctxSrcComponent
+        #trg-> laSrcComponent
+    }
+    contextTransitionedSrcCtxComponent : ContextCtxComponent2LAComponentPkg{
+        // require a properly transitioned ctxComponent
+       #src-> ctxSrcComponent
+       #trg-> laComponentRootPkg
+    }
+    contextTransitionedSrcLaComponent : ContextCtxComponentPkg2LAComponent{
+        // require a properly transitioned laComponent
+       #src-> ctxComponentRootPkg
+       #trg-> laSrcComponent
+    }
+    
+    trgComponents : CtxComponent2LaComponent{
+        // match the component triple
+        #src-> ctxTrgComponent
+        #trg-> laTrgComponent
+    }
+    contextTransitionedTrgCtxComponent : ContextCtxComponent2LAComponentPkg{
+        // require a properly transitioned ctxComponent
+       #src-> ctxTrgComponent
+       #trg-> laComponentRootPkg
+    }
+    contextTransitionedTrgLaComponent : ContextCtxComponentPkg2LAComponent{
+        // require a properly transitioned laComponent
+       #src-> ctxComponentRootPkg
+       #trg-> laTrgComponent
+    }
+}
+
+#attributeConditions {
+//    Component names do not matter in capella. what matters is, that they are linked with a trace (corr node in TGG) 
+//    eq_string(ctxSrcComponent.name, laSrcComponent.name)
+//    eq_string(ctxTrgComponent.name, laTrgComponent.name)
+    
+}

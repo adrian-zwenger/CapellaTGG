@@ -1,0 +1,47 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractSyncFunctionsCommonContext #extends AbstractFunctionCommonContext #with Ctx2La
+
+#source { 
+	ctxRootFunction : ctx.SystemFunction
+	
+	ctxTransitionedFunction : ctx.SystemFunction
+}
+
+#target {
+	laRootFunction : la.LogicalFunction
+	
+	laTransitionedFunction : la.LogicalFunction
+	
+	++ laNewFunction : la.LogicalFunction
+}
+
+#correspondence {
+	transitionedFunctions : CtxFunction2LaFunction{
+		#src-> ctxTransitionedFunction
+		#trg-> laTransitionedFunction
+	}
+	contextTransitionedCtxFunction : ContextCtxFunction2LaFunction {
+		#src-> ctxTransitionedFunction
+		#trg-> laRootFunction
+	}
+	contextTransitionLaFunction : ContextCtxFunction2LaFunction{
+		#src-> ctxRootFunction
+		#trg-> laTransitionedFunction
+	}
+	
+	++ newRealizationLink : CtxFunction2LaFunction{
+		#src-> ctxTransitionedFunction
+		#trg-> laNewFunction
+	}
+	
+	++ contextTransitionedNewFunction : ContextCtxFunction2LaFunction{
+		#src-> ctxRootFunction
+		#trg-> laNewFunction
+	}
+}
+
+#attributeConditions {
+	setRealizingElementName(ctxTransitionedFunction.name, laNewFunction.name)
+}

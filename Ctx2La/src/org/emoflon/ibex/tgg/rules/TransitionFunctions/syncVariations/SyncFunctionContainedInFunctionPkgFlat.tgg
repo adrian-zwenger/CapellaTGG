@@ -1,0 +1,30 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule SyncFunctionContainedInFunctionPkgFlat #extends AbstractSyncFunctionsCommonContext #with Ctx2La
+
+#source { 
+	ctxRootFunction : ctx.SystemFunction
+}
+
+#target {
+	laContainer : la.LogicalFunctionPkg{
+		-ownedLogicalFunctions -> laTransitionedFunction
+		++ -ownedLogicalFunctions -> laNewFunction
+	}
+	
+	laTransitionedFunction : la.LogicalFunction
+	
+	++ laNewFunction : la.LogicalFunction
+}
+
+#correspondence {
+	++ contextTransitionedContainer : ContextCtxRootFunction2LaFunctionPkg{
+		#src-> ctxRootFunction
+		#trg-> laContainer
+	}
+}
+
+#attributeConditions {
+	
+}

@@ -1,0 +1,27 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule SyncComponentPkgContainedInComponentPkgHierarchical #extends AbstractSyncComponentPkg #with Ctx2La
+ /*
+ * X---O---Y----|
+ * ^			|
+ * |---O_New---Y_New
+ **/
+#source {
+}
+
+#target {
+	laPkg : la.LogicalComponentPkg{
+		++ -ownedLogicalComponentPkgs -> laNewPkg
+	}
+	
+	++ laNewPkg : la.LogicalComponentPkg
+}
+
+#correspondence {
+
+}
+
+#attributeConditions {
+	
+}

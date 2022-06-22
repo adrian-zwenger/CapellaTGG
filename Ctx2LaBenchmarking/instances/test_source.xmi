@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.polarsys.capella.core.data.ctx:SystemAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.polarsys.capella.core.data.cs="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore" xmlns:org.polarsys.capella.core.data.ctx="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore" xmlns:org.polarsys.capella.core.data.fa="platform:/resource/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore" name="System Analysis">
+  <ownedFunctionPkg xsi:type="org.polarsys.capella.core.data.ctx:SystemFunctionPkg" name="System Functions">
+    <ownedSystemFunctions name="Root System Function">
+      <ownedFunctions xsi:type="org.polarsys.capella.core.data.ctx:SystemFunction" name="tempus">
+        <ownedFunctions xsi:type="org.polarsys.capella.core.data.ctx:SystemFunction" name="vehicula"/>
+        <ownedFunctions xsi:type="org.polarsys.capella.core.data.ctx:SystemFunction" name="arcu"/>
+        <ownedSystemFunctionPkgs name="facilisi"/>
+        <ownedSystemFunctionPkgs name="commodo"/>
+      </ownedFunctions>
+      <ownedFunctions xsi:type="org.polarsys.capella.core.data.ctx:SystemFunction" name="curae">
+        <ownedFunctions xsi:type="org.polarsys.capella.core.data.ctx:SystemFunction" name="vitae"/>
+        <ownedFunctions xsi:type="org.polarsys.capella.core.data.ctx:SystemFunction" name="euismod"/>
+        <ownedSystemFunctionPkgs name="convallis"/>
+        <ownedSystemFunctionPkgs name="rhoncus"/>
+      </ownedFunctions>
+      <ownedSystemFunctionPkgs name="tincidunt">
+        <ownedSystemFunctions name="curabitur"/>
+        <ownedSystemFunctions name="sit"/>
+        <ownedSystemFunctionPkgs name="diam"/>
+        <ownedSystemFunctionPkgs name="vitae"/>
+      </ownedSystemFunctionPkgs>
+      <ownedSystemFunctionPkgs name="nulla">
+        <ownedSystemFunctions name="condimentum"/>
+        <ownedSystemFunctions name="senectus"/>
+        <ownedSystemFunctionPkgs name="eros"/>
+        <ownedSystemFunctionPkgs name="eleifend"/>
+      </ownedSystemFunctionPkgs>
+    </ownedSystemFunctions>
+  </ownedFunctionPkg>
+  <ownedAbstractCapabilityPkg xsi:type="org.polarsys.capella.core.data.ctx:CapabilityPkg" name="Capabilities">
+    <ownedCapabilities name="sociosqu">
+      <extends extended="//@ownedAbstractCapabilityPkg/@ownedCapabilityPkgs.1/@ownedCapabilities.1"/>
+      <ownedCapabilityInvolvements involved="//@ownedSystemComponentPkg/@ownedSystemComponentPkgs.0/@ownedSystemComponents.1"/>
+    </ownedCapabilities>
+    <ownedCapabilities name="sollicitudin"/>
+    <ownedCapabilityPkgs name="enim">
+      <ownedCapabilities name="dignissim">
+        <superGeneralizations super="//@ownedAbstractCapabilityPkg/@ownedCapabilityPkgs.0/@ownedCapabilities.0"/>
+        <includes included="//@ownedAbstractCapabilityPkg/@ownedCapabilityPkgs.0/@ownedCapabilities.1"/>
+        <includes included="//@ownedAbstractCapabilityPkg/@ownedCapabilities.1"/>
+      </ownedCapabilities>
+      <ownedCapabilities name="ac">
+        <extends extended="//@ownedAbstractCapabilityPkg/@ownedCapabilityPkgs.0/@ownedCapabilities.0"/>
+        <superGeneralizations super="//@ownedAbstractCapabilityPkg/@ownedCapabilityPkgs.0/@ownedCapabilities.1"/>
+      </ownedCapabilities>
+      <ownedCapabilityPkgs name="tortor"/>
+      <ownedCapabilityPkgs name="rutrum"/>
+    </ownedCapabilityPkgs>
+    <ownedCapabilityPkgs name="sed">
+      <ownedCapabilities name="magnis">
+        <ownedCapabilityInvolvements involved="//@ownedSystemComponentPkg/@ownedSystemComponents.2/@ownedSystemComponents.1"/>
+      </ownedCapabilities>
+      <ownedCapabilities name="per"/>
+      <ownedCapabilityPkgs name="potenti"/>
+      <ownedCapabilityPkgs name="et"/>
+    </ownedCapabilityPkgs>
+  </ownedAbstractCapabilityPkg>
+  <ownedSystemComponentPkg name="Structure">
+    <ownedParts name="System" abstractType="//@ownedSystemComponentPkg/@ownedSystemComponents.0"/>
+    <ownedParts name="inceptos" abstractType="//@ownedSystemComponentPkg/@ownedSystemComponents.1"/>
+    <ownedParts name="rutrum" abstractType="//@ownedSystemComponentPkg/@ownedSystemComponents.2"/>
+    <ownedComponentExchanges name="potenti" source="//@ownedSystemComponentPkg/@ownedSystemComponentPkgs.1/@ownedSystemComponents.1/@ownedFeatures.0" target="//@ownedSystemComponentPkg/@ownedSystemComponents.2/@ownedFeatures.2" kind="ASSEMBLY"/>
+    <ownedComponentExchanges name="cras" source="//@ownedSystemComponentPkg/@ownedSystemComponents.2/@ownedSystemComponents.0/@ownedFeatures.0" target="//@ownedSystemComponentPkg/@ownedSystemComponents.1/@ownedSystemComponents.0/@ownedFeatures.0" kind="ASSEMBLY"/>
+    <ownedPhysicalLinks name="proin" linkEnds="//@ownedSystemComponentPkg/@ownedSystemComponents.2/@ownedFeatures.3 //@ownedSystemComponentPkg/@ownedSystemComponents.1/@ownedFeatures.2"/>
+    <ownedPhysicalLinks name="consectetur" linkEnds="//@ownedSystemComponentPkg/@ownedSystemComponentPkgs.1/@ownedSystemComponents.0/@ownedFeatures.0 //@ownedSystemComponentPkg/@ownedSystemComponentPkgs.1/@ownedSystemComponents.1/@ownedFeatures.1"/>
+    <ownedSystemComponents name="System"/>
+    <ownedSystemComponents name="inceptos">
+      <ownedGeneralizations super="//@ownedSystemComponentPkg/@ownedSystemComponentPkgs.0/@ownedSystemComponents.1" sub="//@ownedSystemComponentPkg/@ownedSystemComponents.1"/>
+      <ownedFeatures xsi:type="org.polarsys.capella.core.data.cs:Part" name="eu" abstractType="//@ownedSystemComponentPkg/@ownedSystemComponents.1/@ownedSystemComponents.0"/>
+      <ownedFeatures xsi:type="org.polarsys.capella.core.data.cs:Part" name="auctor" abstractType="//@ownedSystemComponentPkg/@ownedSystemComponents.1/@ownedSystemComponents.1"/>
+      <ownedFeatures xsi:type="org.polarsys.capella.core.data.cs:PhysicalPort" name="proin Port"/>
+      <ownedSystemComponents name="eu">
+        <ownedFeatures xsi:type="org.polarsys.capella.core.data.fa:ComponentPort" name="cras Port"/>
+      </ownedSystemComponents>
+      <ownedSystemComponents name="auctor"/>
+      <ownedSystemComponentPkgs name="feugiat"/>
+      <ownedSystemComponentPkgs name="ornare"/>
+    </ownedSystemComponents>
+    <ownedSystemComponents name="rutrum">
+      <ownedFeatures xsi:type="org.polarsys.capella.core.data.cs:Part" name="mi" abstractType="//@ownedSystemComponentPkg/@ownedSystemComponents.2/@ownedSystemComponents.0"/>
+      <ownedFeatures xsi:type="org.polarsys.capella.core.data.cs:Part" name="pretium" abstractType="//@ownedSystemComponentPkg/@ownedSystemComponents.2/@ownedSystemComponents.1"/>
+      <ownedFeatures xsi:type="org.polarsys.capella.core.data.fa:ComponentPort" name="potenti Port"/>
+      <ownedFeatures xsi:type="org.polarsys.capella.core.data.cs:PhysicalPort" name="proin Port"/>
+      <ownedSystemComponents name="mi">
+        <ownedFeatures xsi:type="org.polarsys.capella.core.data.fa:ComponentPort" name="cras Port"/>
+      </ownedSystemComponents>
+      <ownedSystemComponents name="pretium">
+        <ownedFunctionalAllocation targetElement="//@ownedFunctionPkg/@ownedSystemFunctions.0/@ownedFunctions.1" sourceElement="//@ownedSystemComponentPkg/@ownedSystemComponents.2/@ownedSystemComponents.1"/>
+      </ownedSystemComponents>
+      <ownedSystemComponentPkgs name="ultrices"/>
+      <ownedSystemComponentPkgs name="nam"/>
+    </ownedSystemComponents>
+    <ownedSystemComponentPkgs name="praesent">
+      <ownedParts name="duis" abstractType="//@ownedSystemComponentPkg/@ownedSystemComponentPkgs.0/@ownedSystemComponents.0"/>
+      <ownedParts name="adipiscing" abstractType="//@ownedSystemComponentPkg/@ownedSystemComponentPkgs.0/@ownedSystemComponents.1"/>
+      <ownedSystemComponents name="duis"/>
+      <ownedSystemComponents name="adipiscing"/>
+      <ownedSystemComponentPkgs name="tellus"/>
+      <ownedSystemComponentPkgs name="dignissim"/>
+    </ownedSystemComponentPkgs>
+    <ownedSystemComponentPkgs name="suspendisse">
+      <ownedParts name="suscipit" abstractType="//@ownedSystemComponentPkg/@ownedSystemComponentPkgs.1/@ownedSystemComponents.0"/>
+      <ownedParts name="sodales" abstractType="//@ownedSystemComponentPkg/@ownedSystemComponentPkgs.1/@ownedSystemComponents.1"/>
+      <ownedSystemComponents name="suscipit">
+        <ownedFunctionalAllocation targetElement="//@ownedFunctionPkg/@ownedSystemFunctions.0/@ownedFunctions.1/@ownedFunctions.0" sourceElement="//@ownedSystemComponentPkg/@ownedSystemComponentPkgs.1/@ownedSystemComponents.0"/>
+        <ownedFeatures xsi:type="org.polarsys.capella.core.data.cs:PhysicalPort" name="consectetur Port"/>
+      </ownedSystemComponents>
+      <ownedSystemComponents name="sodales">
+        <ownedGeneralizations super="//@ownedSystemComponentPkg/@ownedSystemComponents.2/@ownedSystemComponents.1" sub="//@ownedSystemComponentPkg/@ownedSystemComponentPkgs.1/@ownedSystemComponents.1"/>
+        <ownedFeatures xsi:type="org.polarsys.capella.core.data.fa:ComponentPort" name="potenti Port"/>
+        <ownedFeatures xsi:type="org.polarsys.capella.core.data.cs:PhysicalPort" name="consectetur Port"/>
+      </ownedSystemComponents>
+      <ownedSystemComponentPkgs name="a"/>
+      <ownedSystemComponentPkgs name="justo"/>
+    </ownedSystemComponentPkgs>
+  </ownedSystemComponentPkg>
+</org.polarsys.capella.core.data.ctx:SystemAnalysis>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.0"?><plugin>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="capella"
+            class="org.polarsys.capella.core.data.capellamodeller.util.CapellamodellerResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="capellacore"
+            class="org.polarsys.capella.core.data.capellacore.util.CapellacoreResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="oa"
+            class="org.polarsys.capella.core.data.oa.util.OaResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="ctx"
+            class="org.polarsys.capella.core.data.ctx.util.CtxResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="la"
+            class="org.polarsys.capella.core.data.la.util.LaResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="pa"
+            class="org.polarsys.capella.core.data.pa.util.PaResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="deployment"
+            class="org.polarsys.capella.core.data.pa.deployment.util.DeploymentResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="epbs"
+            class="org.polarsys.capella.core.data.epbs.util.EpbsResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="sharedmodel"
+            class="org.polarsys.capella.core.data.sharedmodel.util.SharedmodelResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="requirement"
+            class="org.polarsys.capella.core.data.requirement.util.RequirementResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="capellacommon"
+            class="org.polarsys.capella.core.data.capellacommon.util.CapellacommonResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="information"
+            class="org.polarsys.capella.core.data.information.util.InformationResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="communication"
+            class="org.polarsys.capella.core.data.information.communication.util.CommunicationResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="datatype"
+            class="org.polarsys.capella.core.data.information.datatype.util.DatatypeResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="datavalue"
+            class="org.polarsys.capella.core.data.information.datavalue.util.DatavalueResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="cs"
+            class="org.polarsys.capella.core.data.cs.util.CsResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="fa"
+            class="org.polarsys.capella.core.data.fa.util.FaResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CapellaModeller -->
+      <parser
+            type="interaction"
+            class="org.polarsys.capella.core.data.interaction.util.InteractionResourceFactoryImpl"/>
+   </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.capellamodeller.CapellamodellerPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/CapellaModeller.ecore"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.capellacore.CapellacorePackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.oa.OaPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.ctx.CtxPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.la.LaPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/LogicalArchitecture.ecore"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.pa.PaPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/PhysicalArchitecture.ecore"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.pa.deployment.DeploymentPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/PhysicalArchitecture.ecore#/deployment"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.epbs.EpbsPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/EPBSArchitecture.ecore"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.sharedmodel.SharedmodelPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/SharedModel.ecore"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.requirement.RequirementPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/Requirement.ecore"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.capellacommon.CapellacommonPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/CapellaCommon.ecore"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.information.InformationPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/Information.ecore"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.information.communication.CommunicationPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/Information.ecore#/communication"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.information.datatype.DatatypePackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/Information.ecore#/datatype"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.information.datavalue.DatavaluePackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/Information.ecore#/datavalue"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.cs.CsPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.fa.FaPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="org.polarsys.capella.core.data.interaction.InteractionPackage" genModel="model/CapellaModeller.genmodel" uri="platform:/resource/org.polarsys.capella.core.data.gen/model/Interaction.ecore"/>
+  </extension>
+</plugin>

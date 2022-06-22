@@ -1,0 +1,82 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractSyncComponent #extends AbstractComponentCommonContext #with Ctx2La
+
+#source {
+	ctxRootPkg : ctx.SystemComponentPkg
+	
+	ctxComponent : ctx.SystemComponent
+	
+	ctxPart : cs.Part{
+		  -abstractType -> ctxComponent
+	}
+}
+
+#target {
+	laRootPkg : la.LogicalComponentPkg
+	
+	laComponent : la.LogicalComponent
+	
+	laPart : cs.Part{
+		-abstractType -> laComponent
+	}
+	
+	++ laNewComponent : la.LogicalComponent
+	
+	++ laNewPart : cs.Part{
+		++ -abstractType -> laNewComponent
+	}
+}
+
+#correspondence {
+	// require existence of transitioned components
+	components : CtxComponent2LaComponent{
+		#src-> ctxComponent
+		#trg-> laComponent
+	}
+	contextTransitionedCtxComponent : ContextCtxComponent2LAComponentPkg{
+		#src-> ctxComponent
+		#trg-> laRootPkg
+	}
+	contextTransitionedLaComponent : ContextCtxComponentPkg2LAComponent{
+		#src-> ctxRootPkg
+		#trg-> laComponent
+	}
+	parts : CtxPart2LaPart{
+		#src-> ctxPart
+		#trg-> laPart
+	}
+
+	//create corr nodes for newly created LA-Component
+	++ newComponents : CtxComponent2LaComponent{
+		#src-> ctxComponent
+		#trg-> laNewComponent
+	}
+	++ contextTransitionedNewLaComponent : ContextCtxComponentPkg2LAComponent{
+		#src-> ctxRootPkg
+		#trg-> laNewComponent
+	}
+	++ newParts : CtxPart2LaPart{
+		#src-> ctxPart
+		#trg-> laNewPart
+	}
+}
+
+#attributeConditions {
+	// concat random name and name of ctx component for testing purposes
+	// for real capella sync names do not, or may not matter
+	// custom naming policies need to be implemented
+//	setRandomString(randomName)
+//	concat(" ", ctxComponent.name, randomName, out)
+//	setDefaultString(laNewComponent.name, out)
+
+	setRealizingElementName(ctxComponent.name, laNewComponent.name)
+
+	eq_string(laNewComponent.name, laNewPart.name)
+
+
+	eq_string(ctxComponent.name, ctxPart.name)
+//	eq_string(ctxComponent.name, laComponent.name)
+	eq_string(laComponent.name, laPart.name)
+}

@@ -1,0 +1,1 @@
+generation of component exchange links between components

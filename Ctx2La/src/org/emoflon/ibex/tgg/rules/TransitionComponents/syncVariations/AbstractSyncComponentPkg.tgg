@@ -1,0 +1,49 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractSyncComponentPkg #extends AbstractComponentCommonContext #with Ctx2La
+ 
+#source {
+	ctxRootPkg : ctx.SystemComponentPkg
+
+	ctxPkg : ctx.SystemComponentPkg
+}
+
+#target {
+	laRootPkg : la.LogicalComponentPkg
+	
+	laPkg : la.LogicalComponentPkg
+
+	++ laNewPkg : la.LogicalComponentPkg
+}
+
+#correspondence {
+	// require properly transitioned ComponentPkg
+	transitionedPkgs : CtxComponentPkg2LaComponentPkg{
+		#src-> ctxPkg
+		#trg-> laPkg
+	}
+	contextTransitionedCtxPkg : ContextCtxComponentPkg2LAComponentPkg{
+		#src-> ctxPkg
+		#trg-> laRootPkg
+	}
+	contextTransitionedLaPkg : ContextCtxComponentPkg2LAComponentPkg{
+		#src-> ctxRootPkg
+		#trg-> laPkg
+	}
+
+	// new correspondences
+	++ newPkgRealizationLink : CtxComponentPkg2LaComponentPkg{
+		#src-> ctxPkg
+		#trg-> laNewPkg
+	}
+	++ contextNewTransitionedLaPkg : ContextCtxComponentPkg2LAComponentPkg{
+		#src-> ctxRootPkg
+		#trg-> laNewPkg
+	}
+}
+
+#attributeConditions {
+	eq_string(ctxPkg.name, laPkg.name)
+	setRealizingElementName(ctxPkg.name, laNewPkg.name)
+}

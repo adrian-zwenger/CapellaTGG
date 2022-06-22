@@ -1,0 +1,40 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionFunctionPkg #extends AbstractFunctionCommonContext #with Ctx2La
+
+#source { 
+	ctxRootFunction : ctx.SystemFunction{
+	    ++ -ownedSystemFunctionPkgs -> ctxNewFunctionPkg
+	}
+	
+	++ ctxNewFunctionPkg : ctx.SystemFunctionPkg
+}
+
+#target {
+	laRootFunction : la.LogicalFunction{
+	    ++ -ownedLogicalFunctionPkgs -> laNewFunctionPkg
+	}
+	
+	++ laNewFunctionPkg : la.LogicalFunctionPkg
+}
+
+#correspondence {
+	++ newFunctionPkgs : CtxFunctionPkg2LaFunctionPkg{
+	    #src-> ctxNewFunctionPkg
+	    #trg-> laNewFunctionPkg
+	}
+	
+	++ contextTransitionedCtxFuncPkg : ContextCtxFunctionPkg2LaRootFunction{
+	    #src-> ctxNewFunctionPkg
+	    #trg-> laRootFunction
+	}
+	++ contextTransitionedLaFuncPkg : ContextCtxRootFunction2LaFunctionPkg{
+	    #src-> ctxRootFunction
+	    #trg-> laNewFunctionPkg
+	}
+}
+
+#attributeConditions {
+	eq_string(ctxNewFunctionPkg.name, laNewFunctionPkg.name)
+}

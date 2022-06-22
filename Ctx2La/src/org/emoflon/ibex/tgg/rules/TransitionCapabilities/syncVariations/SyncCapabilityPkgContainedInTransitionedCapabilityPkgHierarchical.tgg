@@ -1,0 +1,24 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule SyncCapabilityPkgContainedInTransitionedCapabilityPkgHierarchical #extends AbstractSyncCapabilityPkg #with Ctx2La
+
+#source { 
+	
+}
+
+#target {
+	laTransitionedCapabilityPkg : la.CapabilityRealizationPkg{
+		++ -ownedCapabilityRealizationPkgs -> laNewCapabilityPkg
+	}
+	
+	++ laNewCapabilityPkg : la.CapabilityRealizationPkg
+}
+
+#correspondence {
+
+}
+
+#attributeConditions {
+	
+}

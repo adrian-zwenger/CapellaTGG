@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.0"?><!--
+--><plugin>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="modellingcore.ModellingcorePackage" genModel="model/ModellingCore.genmodel" uri="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore"/>
+  </extension>
+</plugin>

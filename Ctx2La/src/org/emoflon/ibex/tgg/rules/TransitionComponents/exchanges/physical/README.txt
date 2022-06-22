@@ -1,0 +1,1 @@
+physical exchange links between components are generated with the contained rules

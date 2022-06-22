@@ -1,0 +1,61 @@
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/OperationalAnalysis.ecore"
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore"
+#import "platform:/resource/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore"
+
+#schema Oa2Ctx_TransistionActors
+	
+#source {
+	oa
+	cs
+}
+
+#target {
+	ctx
+	cs
+} 
+
+#correspondence {
+	Oa2Sa{
+		#src-> oa.OperationalAnalysis
+		#trg-> ctx.SystemAnalysis
+	}// trace is stored as element referencing both sides. element stored in SystemAnalysis object
+	/**
+	 * -ownedOperationalAnalysisRealizations holds
+	 * org.polarsys.capella.core.data.ctx.impl.OperationalAnalysisRealizationImpl elements
+	 * these elements trace the SystemAnalysis model to the OperationalAnalysis model which it refines
+	 * #src -> references the SystemAnalysis
+	 * #trg -> references the OperationalAnalysis
+	 * 
+	 * This should actually be modelled with a TGG-correspondence. However, corr-elements cannot be part
+	 * of the source or target model and thus cannot be modelled with a TGG-rule.
+	 */
+
+	Entity2SystemComponent{
+		#src-> oa.Entity
+		#trg-> ctx.SystemComponent
+	}// trace is stored as element referencing both sides. stored as reference in SystemComponent
+	/**
+	 * -ownedComponentRealizations : org.polarsys.capella.core.data.cs.impl.ComponentRealizationImpl
+	 * Traces linking SystemComponents to the os.Entity's which they realize
+	 * #src-> ctx.SystemComponent
+	 * #trg-> oa.Entity
+	 */
+
+	OaPart2SaPart{//each entity/component has a part representation
+		#src-> cs.Part
+		#trg-> cs.Part //refinement of oa.Part
+	}// trace is stored in the SystemComponentPkg
+	/**
+	 *  -ownedTraces contains org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl elements
+	 *  these elements represent the traces between elements of capella stages, in other words they 
+	 *  fulfill the same role as the corr-elements of an TGG-triple
+	 *  
+	 * Each TransfoLink references two elements:
+	 * 		#src -> Part of SystemComponent in SystemAnalysis model
+	 * 		#trg -> Part which is being refined by SA and is part of OperationalAnalysis model
+	 */
+}
+
+#attributeConditions {
+	
+}

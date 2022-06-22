@@ -1,0 +1,146 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule Ctx2LaGeneration #with Ctx2La
+
+#source { 
+    ++ ctxArch : ctx.SystemAnalysis{
+    	name := "System Analysis"
+        ++ -ownedSystemComponentPkg -> ctxComponentPkg
+        ++ -ownedAbstractCapabilityPkg -> ctxCapabilityPkg
+        ++ -ownedFunctionPkg -> ctxRootFunctionPkg
+    }
+    
+    ++ ctxComponentPkg : ctx.SystemComponentPkg{
+        ++ -ownedSystemComponents -> ctxSystemAsComponent
+        ++ -ownedParts -> ctxSystemAsPart
+        
+    }
+    
+    ++ ctxSystemAsComponent : ctx.SystemComponent{
+    	name := "System"
+    }
+    
+    ++ ctxSystemAsPart : cs.Part{
+    	name := "System"
+        ++-abstractType->ctxSystemAsComponent
+    }
+    
+    ++ ctxCapabilityPkg : ctx.CapabilityPkg
+    
+    ++ ctxRootFunctionPkg : ctx.SystemFunctionPkg{
+        name := "System Functions"
+        ++-ownedSystemFunctions -> ctxRootFunction
+    }
+    
+    ++ ctxRootFunction : ctx.SystemFunction{
+        name := "Root System Function"
+    }
+}
+
+#target {
+	++ laArch : la.LogicalArchitecture{
+		name := "Logical Architecture"
+	    ++ -ownedLogicalComponentPkg -> laComponentPkg
+	    ++ -ownedAbstractCapabilityPkg -> laCapabilityRealizationPkg
+	    ++ -ownedFunctionPkg -> laRootFunctionPkg
+	}
+	
+	++ laComponentPkg : la.LogicalComponentPkg{
+	    ++ -ownedLogicalComponents -> laSystemAsComponent
+	    ++ -ownedParts -> laSystemAsPart
+	}
+	
+	++ laSystemAsComponent : la.LogicalComponent{
+		name := "Logical System"
+	}
+	/**
+     * the Logical Component stores a trace to ctx linking it to
+     * the element which it refines.
+     * la.LogicalComponent.ownedComponentRealizations
+     *     ->org.polarsys.capella.core.data.cs.impl.ComponentRealizationImpl
+     *         #-> sourceElement - la.LogicalComponent
+     *         #-> targetElement - ctx.SystemComponent
+     */
+	
+	++ laSystemAsPart : cs.Part{
+		name := "Logical System"
+	    ++ -abstractType -> laSystemAsComponent
+	}
+	/**
+	 * Parts are usually traced between la and sa as well.
+	 * these are stored in the object containing the la parts.
+	 * in this case they are stored in the la.LogicalComponentPkg
+	 * However, if the Part's abstractType is the "Logical System"
+	 * (or even  the "System" when tracing ctx->oa) no Trace is created.
+	 * 
+	 * la.LogicalComponentPkg.ownedTraces
+	 *     ->org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+	 *         #-> source - cs.Part (la)
+	 *         #-> target - cs.part (ctx)
+	 */
+	 
+	 ++ laCapabilityRealizationPkg : la.CapabilityRealizationPkg
+	 
+	 ++ laRootFunctionPkg : la.LogicalFunctionPkg{
+	     name := "Logical Functions"
+	     ++ -ownedLogicalFunctions -> laRootFunction
+	 }
+	 
+	 ++ laRootFunction : la.LogicalFunction{
+	     name := "Root Logical Function"
+	 }
+}
+
+#correspondence {
+	++ arch : Ctx2LaArchitecture{
+	    #src-> ctxArch
+	    #trg-> laArch
+	}
+	
+	++ compPkg : CtxComponentPkg2LaComponentPkg{
+	    #src-> ctxComponentPkg
+	    #trg-> laComponentPkg
+	}
+	
+	++ components : CtxComponent2LaComponent{
+	    #src-> ctxSystemAsComponent
+	    #trg-> laSystemAsComponent
+	}
+	++ contextTransiotionedCtxSystem : ContextCtxComponent2LAComponentPkg{
+		#src-> ctxSystemAsComponent
+		#trg-> laComponentPkg
+	}
+	++ contextTransitionedLaSystem : ContextCtxComponentPkg2LAComponent{
+		#src-> ctxComponentPkg
+		#trg-> laSystemAsComponent
+	}
+	
+	++ parts : CtxPart2LaPart{
+	    #src-> ctxSystemAsPart
+	    #trg-> laSystemAsPart
+	}
+	
+	++ capabilityPkgs : CtxCapabilityPkg2LaCapabilityRealizationPkg{
+	    #src-> ctxCapabilityPkg
+	    #trg-> laCapabilityRealizationPkg
+	}
+	
+	++ functionPkgs : CtxFunctionPkg2LaFunctionPkg{
+	    #src-> ctxRootFunctionPkg
+	    #trg-> laRootFunctionPkg
+	}
+	
+	++ functionRoots : CtxFunction2LaFunction{
+	    #src-> ctxRootFunction
+	    #trg-> laRootFunction
+	}
+}
+
+#attributeConditions {
+	setDefaultString(ctxCapabilityPkg.name, "Capabilities")
+	setDefaultString(laCapabilityRealizationPkg.name, "Capabilities")
+	
+	setDefaultString(ctxComponentPkg.name, "Structure")
+	setDefaultString(laComponentPkg.name, "Structure")
+}

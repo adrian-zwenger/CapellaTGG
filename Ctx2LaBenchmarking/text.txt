@@ -1,0 +1,81 @@
+package benchmarks;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
+import java.util.LinkedList;
+
+import com.lowagie.text.pdf.draw.LineSeparator;
+
+
+public class ForwardTranslationBenchmark {
+
+	LinkedList<Long[]> csv_data = new LinkedList<>();
+	
+	public void save_and_flush(String path, boolean append) throws IOException {
+		if(!append) {
+			FileWriter f = new FileWriter(path);
+			f.write("depth, elements, relations, ram, duration, elements;" + System.lineSeparator());
+			for(Long[] row : csv_data) {
+				String line = "";
+				for(Long val : row) line += val.toString() + ", ";
+				f.write(line + System.lineSeparator());
+			}
+			f.close();
+			csv_data = new LinkedList<>();
+		} else {
+			FileWriter fw = new FileWriter(path, true);
+			BufferedWriter writer = new BufferedWriter(fw);
+			for(Long[] row : csv_data) {
+				String line = "";
+				for(Long val : row) line += val.toString() + ", ";
+				writer.write(line + System.lineSeparator());
+			}
+		}
+	}
+	
+	public static void main(String[] args) throws IOException{
+		Runtime runtime = Runtime.getRuntime();
+		runtime.gc();
+		; int x = 4;
+		; int y = 7;
+		int z = 50;
+		int repeat = 10;
+		Date dt = new Date();
+		String now = dt.getTime() + "/";
+		ForwardTranslationBenchmark tr = new ForwardTranslationBenchmark();
+		File f = new File("./csv/" + now);
+		f.mkdir();
+		
+		for(int u = 1; u<=x; u++) {
+			for(int v = 1; v<=y; v++) {
+				for(int w = 50; w<=z;w+=25) {
+					for(int r=1; r<= repeat; r++) {
+						System.out.println("Sizes: " + u+ " deep; " + v + " broad; " + w + " additions;");
+						try {
+							InstanceMaker m = new InstanceMaker(u, v, w);
+							m.create_tripel();
+							Long[] results = {Long.valueOf(u), Long.valueOf(v), Long.valueOf(w), m.needed_ram, m.forward_duration, Long.valueOf(m.src_model_gen.element_count)};
+							tr.csv_data.add(results);
+							results = null;
+							tr.save_and_flush("./csv/" + now + u + v + w + "forward_translation.csv", true);
+							m = null;
+							runtime.gc();
+							System.out.println("Run complete.");
+						} catch(Exception e) {
+							e.printStackTrace();
+							runtime.gc();
+							tr.save_and_flush("./csv/forward_translation_crashed.csv", false);
+							return;
+						}
+					}
+					if(repeat>1)tr.save_and_flush("./csv/" + now + u + v + w + "forward_translation.csv");
+				}
+			}
+		}
+		if(repeat<=1)tr.save_and_flush("./csv/forward_translation" + dt.getTime() + ".csv");
+		System.out.println("EOF");
+	}
+}

@@ -1,0 +1,47 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionComponentsContainedInComponents #extends AbstractTransitionComponents #with Ctx2La
+
+#source { 
+	ctxRootPkg : ctx.SystemComponentPkg
+	
+    ctxContainer : ctx.SystemComponent{
+        ++ -ownedSystemComponents -> ctxNewComponent
+        ++ -ownedFeatures -> ctxNewPart
+    }	
+}
+
+#target {
+	laRootPkg : la.LogicalComponentPkg
+	
+	laContainer : la.LogicalComponent{
+	    ++ -ownedLogicalComponents -> laNewComponent
+	    ++ -ownedFeatures -> laNewPart
+	}
+}
+
+#correspondence {
+	containers : CtxComponent2LaComponent{
+	    // require containers
+	    #src-> ctxContainer
+	    #trg-> laContainer
+	}
+	
+	contextTransitionedCtxContainer : ContextCtxComponent2LAComponentPkg{
+	    // require transitioned ctx container
+	    #src-> ctxContainer
+	    #trg-> laRootPkg
+	}
+	
+	contextTransitionedLaContainer : ContextCtxComponentPkg2LAComponent{
+        // require transitioned la container
+        #src-> ctxRootPkg
+        #trg-> laContainer
+    }
+}
+
+#attributeConditions {
+	// containers having the same name is just a nice to have. However, as long the containers are traceable (correspondence), names do not matter
+	//eq_string(ctxContainer.name, laContainer.name)
+}

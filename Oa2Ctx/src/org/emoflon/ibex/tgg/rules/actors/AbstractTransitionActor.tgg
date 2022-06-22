@@ -1,0 +1,90 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractTransitionActor #with Oa2Ctx
+
+#source { 
+	oaArch : oa.OperationalAnalysis{
+	    -ownedEntityPkg-> oaRoot
+	}
+	
+	oaRoot : oa.EntityPkg
+	
+	++ oaNewEntity : oa.Entity
+	
+	++ oaNewPart : cs.Part{
+	    ++ -abstractType -> oaNewEntity
+	}
+}
+
+#target {
+	ctxArch : ctx.SystemAnalysis{
+	    -ownedSystemComponentPkg -> ctxRoot
+	}
+	
+	ctxRoot : ctx.SystemComponentPkg
+
+    ++ ctxNewComponent : ctx.SystemComponent{
+        actor := true
+        //all components which are derived from OA are actors. It does not matter if they are human or not
+        
+        /**
+         * -ownedComponentRealizations : org.polarsys.capella.core.data.cs.impl.ComponentRealizationImpl
+         * Traces linking SystemComponents to the os.Entity's which they realize
+         * #src-> ctx.SystemComponent
+         * #trg-> oa.Entity
+         */
+    }
+    
+    ++ ctxNewPart : cs.Part{
+        ++ -abstractType -> ctxNewComponent
+    }
+}
+
+#correspondence {
+	arch : Oa2Sa{
+	    // require model roots (OperationalAnalysis and SystemAnalysis)
+	    #src-> oaArch
+	    #trg-> ctxArch
+	}
+	
+	roots : EntityPkg2ComponentPkg{
+        // require that model roots have Entity/Component package roots
+	    #src-> oaRoot 
+	    #trg-> ctxRoot
+	}
+	
+	++ contextNewlyTransitionedEntity : ContextOaEntity2SystemComponentPkg{
+	    // create marker that entity has been consistently transitioned from CTX to OA
+	    #src-> oaNewEntity
+	    #trg-> ctxRoot
+	}
+	
+	++ contextNewlyTransitionedComponent : ContextOaEntityPkg2SystemComponent{
+        // create marker that component has been consistently transitioned from OA to CTX
+        #src-> oaRoot
+        #trg-> ctxNewComponent
+    }
+	
+	++ newEntity : Entity2SystemComponent{
+	    // set correspondence for the entity and component
+	    #src-> oaNewEntity 
+	    #trg-> ctxNewComponent
+	}
+	
+	++ newParts : OaPart2SaPart{
+	    // set correspondence for the parts
+	    #src-> oaNewPart
+	    #trg-> ctxNewPart
+	}
+	
+}
+
+#attributeConditions {
+    setDefaultString(oaRoot.name, "Operational Entities")
+    setDefaultString(ctxRoot.name, "Structure")
+    
+	eq_string(oaNewEntity.name, oaNewPart.name)
+	eq_string(oaNewEntity.name, ctxNewComponent.name)
+	eq_string(ctxNewComponent.name, ctxNewPart.name)
+}

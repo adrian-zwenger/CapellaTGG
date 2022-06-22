@@ -1,0 +1,67 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+/**
+ * Capella allows multi-Inheritance. Thus this rule does not need to be monitored during generation
+ * as a sub-Capability may have mutliple super-Capabilities.
+ * However, Capabilities may not generalize the same superCapability multiple times.
+ */
+#rule TransitionCapabilityGeneralizations #with Oa2Ctx
+
+#source { 
+	oaSuperCapability : oa.OperationalCapability
+	
+	oaSubCapability : oa.OperationalCapability{
+	    ++ -superGeneralizations -> oaGeneralization
+	}
+	
+	++ oaGeneralization : interaction.AbstractCapabilityGeneralization{
+	    ++ -super -> oaSuperCapability
+	}
+}
+
+#target {
+    ctxSuperCapability : ctx.Capability
+    
+    ctxSubCapability : ctx.Capability{
+        ++ -superGeneralizations -> ctxGeneralization
+    }
+	/**
+	 * The ctxSubCapability stores Traces of the CapabilityGeneralization which links
+	 * the ctx.Generalization to the oa.Generalization which is being refined.
+	 * 
+	 * Represented by OaCapabilityGeneralization2CapabilityGeneralization correspondence node.
+	 * 
+	 * ctx.Capability.ownedTraces
+     *      -> org.polarsys.capella.core.data.capellacommon.impl.TransfoLinkImpl
+     *              -sourceElement -> interaction.AbstractCapabilityGeneralization (ctx)
+     *              -targetElement -> interaction.AbstractCapabilityGeneralization (ctx)
+	 */
+
+	++ ctxGeneralization : interaction.AbstractCapabilityGeneralization{
+        ++ -super -> ctxSuperCapability
+    }
+    
+}
+
+#correspondence {
+	superCapabilities : OaCapability2Capability{
+	    #src-> oaSuperCapability
+	    #trg-> ctxSuperCapability
+	}
+	
+	subCapabilities : OaCapability2Capability{
+	    #src-> oaSubCapability
+	    #trg-> ctxSubCapability
+	}
+
+    ++ generalizations : OaCapabilityGeneralization2CapabilityGeneralization{
+        #src-> oaGeneralization
+        #trg-> ctxGeneralization
+    }
+}
+
+#attributeConditions {
+	eq_string(oaSuperCapability.name, ctxSuperCapability.name)
+	eq_string(oaSubCapability.name, ctxSubCapability.name)
+}

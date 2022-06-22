@@ -1,0 +1,87 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionExchangeWithSingleComponent #extends AbstractMatchSingleComponent #with Ctx2La
+
+#source { 
+    ctxComponentRootPkg : ctx.SystemComponentPkg{
+        ++ -ownedComponentExchanges -> ctxExchange
+    }
+    
+    ctxComponent : ctx.SystemComponent{
+        ++ -ownedFeatures -> ctxInPort
+        ++ -ownedFeatures -> ctxOutPort
+    }
+    
+    ++ ctxInPort : fa.ComponentPort{
+        kind := enum::fa.ComponentPortKind::STANDARD
+        orientation := enum::fa.OrientationPortKind::UNSET
+    }
+    
+    ++ ctxOutPort : fa.ComponentPort{
+        kind := enum::fa.ComponentPortKind::STANDARD
+        orientation := enum::fa.OrientationPortKind::UNSET
+    }
+    
+    ++ ctxExchange : fa.ComponentExchange{
+        kind := enum::fa.ComponentExchangeKind::ASSEMBLY
+        ++ -source -> ctxInPort
+        ++ -target -> ctxOutPort
+    }
+}
+
+#target {
+    laComponentRootPkg : la.LogicalComponentPkg{
+        ++ -ownedComponentExchanges -> laExchange
+    }
+    
+    laComponent : la.LogicalComponent{
+        ++ -ownedFeatures -> laInPort
+        ++ -ownedFeatures -> laOutPort
+    }
+    
+    ++ laInPort : fa.ComponentPort{
+        kind := enum::fa.ComponentPortKind::STANDARD
+        orientation := enum::fa.OrientationPortKind::UNSET
+    }
+    
+    ++ laOutPort : fa.ComponentPort{
+        kind := enum::fa.ComponentPortKind::STANDARD
+        orientation := enum::fa.OrientationPortKind::UNSET
+    }
+
+    ++ laExchange : fa.ComponentExchange{
+        ++ -source -> laInPort
+        ++ -target -> laOutPort
+    }
+}
+
+#correspondence {
+    ++ inports : CtxComponentPort2LaComponentPort{
+        #src-> ctxInPort
+        #trg-> laInPort
+    }
+    
+    ++ outports : CtxComponentPort2LaComponentPort{
+        #src-> ctxOutPort
+        #trg-> laOutPort
+    }
+    
+    ++ exchanges : CtxComponentExchange2LAComponentExchange{
+        #src-> ctxExchange
+        #trg-> laExchange
+    }
+}
+
+#attributeConditions {
+	eq_string(ctxExchange.name, laExchange.name)
+    addSuffix(ctxExchange.name, " Port", ctxPorts)
+	 // by default capella uses the exchanges name as the port name.
+	 // this makes it difficult to discern Ports from exchanges in Capella as everything is listed by name
+	 // thus i decided to add the suffix port to be able to discern them
+    setDefaultString(ctxInPort.name, ctxPorts)
+    setDefaultString(ctxOutPort.name, ctxPorts)
+    addSuffix(laExchange.name, " Port", laPorts)
+    setDefaultString(laInPort.name, laPorts)
+    setDefaultString(laOutPort.name, laPorts)
+}

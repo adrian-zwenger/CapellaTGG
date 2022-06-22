@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:org.polarsys.capella.common.data.behavior="platform:/resource/org.polarsys.capella.common.data.behavior.gen/model/Behavior.ecore" xmlns:org.polarsys.capella.common.data.core="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="platform:/resource/org.polarsys.capella.common.data.behavior.gen/model/Behavior.ecore">
+  <xsd:import namespace="platform:/resource/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore" schemaLocation="modellingcore.xsd"/>
+  <xsd:complexType abstract="true" name="AbstractBehavior">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:AbstractNamedElement">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="ownedParameterSet" type="org.polarsys.capella.common.data.core:AbstractParameterSet"/>
+          <xsd:element name="ownedParameter" type="org.polarsys.capella.common.data.core:AbstractParameter"/>
+        </xsd:choice>
+        <xsd:attribute name="isControlOperator" type="xsd:boolean"/>
+        <xsd:attribute name="ownedParameterSet" type="xsd:string"/>
+        <xsd:attribute name="ownedParameter" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractBehavior" type="org.polarsys.capella.common.data.behavior:AbstractBehavior"/>
+  <xsd:complexType abstract="true" name="AbstractSignal">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:AbstractType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractSignal" type="org.polarsys.capella.common.data.behavior:AbstractSignal"/>
+  <xsd:complexType abstract="true" name="AbstractEvent">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:AbstractType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractEvent" type="org.polarsys.capella.common.data.behavior:AbstractEvent"/>
+  <xsd:complexType abstract="true" name="AbstractTimeEvent">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.behavior:AbstractEvent">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="when" type="org.polarsys.capella.common.data.behavior:TimeExpression"/>
+        </xsd:choice>
+        <xsd:attribute name="isRelative" type="xsd:boolean"/>
+        <xsd:attribute name="when" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractTimeEvent" type="org.polarsys.capella.common.data.behavior:AbstractTimeEvent"/>
+  <xsd:complexType abstract="true" name="AbstractMessageEvent">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.behavior:AbstractEvent"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractMessageEvent" type="org.polarsys.capella.common.data.behavior:AbstractMessageEvent"/>
+  <xsd:complexType abstract="true" name="AbstractSignalEvent">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.behavior:AbstractMessageEvent">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="signal" type="org.polarsys.capella.common.data.behavior:AbstractSignal"/>
+        </xsd:choice>
+        <xsd:attribute name="signal" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AbstractSignalEvent" type="org.polarsys.capella.common.data.behavior:AbstractSignalEvent"/>
+  <xsd:complexType abstract="true" name="TimeExpression">
+    <xsd:complexContent>
+      <xsd:extension base="org.polarsys.capella.common.data.core:ValueSpecification">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="observations" type="org.polarsys.capella.common.data.core:AbstractNamedElement"/>
+          <xsd:element name="expression" type="org.polarsys.capella.common.data.core:ValueSpecification"/>
+        </xsd:choice>
+        <xsd:attribute name="observations" type="xsd:string"/>
+        <xsd:attribute name="expression" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="TimeExpression" type="org.polarsys.capella.common.data.behavior:TimeExpression"/>
+</xsd:schema>

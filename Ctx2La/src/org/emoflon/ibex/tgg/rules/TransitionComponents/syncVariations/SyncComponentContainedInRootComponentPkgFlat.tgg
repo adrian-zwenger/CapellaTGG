@@ -1,0 +1,39 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule SyncComponentContainedInRootComponentPkgFlat #extends AbstractSyncComponent #with Ctx2La
+/*
+ *         Y_____
+ *  	   |	|
+ * X---O---Y	|
+ * ^---O_New---Y_New
+ * 
+ * Component X is realized by Y and Y_New
+ * Y and Y_New have same container 
+ */
+#source {
+	ctxRootPkg : ctx.SystemComponentPkg
+}
+
+#target{
+	laRootPkg : la.LogicalComponentPkg{
+		-ownedLogicalComponents -> laComponent
+		-ownedParts -> laPart
+		
+		++ -ownedLogicalComponents -> laNewComponent
+		++ -ownedParts -> laNewPart
+	}
+	
+	laComponent : la.LogicalComponent
+	laPart : cs.Part
+	
+	++ laNewComponent : la.LogicalComponent
+	++ laNewPart : cs.Part
+}
+#correspondence {
+
+}
+
+#attributeConditions {
+	
+}

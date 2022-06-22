@@ -1,0 +1,30 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule AbstractCreateComponentPkg #extends AbstractComponentCommonContext #with Ctx2La
+
+#source { 
+	ctxRootPkg : ctx.SystemComponentPkg
+}
+
+#target {
+	laRootPkg : la.LogicalComponentPkg
+	
+	++ laNewPkg : la.LogicalComponentPkg
+}
+
+#correspondence {
+	++ contextTransitionedLaPkg : ContextCtxComponentPkg2LAComponentPkg{
+		// correspondence added to keep track that this node is part of this la-model and not another
+		#src-> ctxRootPkg
+		#trg-> laNewPkg
+	}
+	++ contextLaPkgDoesNotNeedTrace : ContextLaComponentPkgWhichDoesNotRealizeACtxPkg{
+		#src-> ctxRootPkg
+		#trg-> laNewPkg
+	}
+}
+
+#attributeConditions {
+	setRandomString(laNewPkg.name)
+}

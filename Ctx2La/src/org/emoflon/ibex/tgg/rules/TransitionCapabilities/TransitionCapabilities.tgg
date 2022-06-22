@@ -1,0 +1,24 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionCapabilities #extends AbstractTransitionCapabilities #with Ctx2La
+
+#source { 
+	ctxCapabilityRoot : ctx.CapabilityPkg{
+	    ++ -ownedCapabilities -> ctxNewCapability
+	}
+}
+
+#target {
+	laCapabilityRoot : la.CapabilityRealizationPkg{
+	    ++ -ownedCapabilityRealizations -> laNewCapabilityRealization
+	}
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

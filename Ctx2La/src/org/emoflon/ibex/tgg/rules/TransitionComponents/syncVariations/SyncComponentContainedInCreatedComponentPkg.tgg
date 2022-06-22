@@ -1,0 +1,46 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+/**
+ * This rule creates a LogicalComponent in a LogicalComponentPkg
+ * The Pkg does not realize any SystemAnalysis model element
+ * 
+ * The newly created LogicalComponent is set to be the realization of a random SystemComponent
+ * 
+ * This rule needs to be monitored as only the system designer knows which SystemComponent is to be realized.
+ * 
+ * User needs to chose the match!!! 
+ */
+#rule SyncComponentContainedInCreatedComponentPkg #extends AbstractSyncComponent #with Ctx2La
+
+#source {
+	ctxRootPkg : ctx.SystemComponentPkg
+}
+
+#target {
+	laContainerPkg : la.LogicalComponentPkg{
+		++ -ownedLogicalComponents -> laNewComponent
+		++ -ownedParts -> laNewPart
+	}
+	
+	++ laNewComponent : la.LogicalComponent
+	
+	++ laNewPart : cs.Part
+}
+
+#correspondence {
+	contextTransitionedContainer : ContextCtxComponentPkg2LAComponentPkg{
+	// require that container contained in local root was transitioned properly via rule applications
+		#src-> ctxRootPkg
+		#trg-> laContainerPkg
+	}
+	contextLaPkgDoesNotNeedTrace : ContextLaComponentPkgWhichDoesNotRealizeACtxPkg{
+		// require that the package is pkg which does not have a counterpart in ctx
+		#src-> ctxRootPkg
+		#trg-> laContainerPkg
+	}
+}
+
+#attributeConditions {
+
+}

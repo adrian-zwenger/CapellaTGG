@@ -1,0 +1,97 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+// exchange when ports do not exist yet
+#rule TransitionExchangeWithComponentPair #extendsAbstractMatchComponentPair #with Ctx2La
+
+#source {
+    ctxComponentRootPkg : ctx.SystemComponentPkg{
+        ++ -ownedComponentExchanges -> ctxExchange
+    }
+    
+	ctxSrcComponent : ctx.SystemComponent{
+	    ++ -ownedFeatures -> ctxInPort
+	}
+    
+    ctxTrgComponent : ctx.SystemComponent{
+        ++ -ownedFeatures -> ctxOutPort
+    }
+    
+    ++ ctxInPort : fa.ComponentPort{
+        kind := enum::fa.ComponentPortKind::STANDARD
+        orientation := enum::fa.OrientationPortKind::UNSET
+    }
+    
+    ++ ctxOutPort : fa.ComponentPort{
+        kind := enum::fa.ComponentPortKind::STANDARD
+        orientation := enum::fa.OrientationPortKind::UNSET
+    }
+    
+    ++ ctxExchange : fa.ComponentExchange{
+        kind := enum::fa.ComponentExchangeKind::ASSEMBLY
+        ++ -source -> ctxInPort
+        ++ -target -> ctxOutPort
+    }
+}
+
+#target {
+    laComponentRootPkg : la.LogicalComponentPkg{
+        ++ -ownedComponentExchanges -> laExchange
+    }
+
+    laSrcComponent : la.LogicalComponent{
+        ++ -ownedFeatures -> laInPort
+    }
+    
+    laTrgComponent : la.LogicalComponent{
+        ++ -ownedFeatures -> laOutPort
+    }
+    
+    ++ laInPort : fa.ComponentPort{
+        kind := enum::fa.ComponentPortKind::STANDARD
+        orientation := enum::fa.OrientationPortKind::UNSET
+    }
+    
+    ++ laOutPort : fa.ComponentPort{
+        kind := enum::fa.ComponentPortKind::STANDARD
+        orientation := enum::fa.OrientationPortKind::UNSET
+    }
+
+    ++ laExchange : fa.ComponentExchange{
+        ++ -source -> laInPort
+        ++ -target -> laOutPort
+    }
+}
+
+#correspondence {
+	++ inports : CtxComponentPort2LaComponentPort{
+	    #src-> ctxInPort
+	    #trg-> laInPort
+	}
+	
+	++ outports : CtxComponentPort2LaComponentPort{
+	    #src-> ctxOutPort
+	    #trg-> laOutPort
+	}
+	
+	++ exchanges : CtxComponentExchange2LAComponentExchange{
+	    #src-> ctxExchange
+	    #trg-> laExchange
+	}
+}
+
+#attributeConditions {
+	//eq_ctxPortType(ctxInPort.kind, laInPort.kind, enum::fa.ComponentPortKind::STANDARD)
+	//eq_ctxPortType(ctxOutPort.kind, laOutPort.kind, enum::fa.ComponentPortKind::STANDARD)
+	
+	eq_string(ctxExchange.name, laExchange.name)
+	 // by default capella uses the exchanges name as the port name.
+	 // this makes it difficult to discern Ports from exchanges in Capella as everything is listed by name
+	 // thus i decided to add the suffix port to be able to discern them
+	addSuffix(ctxExchange.name, " Port", ctxPorts)
+	setDefaultString(ctxInPort.name, ctxPorts)
+	setDefaultString(ctxOutPort.name, ctxPorts)
+	addSuffix(laExchange.name, " Port", laPorts)
+    setDefaultString(laInPort.name, laPorts)
+    setDefaultString(laOutPort.name, laPorts)
+}

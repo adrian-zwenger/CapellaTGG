@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.0"?><plugin>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="re.RePackage" genModel="model/re.genmodel" uri="platform:/resource/org.polarsys.capella.common.re.gen/model/re.ecore"/>
+  </extension>
+</plugin>

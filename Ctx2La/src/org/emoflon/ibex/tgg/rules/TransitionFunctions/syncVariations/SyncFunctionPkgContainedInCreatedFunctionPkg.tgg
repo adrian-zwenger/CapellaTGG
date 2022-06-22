@@ -1,0 +1,42 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+
+// needs to be monitored
+/**
+ * Why is this rule needed?
+ * example:
+ * ctxPkg <--> laPkg
+ * 				|
+ * 			   Pkg which does not realize anything
+ * 				|
+ * 			   Pkg which does not realize anything
+ * 			    |
+ * 			   New Pkg which realizes ctxPkg as well
+ * 
+ * steps between laPkg and new Pkg unknown. not expressible as TGG-pattern --> pattern needed with broad matching and manual sorting of actually valid and wanted matches
+ */
+#rule SyncFunctionPkgContainedInCreatedFunctionPkg #extends AbstractSyncFunctionPkg #with Ctx2La
+
+#source { 
+	ctxRootFunction : ctx.SystemFunction
+}
+
+#target {
+	laContainer : la.LogicalFunctionPkg{
+		++ -ownedLogicalFunctionPkgs -> laNewFunctionPkg
+	}
+	
+	++ laNewFunctionPkg : la.LogicalFunctionPkg
+}
+
+#correspondence {
+	pkgDoesNotRealizeCtxElement : ContextLaFunctionPkgWhichDoesNotRealizeACtxPkg{
+		#src-> ctxRootFunction
+		#trg-> laContainer
+	}
+}
+
+#attributeConditions {
+	
+}

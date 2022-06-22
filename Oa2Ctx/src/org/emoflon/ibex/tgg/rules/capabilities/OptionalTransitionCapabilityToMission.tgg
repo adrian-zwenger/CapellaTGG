@@ -1,0 +1,51 @@
+#using Oa2Ctx.*
+#using AttrCondDefLibrary.*
+
+#rule OptionalTransitionCapabilityToMission #with Oa2Ctx
+/**
+ * It is possible to transition a Capability as a Mission. It is also possible to trace a Mission as a realization of an arbitrary Capability.
+ * However, a Mission does not need to realize any Capability and thus creation of Missions on ctx side does not to lead to creation of a Capability.
+ * Only Realization links (correspondence nodes) may be created, but the source model is not modified in any way.
+ * There is no representation of Missions in the OA model. This information is completely lost.
+ * 
+ * While synchronising models the user must choose which Capabilities need to be transition as Missions as well as ctx.Capabilities.
+ * 
+ * The Mission name may be identical to the Capability, but this does not need to be the case as well.
+ * In this rule names are chosen as identical.
+ * 
+ * In short: a OperationalCapability needs to be realized as a ctx.Capability (mandatory), but it may be realized as a ctx.Mission (optional) as well.
+ */
+#source { 
+	oaArch : oa.OperationalAnalysis{
+	    -ownedAbstractCapabilityPkg -> oaRoot
+	}
+	oaRoot : oa.OperationalCapabilityPkg{
+	    -ownedOperationalCapabilities -> oaCapability
+    }
+    oaCapability : oa.OperationalCapability
+}
+
+#target {
+	ctxArch : ctx.SystemAnalysis{
+	    -ownedMissionPkg -> ctxRoot
+	}
+	ctxRoot : ctx.MissionPkg{
+	    ++ -ownedMissions -> ctxMission
+	}
+	++ctxMission : ctx.Mission
+}
+
+#correspondence {
+	arch : Oa2Sa{
+	    #src-> oaArch
+	    #trg-> ctxArch
+	}
+	++ cap2miss : OaCapability2CtxMission{
+	    #src-> oaCapability
+	    #trg-> ctxMission
+	}
+}
+
+#attributeConditions {
+	eq_string(oaCapability.name, ctxMission.name)
+}

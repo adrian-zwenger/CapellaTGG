@@ -1,0 +1,24 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule CreateFunctionPkgContainedInRootFunction #extends AbstractCreateFunctionPkg #with Ctx2La
+
+#source { 
+	ctxRootFunction : ctx.SystemFunction
+}
+
+#target {
+	laRootFunction : la.LogicalFunction{
+		++ -ownedLogicalFunctionPkgs -> laNewPkg
+	}
+	
+	++ laNewPkg : la.LogicalFunctionPkg
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

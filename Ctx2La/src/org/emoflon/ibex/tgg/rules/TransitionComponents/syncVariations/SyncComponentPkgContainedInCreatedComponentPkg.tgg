@@ -1,0 +1,31 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+/**
+ * This rule needs to be heavily monitored
+ * 
+ * it creates a realization for a ctxPkg which is contained in an laPkg that does not realize any ctx domain
+ */
+#rule SyncComponentPkgContainedInCreatedComponentPkg #extends AbstractSyncComponentPkg #with Ctx2La
+
+#source {
+}
+
+#target {
+	laContainer : la.LogicalComponentPkg{
+		++ -ownedLogicalComponentPkgs -> laNewPkg
+	}
+	
+	++ laNewPkg : la.LogicalComponentPkg
+}
+
+#correspondence {
+	++ contextLaPkgDoesNotNeedTrace : ContextLaComponentPkgWhichDoesNotRealizeACtxPkg{
+		#src-> ctxRootPkg
+		#trg-> laContainer
+	}
+}
+
+#attributeConditions {
+	
+}

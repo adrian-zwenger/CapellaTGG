@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="Oa2Ctx_TransistionActors/gen/" modelPluginID="Oa2Ctx_TransistionActors"
+    modelName="Oa2Ctx_TransistionActors" generateSchema="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//capellamodeller ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//capellamodeller platform:/plugin/org.emoflon.ibex.tgg.runtime/model/Runtime.genmodel#//runtime ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//capellamodeller ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//oa ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//ctx ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//cs ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//capellacore ../../org.polarsys.kitalpha.emde.model/model/eMDE.genmodel#//emde ../../org.polarsys.capella.common.data.core.gen/model/ModellingCore.genmodel#//modellingcore ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//la ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//pa ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//epbs ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//sharedmodel ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//fa ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//information ../../org.polarsys.capella.common.data.activity.gen/model/Activity.genmodel#//activity ../../org.polarsys.capella.common.data.behavior.gen/model/Behavior.genmodel#//behavior ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//capellacommon ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//interaction ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//information/communication ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//requirement ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//pa/deployment ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//information/datavalue ../../org.polarsys.capella.core.data.gen/model/CapellaModeller.genmodel#//information/datatype"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Oa2Ctx_TransistionActors.ecore</foreignModel>
+  <genPackages prefix="Oa2Ctx_TransistionActors" disposableProviderFactory="true"
+      ecorePackage="Oa2Ctx_TransistionActors.ecore#/">
+    <genClasses ecoreClass="Oa2Ctx_TransistionActors.ecore#//Oa2Sa">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa/target"/>
+    </genClasses>
+    <genClasses ecoreClass="Oa2Ctx_TransistionActors.ecore#//Entity2SystemComponent">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Entity2SystemComponent/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Entity2SystemComponent/target"/>
+    </genClasses>
+    <genClasses ecoreClass="Oa2Ctx_TransistionActors.ecore#//OaPart2SaPart">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//OaPart2SaPart/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//OaPart2SaPart/target"/>
+    </genClasses>
+    <genClasses ecoreClass="Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker/CREATE__SRC__src_entity_pkg"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker/CREATE__SRC__src_oa_arch"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker/CREATE__TRG__trg_sa_arch"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker/CREATE__TRG__trg_system_as_component"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker/CREATE__TRG__trg_system_as_part"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker/CREATE__TRG__trg_system_component_pkg"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_generation__Marker/CREATE__CORR__new_oa2sa"/>
+    </genClasses>
+    <genClasses ecoreClass="Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CONTEXT__SRC__src_entity_pkg"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CONTEXT__SRC__src_oa_arch"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CREATE__SRC__src_oa_entity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CREATE__SRC__src_oa_part"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CONTEXT__TRG__trg_componenet_pkg"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CONTEXT__TRG__trg_sa_arch"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CREATE__TRG__trg_sys_component"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CREATE__TRG__trg_sys_part"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CREATE__CORR__entity2component"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CONTEXT__CORR__oa2sa"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors__Marker/CREATE__CORR__part2part"/>
+    </genClasses>
+    <genClasses ecoreClass="Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CREATE__SRC__src_operational_entity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CREATE__SRC__src_operational_part"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CONTEXT__SRC__src_top_level_entity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CONTEXT__TRG__trg_sa_arch"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CREATE__TRG__trg_system_component"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CONTEXT__TRG__trg_system_component_pkg"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CREATE__TRG__trg_system_part"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CREATE__CORR__OaEntity2SaSysComponent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Oa2Ctx_TransistionActors.ecore#//Oa2Sa_transition_actors_recursively__Marker/CREATE__CORR__part2part"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

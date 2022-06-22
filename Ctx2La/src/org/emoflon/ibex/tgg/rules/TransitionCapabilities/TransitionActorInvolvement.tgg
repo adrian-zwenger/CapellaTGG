@@ -1,0 +1,95 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionActorInvolvement #extends AbstractCapabilityCommonContext #with Ctx2La
+
+#source {
+    ctxArch : ctx.SystemAnalysis{
+        -ownedSystemComponentPkg -> ctxComponentRoot
+        -ownedAbstractCapabilityPkg -> ctxCapabilityRoot
+    }
+    
+    ctxComponentRoot : ctx.SystemComponentPkg
+    
+    ctxCapabilityRoot : ctx.CapabilityPkg
+    
+	ctxComponent : ctx.SystemComponent
+	
+	ctxCapability : ctx.Capability{
+	    ++ -ownedCapabilityInvolvements -> CtxInvolvement
+	}
+	
+	// The matches for this rule need to be monitored
+	// as no NAC can be expressed in the TGG thus allowing a single component
+	// to be involved with the same capability multiple times
+	// however this is invalid
+	++ CtxInvolvement : ctx.CapabilityInvolvement{
+	    ++ -involved -> ctxComponent
+	}
+}
+
+#target {
+    laArch : la.LogicalArchitecture{
+        -ownedLogicalComponentPkg -> laComponentRoot
+        -ownedAbstractCapabilityPkg -> laCapabilityRoot
+    }
+    
+    laCapabilityRoot : la.CapabilityRealizationPkg
+    
+    laComponentRoot : la.LogicalComponentPkg
+    
+	laComponent : la.LogicalComponent
+	
+	laCapability :la.CapabilityRealization{
+	    ++ -ownedCapabilityRealizationInvolvements -> laInvolvement
+	}
+	
+	++ laInvolvement : capellacommon.CapabilityRealizationInvolvement{
+	    ++ -involved -> laComponent
+	}
+}
+
+#correspondence {
+	componentRoots : CtxComponentPkg2LaComponentPkg{
+	    #src-> ctxComponentRoot
+	    #trg-> laComponentRoot
+	}
+	
+	components : CtxComponent2LaComponent{
+	    #src-> ctxComponent
+	    #trg-> laComponent
+	}
+	
+	capabilities : CtxCapability2LaCapabilityRealization{
+	    #src-> ctxCapability
+	    #trg-> laCapability
+	}
+	
+	contextTransitionedCtxComponent : ContextCtxComponent2LAComponentPkg{
+	    #src-> ctxComponent
+	    #trg-> laComponentRoot
+	}
+	contextTransitionedLaComponent : ContextCtxComponentPkg2LAComponent{
+	    #src-> ctxComponentRoot
+	    #trg-> laComponent
+	}
+	
+	contextTransitionedCtxCapability : ContextCtxCapability2LaCapabilityrealizationPkg{
+	    #src-> ctxCapability
+	    #trg-> laCapabilityRoot
+	}
+	contextTransitionedLaCapability : ContextCtxCapabilityPkg2LaCapabilityrealization{
+	    #src-> ctxCapabilityRoot
+	    #trg-> laCapability
+	}
+	
+	++ involvements : CtxCapabilityInvolvement2LaCapabilityRealizationInvolvement{
+	    #src-> CtxInvolvement
+	    #trg-> laInvolvement
+	}
+}
+
+#attributeConditions {
+	eq_string(ctxComponent.name, laComponent.name)
+	eq_string(ctxCapability.name, laCapability.name)
+}

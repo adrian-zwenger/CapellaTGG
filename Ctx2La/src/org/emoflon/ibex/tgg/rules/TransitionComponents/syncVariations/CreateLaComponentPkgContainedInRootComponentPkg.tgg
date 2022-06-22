@@ -1,0 +1,23 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule CreateLaComponentPkgContainedInRootComponentPkg #extends AbstractCreateComponentPkg #with Ctx2La
+
+#source { 
+	ctxRootPkg : ctx.SystemComponentPkg
+}
+
+#target {
+	laRootPkg : la.LogicalComponentPkg{
+		++ -ownedLogicalComponentPkgs -> laNewPkg
+	}
+	++ laNewPkg : la.LogicalComponentPkg
+}
+
+#correspondence {
+
+}
+
+#attributeConditions {
+	
+}

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="org.polarsys.capella.common.data.core.gen/gen/"
+    modelPluginID="org.polarsys.capella.common.data.core.gen" modelName="ModellingCore"
+    generateSchema="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="../../org.polarsys.kitalpha.emde.model/model/eMDE.genmodel#//emde"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>ModellingCore.ecore</foreignModel>
+  <genPackages prefix="Modellingcore" disposableProviderFactory="true" ecorePackage="ModellingCore.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ModellingCore.ecore#//ParameterEffectKind">
+      <genEnumLiterals ecoreEnumLiteral="ModellingCore.ecore#//ParameterEffectKind/create"/>
+      <genEnumLiterals ecoreEnumLiteral="ModellingCore.ecore#//ParameterEffectKind/read"/>
+      <genEnumLiterals ecoreEnumLiteral="ModellingCore.ecore#//ParameterEffectKind/update"/>
+      <genEnumLiterals ecoreEnumLiteral="ModellingCore.ecore#//ParameterEffectKind/delete"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ModellingCore.ecore#//RateKind">
+      <genEnumLiterals ecoreEnumLiteral="ModellingCore.ecore#//RateKind/Unspecified"/>
+      <genEnumLiterals ecoreEnumLiteral="ModellingCore.ecore#//RateKind/Continuous"/>
+      <genEnumLiterals ecoreEnumLiteral="ModellingCore.ecore#//RateKind/Discrete"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//ModelElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModellingCore.ecore#//ModelElement/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModellingCore.ecore#//ModelElement/sid"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ModellingCore.ecore#//ModelElement/constraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//ModelElement/ownedConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//ModelElement/ownedMigratedElements"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//AbstractRelationship">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractRelationship/realizedFlow"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//AbstractNamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModellingCore.ecore#//AbstractNamedElement/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//InformationsExchanger">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ModellingCore.ecore#//InformationsExchanger/incomingInformationFlows"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ModellingCore.ecore#//InformationsExchanger/outgoingInformationFlows"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ModellingCore.ecore#//InformationsExchanger/informationFlows"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//TraceableElement">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ModellingCore.ecore#//TraceableElement/incomingTraces"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ModellingCore.ecore#//TraceableElement/outgoingTraces"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//FinalizableElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModellingCore.ecore#//FinalizableElement/final"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//PublishableElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModellingCore.ecore#//PublishableElement/visibleInDoc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModellingCore.ecore#//PublishableElement/visibleInLM"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//AbstractType">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractType/abstractTypedElements"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//AbstractTypedElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractTypedElement/abstractType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//AbstractTrace">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractTrace/targetElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractTrace/sourceElement"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//AbstractConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractConstraint/constrainedElements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractConstraint/ownedSpecification"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractConstraint/context"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//ValueSpecification"/>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//AbstractParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModellingCore.ecore#//AbstractParameter/isException"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModellingCore.ecore#//AbstractParameter/isStream"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModellingCore.ecore#//AbstractParameter/isOptional"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModellingCore.ecore#//AbstractParameter/kindOfRate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModellingCore.ecore#//AbstractParameter/effect"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractParameter/rate"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractParameter/probability"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractParameter/parameterSet"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//AbstractParameterSet">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractParameterSet/ownedConditions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractParameterSet/probability"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractParameterSet/parameters"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//AbstractInformationFlow">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractInformationFlow/realizations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractInformationFlow/convoyedInformations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractInformationFlow/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//AbstractInformationFlow/target"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//AbstractExchangeItem"/>
+    <genClasses image="false" ecoreClass="ModellingCore.ecore#//IState">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//IState/referencedStates"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModellingCore.ecore#//IState/exploitedStates"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

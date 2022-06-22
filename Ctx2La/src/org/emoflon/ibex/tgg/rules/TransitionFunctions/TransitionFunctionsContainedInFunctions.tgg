@@ -1,0 +1,58 @@
+#using Ctx2La.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionFunctionsContainedInFunctions #extends AbstractFunctionCommonContext #with Ctx2La
+
+#source {
+	ctxContainerFunction : ctx.SystemFunction{
+	    ++ -ownedFunctions -> ctxNewFunction
+	}
+	
+	++ ctxNewFunction : ctx.SystemFunction
+}
+
+#target {
+	laContainerFunction : la.LogicalFunction{
+	    ++ -ownedFunctions -> laNewFunction
+	}
+	
+	++ laNewFunction : la.LogicalFunction
+}
+
+#correspondence {
+	containers : CtxFunction2LaFunction{
+	    // require containers
+	    #src-> ctxContainerFunction
+	    #trg-> laContainerFunction
+	}
+	
+	contextTransitionedCtxContainer : ContextCtxFunction2LaFunction{
+	    // require that containers are properly contained in respective model 
+	    #src-> ctxContainerFunction
+	    #trg-> laRootFunction
+	}
+	contextTransitionedLaContainer : ContextCtxFunction2LaFunction{
+        // require that containers are properly contained in respective model
+	    #src-> ctxRootFunction
+	    #trg-> laContainerFunction
+	}
+	
+	++ newFunctions : CtxFunction2LaFunction{
+	    #src-> ctxNewFunction
+	    #trg-> laNewFunction
+	}
+	
+	++ contextTransitionedCtxFunction : ContextCtxFunction2LaFunction{
+	    #src-> ctxNewFunction
+	    #trg-> laRootFunction
+	}
+	++ contextTransitionedLaFunction : ContextCtxFunction2LaFunction{
+	    #src-> ctxRootFunction
+	    #trg-> laNewFunction
+	}
+	
+}
+
+#attributeConditions {
+	eq_string(laNewFunction.name, ctxNewFunction.name)
+}
